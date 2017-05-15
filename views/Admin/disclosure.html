@@ -1,0 +1,104 @@
+<style>
+
+h3 img {
+    max-height: 50px;
+}
+#map { 
+    height:300px;
+    width:100%;
+    margin: 18px 0;
+    border-radius: 5px;
+    border: 1px solid silver;
+}
+
+
+</style>
+
+
+<aside class="right-side">
+	<section class="content-header">
+		<h4>
+		  <ol class="breadcrumb">
+			 <li><a href="#makes"><i class="fa fa-dashboard"></i> Home</a></li>
+			 <li class="active">Disclosure</li>
+		  </ol>
+		</h4>
+	</section>
+	<section class="content">
+	 <div class="row">
+		 
+		 
+	 
+	    	<div class="col-md-12 Editbox">
+				<div class="col-md-12 text-left lead">
+					<div class="box-header">
+						<h3 class="box-title">{{editable_disc.disc_name}}</h3>
+				   </div>
+				</div>
+			  <div class="col-md-4"> 
+				 <div class="box-body">
+					    
+			      <div class="box box-primary" style="float:left;padding:20px">
+				
+				    <form role="form" name="calform_aus" id="calform">
+
+						<div class=" form-group" >
+								<wysiwyg textarea-id="description" textarea-class="form-control" textarea-height="306px" 
+								   textarea-name="disc_content" textarea-required  ng-model="editable_disc.disc_content"  textarea-menu="menu">
+								</wysiwyg>
+								
+						</div>
+						<div class="box-footer">
+							<button  type="submit" class="btn btn-primary"  ng-click="save_disclosure(editable_disc)" >Save </button>
+						</div>
+					 
+					</form>
+				  </div> 
+				 </div>
+				 </div>  
+		         <div class="col-md-8  Editbox">
+					  <div class="box-body">
+				    <div class="box box-primary" style="float:left;padding:20px">
+					   <table class="table table-bordered">
+							<thead>
+							  <tr>
+								<th>Disclosure</th>
+								<th>Content</th>
+								<th>Action</th>
+							  </tr>
+							</thead>
+							<tbody>
+							  <tr ng-repeat="d in disclosures">
+								<td width="20%">{{d.disc_name}}</td>
+								<td >{{d.disc_content}}</td>
+								<td width="10%"><a href="" ng-click="edit_disclosure(d)" ><button class="btn btn-primary">Edit</button></a></td>
+							  </tr>
+							</tbody>
+						  </table>
+				    </div>
+				 </div>
+					 
+					 
+					 
+	       </div>				
+		</div>
+		 
+		 
+		</div>
+		</section> 
+</aside>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>disclosure saved successfully</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+
+  </div>

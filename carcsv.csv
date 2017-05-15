@@ -1,0 +1,3 @@
+country,make,model,trim,year,type of vehicle,description,DAP price,MSRP price,special price,special offer price,special offer end date, down payment, interest rate,tax rate,terms,payment per month,special repayment
+AUS,audi,A2,4rdn,2015,coupe,dsf,50000,40000,30000,2000,12/24/2017,10,7,5,60,300,250
+US,toyota,t3,trfbn,2016,coupe,dvdf,50000,40000,30000,2000,12/24/2017,10,7,5,60,300,250

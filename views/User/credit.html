@@ -1,0 +1,412 @@
+<style>
+ .tgl-btn{
+  display:none;
+}
+	
+</style>
+
+
+	
+<div class="main-page">
+	 <div class="process nav-unscrolled" id="main-nav"> 
+		<div class="container">
+			<div class="stepwizard">
+				<div class="stepwizard-row setup-panel">
+					<div class="stepwizard-step" ng-click="redirect('home')">
+						<a type="button"  href="#/" class="btn btn-default btn-circle">1</a>
+						<div class="donestep"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+						<p>CHOOSE A CAR</p>
+					</div>					
+					<div class="stepwizard-step" ng-click="redirect('dealership')">
+						<a href="#/dealership/{{localmake}}/{{localmodel}}" type="button" class="btn btn-circle btn-default ">2</a>
+						<div class="donestep"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+						<p>FIND A DEALERSHIP</p>
+						
+					</div>
+					<div class="stepwizard-step active-stp">
+						<a href="" type="button" class="btn btn-default btn-circle btn-primary disable" disabled="disabled">3</a>
+						<p>SEARCH FOR FINANCING</p>
+					</div>
+					 <div class="stepwizard-step">
+						<a href="" type="button" class="btn btn-default btn-circle disable" disabled="disabled">4</a>
+						<p>SELECT YOUR LENDER</p>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+		
+ <div class="process-content">
+   <div class="container">	
+	 <form role="form" name="userForm">
+	    <div class="row setup-content" id="step-3">
+			
+			
+			<div class="col-md-12 pad0 top-spc" ng-hide="finance_div">
+				<h1 class="text-center">Search for Financing</h1>
+				<div class="">
+				<h4>Confirm Details</h4>
+					<div class="left-img col-md-6 col-sm-6 col-xs-12 pad0">
+						<div class="model-name-img">
+							<img ng-if="vehicle_img"  class="img-responsive" ng-src="./upload/{{vehicle_img}}" alt="">
+							<img ng-if="vehicle_fuel_img" class="img-responsive" ng-src="{{vehicle_fuel_img}}">
+							<div class="our-promise">
+								<div class="promins-txt">OUR PROMISE</div>
+								<div class="promise-step">
+									<div class="simple"></div>
+									A simple 4-step process
+								</div>
+								<div class="promise-step"><div class="encrypt"></div>Your information is safe with us. We use advanced encryption technology</div>
+								<div class="promise-step"><div class="time-ico"></div>Personalized decisions within minutes</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="">
+
+						<!--price section loan-->
+						<section class="loan-slide">
+							<div class="model-price">
+								<div class="modelname" >{{vehicle.year}}&nbsp;{{vehicle.brand}}&nbsp;{{vehicle.model}}&nbsp;{{vehicle.trim}}</div>
+								<div class="model-msrp" >
+									<div class="msrpprice" >${{vehicle.vehicle_price}}</div>
+									<div class="msrpname">MSRP*</div>
+								</div>
+							</div>
+							
+							
+						<div class="undefined row text-center">
+								<div class="esttxt" >Before we begin, please confirm a few details.</div>
+								
+								<div class="confirmdetails">
+									<div class="clearfix">
+										<div class="_3FFI_ccRC1esG6zey4TR_0 col-xs-12 col-sm-6">
+											<div class="muiInput ">
+												<label style="" class="forlabel " for="tradeintextfield">Down payment</label>
+												<div class="hddv">(optional)</div>
+												<input pattern="[0-9.]+" type="text" class="inp" ng-model="calculator.down_payment" name="down_payment" ng-change="update_amount_requested()"  id="tradeintextfield" style="">
+												<span style="color:red" ng-show="userForm.down_payment.$dirty && userForm.down_payment.$invalid"> invalid down payment</span>
+												<span style="color:red">{{error1}}</span>
+												<div>
+													<hr>
+													<hr>
+												</div>
+											</div>
+											
+											<div class="popoverdv " aria-describedby="popover">
+											 <div id="rangebox-credit" class="pop-ove">
+												<div class="info-icon-container">
+													<a tabindex="1" class="info-icon"><i class="fa fa-info" aria-hidden="true"></i></a>
+													<div class="iconinf">
+														<p ng-bind-html="downpay_disclosure | unsafe"></p>
+													</div>
+												</div>
+												</div>
+												<i data-trigger="hover" data-placement="top" class="_1NMwlyCTnWXq_xEloGEaSs fa fa-info-circle" aria-hidden="true"   data-toggle="popover"  data-content="This is the initial amount you pay upfront at the time of finalizing the transaction. This is optional but including a down payment will reduce the total amount you finance and thus reduce your monthly payments."></i>
+											</div>
+											
+											
+											
+											
+										</div>
+										<div ng-show="" id="cterms">{{calculator.terms}}</div>
+										
+										 <div class="col-sm-6 col-xs-12 custo-select-bx terms-n-month">
+											<label style="" class="forlabel mdl-textfield__label" for="tradeintextfield">Terms (in months)</label>
+											<div class="sel sel--black-panther ">					
+											<select ng-model="calculator.terms"  name="terms" id="select-profession" >
+												 <option   value="{{terms.value}}" ng-repeat="terms in terms_array" >{{terms.name}}</option>
+											</select>
+											<i class="fa fa-caret-down" aria-hidden="true"></i>
+											</div>
+								
+										<!--<div class="_3xZIKrgDKueInrGcoaXKYF col-xs-12 col-sm-6">
+										<div class="mdl-textfield mdl-js-textfield mdl-dropdown mdl-textfield--floating-label" style="">
+											  
+											  <label class="forlabel mdl-textfield__label" for="termmonth">Term (in months)</label>
+											   <!--<select class="mdl-textfield__input mdl-dropdown_input" ng-model="calculator.terms"  name="terms" id="terms">
+												 <option ng-repeat="terms in terms_array" ng-selected="calculator.terms=terms.value"  class="mdl-textfield__input mdl-dropdown_input" id="termmonth"
+                                                      value="{{terms.value}}">{{terms.name}}</option>
+											  </select>
+											<select ng-model="calculator.terms"  name="terms" id="terms" data-ng-options="terms.value as terms.name for terms in terms_array" class="smdl-textfield__input mdl-dropdown_input" >
+											 
+											</select>
+											  
+											 <!--<input ng-model="enquiry.terms" name="terms" readonly class="mdl-textfield__input mdl-dropdown_input" type="text" value="60 Months" id="termmonth">
+											  <ul class="mdl-menu mdl-js-menu mdl-dropdown-menu" for="termmonth">
+												<li class="mdl-menu__item" ng-repeat="terms in terms_array">{{terms.name}}</li>
+											  </ul>
+											</div>	-->
+											<div class="popoverdv" aria-describedby="popover">
+												<div id="rangebox-credit" class="pop-ove">
+													<div class="info-icon-container">
+														<a tabindex="1" class="info-icon"><i class="fa fa-info" aria-hidden="true"></i></a>
+														<div class="iconinf">
+															<p ng-bind-html="term_disclosure | unsafe"></p>
+														</div>
+													</div>
+													</div>
+												<i data-trigger="hover" data-placement="top" class="_1NMwlyCTnWXq_xEloGEaSs fa fa-info-circle" aria-hidden="true"   data-toggle="popover"  data-content="Term represents the repayment period in months for the amount financed."></i>
+											</div>
+										
+										</div>
+										
+			<!--<div class="col-sm-6 col-xs-12 custo-select-bx">
+				<label style="" class="forlabel mdl-textfield__label" for="tradeintextfield">Terms (in months)</label>
+				<div class="sel sel--black-panther ">					
+				  <select name="select-profession" id="select-profession">
+					<option value="" disabled>60 Months</option>
+					<option value="hacker">12 Months</option>
+					<option value="gamer">24 Months</option>
+					<option value="developer">36 Months</option>
+					<option value="programmer">48 Months</option>
+					<option value="designer">60 Months</option>
+					<option value="month72">72 Months</option>
+				  </select>
+				</div>-->
+				
+				<div class="popoverdv tp3" aria-describedby="popover">
+												<div id="rangebox-credit" class="pop-ove">
+													<div class="info-icon-container">
+														<a tabindex="1" class="info-icon"><i class="fa fa-info" aria-hidden="true"></i></a>
+														<div class="iconinf">
+															<p ng-bind-html="downpay_disclosure | unsafe" class="ng-binding">fbgf</p>
+														</div>
+													</div>
+													</div>
+												<i data-trigger="hover" data-placement="top" class="_1NMwlyCTnWXq_xEloGEaSs fa fa-info-circle" aria-hidden="true" data-toggle="popover" data-content=""></i>
+											</div>
+				
+			</div>
+								
+										
+										
+										
+										
+									   <div class="clearfix">
+										<div class="_3FFI_ccRC1esG6zey4TR_0 col-xs-12 col-sm-6">
+											<div class="muiInput ">
+												<label style=""  class="forlabel" for="tradeintextfield">Estimated Trade-in</label>
+												<div class="hddv">(optional)</div>
+												<input pattern="[0-9.]+" ng-model="calculator.estimated_trade_in"  ng-change="update_amount_requested()"  name="estimated_trade" type="text" class="inp"  id="tradeintextfield" style="">
+								<span style="color:red" ng-show="userForm.estimated_trade.$dirty && userForm.estimated_trade.$invalid"> invalid estimated trade in</span>				<span style="color:red">{{error}}</span>
+												<div>
+													<hr>
+													<hr>
+												</div>
+												
+											</div>
+											<div class="popoverdv" aria-describedby="popover">
+												<div id="rangebox-credit"  class="pop-ove">
+													<div class="info-icon-container">
+														<a tabindex="1" class="info-icon"><i class="fa fa-info" aria-hidden="true"></i></a>
+														<div class="iconinf">
+															<p ng-bind-html="tradein_disclosure | unsafe"></p>
+														</div>
+													</div>
+													</div>
+												<i data-trigger="hover" data-placement="top" class="_1NMwlyCTnWXq_xEloGEaSs fa fa-info-circle" aria-hidden="true"   data-toggle="popover"  data-content="The Net Trade-In Amount is the market value of your trade-in vehicle minus any remaining loan amount on the vehicle."></i>
+											</div>
+										</div>
+									</div>
+								</div>							
+								
+								
+								<div class="BMHS0SC6jSHAVQRNhILxy clearfix" >
+									<div class=" col-xs-12 text-center" >
+										<div class="estpricemonth" >
+											<div class="estprs text-center" >
+											
+												<div class="estmon">Amount Requested*</div>
+												<div class="main-prs">{{calculator.amount_reqested}}</div>
+												<span style="color:red">{{amterr}}</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div><button class="btn btn-link pop-btn" data-toggle="modal" data-target="#myModal1">*Financing Disclosures</button>
+							
+								</div>
+								<div class="select-loan-btn clearfix" ng-click="get_personal_info()">
+								   <button ng-if="!edit" class="btn btn-primary selloanbtn noLease" ng-disabled="userForm.down_payment.$invalid || userForm.estimated_trade.$invalid" type="button" >Start Credit Inquiry</button>
+								   <button ng-if="edit" class="btn btn-primary nxt noLease" ng-click="edit_cal_data()">submit</button>
+								</div>
+							</div>
+							<div class="smpltxt text-center" >Payment will be adjusted upon the final car price.</div>
+						</section>	
+						
+					</div>				
+							
+				</div>
+			</div>
+		</div>
+
+				
+	 
+				
+		</div>
+				
+		</div>
+	 </form>
+  </div>
+
+	
+	
+	
+	
+  <div id="myModal1" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content" role="document">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+					Financing Disclosures
+				</div>
+				<div class="u1le6Y2hxjExaMxMdhDl0 modal-body">
+					<div>
+						<div class="text-center">
+							 	<p ng-bind-html="finance_disclosure | unsafe"></p>
+						</div>
+					</div>
+					<div class="text-center">
+						<button class="btn btn-primary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	 
+	 <!--<div id="select-dlr" class="fade in modal" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content" role="document">
+				 <div class="modal-header">
+					<button data-dismiss="modal" class="close">x</button>
+				</div> 
+				<div class="modal-body">
+					<div class="_11Zqer_wmk7_q2cR5mFmHn">
+						<h3>New York, New York is coming soon</h3>
+						<p>AutoGravity is live in California!</p>
+						<button class="btn btn-primary " style="padding: 0px 30px; width: auto;">Select a California Dealership</button>
+						<div class="row marg">
+						  <form>
+							<div class="col-xs-8 col-sm-10">
+								<input type="email" ng-model="email" class="form-control input-lg pull-left" placeholder="Enter Your Email" value="">
+							</div>
+							<div class="col-xs-4 col-sm-2 text-center">
+								<button ng-click="get_personal_info()" class="btn btn-primary aro-btn" ><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+							</div>
+						  </form>
+						</div>
+						<div class="checkbox">
+							<label><input type="checkbox" value="true">Stay in the loop on all things AutoGravity. Unsubscribe anytime.</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+-->
+		
+
+</div>	
+
+<input type="hidden" step="5000" min="0" max="500000" value="180000" required="">
+								
+								
+<script>
+//alert();
+ $('#step-2').addClass('active-stp');
+	
+$(document).ready(function(){
+  var dob=$('input[name="dob"]'); 
+  var move_in=$('input[name="move_date"]');
+  var prev_move_in=$('input[name="prev_move_in"]');
+  var prev_move_out=$('input[name="prev_move_out"]');
+  var emp_start_date=$('input[name="emp_start_date"]');
+	
+  var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+  var options={
+	format: 'dd/mm/yyyy',
+	container: container,
+	todayHighlight: true,
+	autoclose: true,
+  };
+  dob.datepicker(options);
+  move_in.datepicker(options);
+  prev_move_in.datepicker(options);
+  prev_move_out.datepicker(options);
+  emp_start_date.datepicker(options);
+})
+</script>
+
+	<script>
+$('#select-profession').hide();
+setTimeout(function(){		/* ===== Logic for creating fake Select Boxes ===== */
+	
+//var selected=$("#select-profession :selected").text();
+var terms=$("#cterms").text();
+var selected=terms+' Months';	
+	
+$('.sel').each(function() {
+	
+  $(this).children('select').css('display', 'none');
+ 
+  var $current = $(this);
+  
+  $(this).find('option').each(function(i) {
+    if (i == 0) {
+      $current.prepend($('<div>', {
+        class: $current.attr('class').replace(/sel/g, 'sel__box')
+      }));
+      var placeholder = $(this).text();
+      $current.prepend($('<span>', {
+        class: $current.attr('class').replace(/sel/g, 'sel__placeholder'),
+        text: placeholder,
+        'data-placeholder': placeholder
+      }));
+      
+      return;
+    }
+    if($(this).text()==selected){
+		var index = $(this).index();
+		$current.children('div').append($('<span>', {
+		  class: $current.attr('class').replace(/sel/g, ' sel__box__options selected'),
+		  text: $(this).text()
+		}));
+		 var $currentSel = $(this).closest('.sel');
+         $currentSel.children('.sel__placeholder').text(selected);
+         $currentSel.children('select').prop('selectedIndex', index + 1);
+		
+	}else{
+	 
+		 $current.children('div').append($('<span>', {
+		  class: $current.attr('class').replace(/sel/g, 'sel__box__options'),
+		  text: $(this).text()
+		}));
+	
+	}
+    
+  });
+});
+	// Toggling the `.active` state on the `.sel`.
+$('.sel').click(function() {
+  $(this).toggleClass('active');
+});
+
+// Toggling the `.selected` state on the options.
+$('.sel__box__options').click(function() {
+  var txt = $(this).text();
+  var index = $(this).index();
+  $(this).siblings('.sel__box__options').removeClass('selected');
+  $(this).addClass('selected');
+  
+  var $currentSel = $(this).closest('.sel');
+  $currentSel.children('.sel__placeholder').text(txt);
+  $currentSel.children('select').prop('selectedIndex', index + 1);
+	
+});
+},2000);	
+	
+
+
+
+	</script>

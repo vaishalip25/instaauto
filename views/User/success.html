@@ -1,0 +1,58 @@
+<style>
+	.tgl-btn{
+	  display:none;
+	}
+  
+</style>
+
+<div class="main-page">
+	
+	<div class="process nav-unscrolled" id="main-nav"> 
+		<div class="container">
+			<div class="stepwizard">
+				<div class="stepwizard-row setup-panel">
+					<div class="stepwizard-step" ng-click="redirect('home')">
+						<a type="button" href="#" class="btn btn-default btn-circle">1</a>
+						<div class="donestep"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+						<p>CHOOSE A CAR</p>
+					</div>					
+					<div class="stepwizard-step" ng-click="redirect('dealership')">
+						<a href="#/dealership/{{localmake}}/{{localmodel}}" type="button" class="btn btn-default btn-circle">2</a>
+						<div class="donestep"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+						<p>FIND A DEALERSHIP</p>
+						
+					</div>
+					<div class="stepwizard-step" ng-click="redirect('credit')">
+						<a href="" ng-click="show_review()" type="button" class="btn btn-default btn-circle">3</a>
+						<div class="donestep"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+						<p>SEARCH FOR FINANCING</p>
+					</div>
+					 <div class="stepwizard-step active-stp">
+						<a href="" type="button" class="btn btn-circle btn-default btn-primary disable" disabled="disabled">4</a>
+						<p>SELECT YOUR LENDER</p>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+		
+	<div class="process-content">
+      <div class="container">		
+		<div class="row setup-content" id="step-4">
+
+			<div class="inq-review">
+				<div>
+					<div class="inq-ico"></div>
+					<h1>Your inquiry has been submitted!</h1>
+					<p class="empt"></p>
+					<div class="inq-txt">
+						<p>Lender responses will be available soon.</p>
+						<p> You’ll be notified via email. </p>
+					</div>
+				</div> 
+			</div>
+		</div>
+	  </div>
+   </div>
+</div>
+

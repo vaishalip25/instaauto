@@ -1,0 +1,603 @@
+/*media css*/
+@media screen and (max-width:320px){
+	#doughnutChart #canvas2{
+		    left: -10px !important;
+	}
+}
+@media screen and (max-width:767px){
+	
+	.popoverdv.tp3{    top: 30px;}
+	.reset-inner {    padding: 0;}
+	.trimname {    line-height: 18px;    padding: 3px 14px;}
+	.navbar-collapse{
+		width:100%;
+	}
+	.navbar-text{
+		padding: 0 15px;
+	}
+	.navbar-header {
+		background-color: transparent;
+	}
+	.navbar-default .navbar-brand {
+		color: #f68800;
+		background-color: transparent;
+	}	
+	.select-boxes{
+		margin-left:0;
+		margin-right:0;
+		margin-top: 30px;
+	}
+	.col-sm-4 .mdl-textfield {
+		width: 100%;
+		font-size: 14px;
+	}
+	.mdl-textfield .mdl-textfield__label {
+		font-size: 14px;
+	}
+	.top-img{
+		background: #e7e7e7;
+		height: 250px;
+		width: 100%;
+		overflow: hidden;
+	}
+	.top-img img{
+		height: 100%;
+		max-width: inherit;
+		    width: initial;
+	}
+	.below-dropdown h1{
+		display:none;
+	}
+	.stepwizard-step {
+		border-top: 6px solid #878787;
+		width: 24%;
+		margin-left: 2px;
+		display: inline-block;
+		    float: left;
+	}
+	.stepwizard-step.active-stp {
+		border-top: 6px solid #f68800;
+		    border-bottom: 0;
+			    position: static;
+			
+	}
+	.stepwizard-step p {
+		display: none;
+	}
+	.active-stp p {
+		display: block;
+		width: 100%;
+		position: absolute;
+		left: 0;
+		right: 0;
+		color: rgba(90,99,114,.7);
+		font-weight: 500;
+		font-size: 14px;
+	}
+	.stepwizard-step a{
+		display:none;
+	}
+	.model-name-img h4{
+		text-align:center;
+	}
+	.setup-content h4{
+text-align: left;
+		font-family: "Gotham SSm A" !important;
+	}
+	.dealer-map{
+		position: relative;
+		display: inline-block;
+		width: 100%;
+		height: 300px;
+	}
+	
+	.deal-sld {
+		padding-left: 0;
+	}
+	.top-spc h1{
+		display:none;
+	}
+	.left-img {
+		padding-left:15px;
+		padding-right:15px;
+
+	}
+	div .mdl-textfield {
+		width: 100%;
+	}
+	.our-promise{
+		display:none;
+	}
+	.show-srch {
+    margin-right: 0;
+    margin-left: 0;
+	}
+	.mFW8h7g5TQDHwFTmF2OCn{
+		    float: left;
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 20px;
+	}
+	.toggle-sign.tgl1.w-100 {
+		width: 100%;
+		margin-bottom: 0;
+	}
+	.toggle-sign.tgl1.w-100 h4{
+		text-align:left;
+	}
+	.creat-cont {
+		margin-bottom: 30px;
+	}
+	
+.review_page section {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+/* #select-dlr .modal-body {
+    padding: 20px 0;
+} */
+#select-dlr .modal-body h3 {
+    font-size: 24px;
+}
+.marg {
+    margin: 30px 0px 20px;
+}
+._11Zqer_wmk7_q2cR5mFmHn .btn{
+	font-size:12px;
+}
+._1ZuhAtc-DYbmBLqSCn-Rh6 {
+    text-align: center;
+    width: 100%;
+	    padding: 0;
+}
+.XIzZi81R7ngU7n3l2AFhu li {
+    border: 1px solid #5a6372;
+    background-color: #5a6372;
+    height: 12px;
+    width: 12px;
+    display: inline-block;
+	    border-radius: 6px;
+		    margin-right: 12px;
+}
+.XIzZi81R7ngU7n3l2AFhu li span {
+    display: none;
+}
+.current ._1ClaPLjaE3XYhi0J58n7J9 {
+    display: none;
+}
+.XIzZi81R7ngU7n3l2AFhu li.current {
+    border: 1px solid #f68800;
+    background-color: #f68800;
+    border-radius: 6px;
+}
+.XIzZi81R7ngU7n3l2AFhu li.done {
+    border: 1px solid #6be0a8;
+    background-color: #6be0a8;
+}
+#select-dlr .modal-header{
+	display:block;
+}
+.nxt-div-btn {
+    float: left;
+    width: 100%;
+}
+.mobile{
+    display: block;
+    padding: 15px 0;
+}
+.model_item{
+	    padding-left: 2%;
+    padding-right: 2%;
+    margin-bottom: 12px;
+}
+.new-grbg {
+	    margin-bottom: 16px;
+    margin-top: 6px;
+}
+.stp-ttl {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.stp-ttl h1{
+    font-size: 21px;	
+}
+.model_item.model-item-all{
+    margin-bottom: 0;
+    padding: 0;	
+}
+.model-item-all {
+    margin: 0;
+    width: 100%;
+}
+.model-item-all .model_name-img {
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    -ms-flex-direction: row;
+    /* flex-direction: row; */
+    -ms-flex-pack: start;
+    /* justify-content: flex-start; */
+    height: auto;
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+	    float: left;
+    padding: 5px 0;
+}
+.model-item-all .model_name-img .model-img {
+    margin-left: 20px;
+    margin-right: 30px;
+    max-height: 40px;
+    max-width: 40px;
+	float: left;
+	display:none;
+}
+.model-item-all .model_name-img i {
+    color: #f68800;
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    margin-top: -5px;
+}
+.single-model {
+    border-top: 1px solid #cdcfd4;
+    display: -ms-flexbox;
+    display: flex;
+    height: auto;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    padding: 8px;
+    width: 100%;
+}
+.single-model .single-model-img {
+    -ms-flex-align: center;
+    align-items: center;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex: 0 0 116px;
+    flex: 0 0 116px;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.single-model .single-model-desc{
+    padding-left: 1em;
+}
+.single-model-img .bothimg ._1R4raEd6H89c4monKQ2qi6 {
+    max-height: 86px;
+}
+.single-model-img .bothimg {
+float: left;
+}
+.single-model .single-model-img{
+	float:left;
+}
+.single-model .single-model-desc {
+float: left;
+}
+.single-model i {
+    color: #f68800;
+    display: block;
+    position: absolute;
+    right: 1em;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.back-tomodels{
+	display:none;
+}
+.back-tomake{
+	display:none;
+}
+.sel-trm{
+	    background-color: #f8f8f8;
+}
+.lease-loan-item .list-group-item{
+    border-radius: 1px;
+    border: 1px solid #cdcfd4;
+
+    font-size: 14px;
+    line-height: 45px;
+    margin-top: 6px;
+    padding: 0px;
+    margin-left: 0px;
+    margin-right: 0;
+}
+.lease-loan-item .list-group-item .col-xs-8{
+    color: #f68800;
+}
+.inline-div {
+    padding-bottom: 20px;
+}
+.dealer-distancce {
+    top: 0px;
+}
+.dealer-details .dealer-address{
+	    float: left;
+    width: 100%;
+    line-height: 25px;
+}
+.dealer-details {
+    padding: 5px 15px;
+}
+.dealer-name {
+    margin-bottom: -10px;
+}
+.model-item-all .model-name {
+    float: left;
+	margin-top: 15px;
+	margin-bottom:15px;
+}
+.carousel-indicators{
+	display:none;
+}
+.mfp-content img.mfp-img {
+    max-width: 320px;
+}
+/*************************************/
+	#step-1 .row{
+	    margin-right: 0px !important;
+   		margin-left: 0px !important;
+	}
+	.pad0 .col-md-12.pad-left-0	{
+		padding-right:0px;
+	}
+	#slidercar .carousel-inner > .item > img, #slidercar.carousel-inner > .item > a > img{
+		height:150px;
+	}
+	.pad0.top-spc .chscar .left-img{
+    height: 200px;
+	}
+	.pad0.top-spc .chscar .left-img img{
+		max-width:100%;
+	}
+	.tgl-btn{
+    	bottom: 20px !important;
+	}
+	.pad0.top-spc{
+	    float: left;
+   		width: 100%;
+	}
+	.pad0.top-spc .left-img{
+	    height: 400px;
+	}
+	.par_dealer .dealer-image img{
+		width:100%;
+	}
+	section.deal-sld {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	#step-3{
+	    padding-left: 15px;
+    	padding-right: 15px;
+	}
+	#step-3 .pad0.top-spc .left-img {
+    	height: auto;
+	}
+	.single-model-img .bothimg{
+	    min-height: initial;
+	}
+	span.input-group-btn{
+	    position: initial;
+	}
+	.pad0 .btn-for{
+	    left: 0px;
+   		 box-shadow: 0 0 0 0;
+	}
+	#main-nav{
+	    padding-top: 10px;
+	}
+	.employee-det{
+		padding-left:15px;
+		padding-right:15px;
+	}
+	.pad0 i.fa.fa-search:before{	
+	 	position: absolute;
+		right: 13px;
+		top: 13px;
+	}
+	.pad0 i.fa.fa-search{
+		right: inherit;
+	}
+	#login .modal-content{
+		padding: 10px 10px 45px;
+		width: 100%;
+	}
+	#login .login-btnm .l-btn{
+	    width: 190px;
+	}
+	#canvas2{
+		    left: 10px !important;
+    top: 50px !important;
+    width: 170px !important;
+    height: 170px !important;
+	}
+	.calculation-inputs .btn {
+    padding: 0 40px;
+}
+
+.model_name-img .model-img {
+    max-width:100%;
+}
+.iconinf{
+	width:220px;
+}
+.ag-calculator-sm .calculation-inputs .input-group {
+    padding-right: 5px !important;
+    position: relative;
+    right: 25px;
+}
+.nxt-div-btn .btn{
+	padding: 0 55px;
+}
+.frms .state {
+    /* margin-bottom: 30px; */
+	word-break: break-all;
+    white-space: normal;
+}
+
+.ssl-ico {
+    margin-bottom: 0px;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+	width:100%;
+}
+.ssl-secured .ssl-txt {
+    width: 100%;
+    margin-left: 0px;
+	text-align:center;
+}
+
+/***** date 30/3/20017 ******/
+.donestep{
+	display:none;
+}
+
+.pad0 #map {
+    height: 330px;
+}
+
+/*.right-tbs-cnt {
+    max-height: 200px;
+    overflow-y: scroll;
+}*/
+.dv-center{
+	width:100%;
+	text-align:center;
+}
+#step-3 .model-name-img img {
+    max-width: 100%;
+}
+
+/******date 25/4/2017*******/
+.slid-main{
+	overflow:auto;
+	padding: 20px 0;
+}
+.smal-pad.custo-select-bx {
+    margin-bottom: 40px;
+}
+/*********28-4********/
+.caldiv {
+    margin-bottom: 20px;
+}
+.caldiv .text-left{
+	text-align:center;
+}
+.caldiv .text-left label {
+    font-weight: normal;
+}
+.pad0 .box-body .input-group input#searchBox {
+    padding-right: 30px;
+}
+.navbar-default .navbar-brand {
+		padding: 3px 5px;
+}
+.popoverdv {
+    right: 3px;
+}
+.main-prs {
+    text-align: center;
+}
+#step-3 .model-name-img {
+    margin-bottom: 10px;
+}
+.btn {
+    padding: 0 55px;
+}
+#forgot_pwd .modal-dialog {
+	max-width: 500px;
+}
+#forgot_pwd .btn {
+    padding: 0 45px;
+}
+#forgot_pwd .modal-content {
+    padding: 20px;
+}
+}
+/*************************************************************/
+@media (min-width: 992px){
+#map_canvas{
+    width: 460px;
+    height: 640px;
+}
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px){
+	.carousel-indicators{
+		display:none;
+	}
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+	.stepwizard-step p {
+    margin-bottom: 0;
+}
+.process {
+    height: 70px;
+}
+.XIzZi81R7ngU7n3l2AFhu li.current {
+    border: 1px solid #f68800;
+    background-color: #f68800;
+    border-radius: 6px;
+}
+.XIzZi81R7ngU7n3l2AFhu li {
+    border: 1px solid #5a6372;
+    background-color: #5a6372;
+    height: 12px;
+    width: 12px;
+    display: inline-block;
+    border-radius: 6px;
+    margin-right: 12px;
+}
+.XIzZi81R7ngU7n3l2AFhu li span {
+    display: none;
+}
+.current ._1ClaPLjaE3XYhi0J58n7J9 {
+    display: none;
+}
+._1ZuhAtc-DYbmBLqSCn-Rh6 {
+    text-align: center;
+    width: 100%;
+    padding: 0;
+}
+	#step-1 .row{
+		padding-left:15px;
+	    padding-right:15px;
+	}
+	.nxt-div-btn {
+     float: left;
+}
+	.frms.rev-none.employee-det {
+		padding-left: 25px;
+		padding-right: 25px;
+	}
+	#login .modal-content{
+	    padding: 60px 60px 80px;
+  		width: 95%;
+	}
+	
+.user-details-frm {
+    padding: 0 50px;
+}
+/****************/
+.donestep i {
+    top: 2px;
+    font-size: 27px;
+}	
+.donestep {
+    font-size: 20px;
+}	
+.top-spc {
+    float: left;
+    width: 100%;
+}
+#step-3 .model-name-img img {
+    max-width: 350px;
+}
+.popoverdv {
+    right: 3px;
+}
+}
+/******************************************************************/

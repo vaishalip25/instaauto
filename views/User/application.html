@@ -1,0 +1,333 @@
+<style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+	.tgl-btn{
+	  display:none;
+	}
+  
+  h3 img {
+    max-height: 50px;
+}
+	
+.tgl-btn{
+  display:none;
+}
+
+</style>
+
+
+	
+<div class="main-page">
+	 <div class="process nav-unscrolled" id="main-nav"> 
+		<div class="container">
+			<div class="stepwizard">
+				<div class="stepwizard-row setup-panel">
+					<div class="stepwizard-step" ng-click="redirect('home')">
+						<a type="button"  href="#/" class="btn btn-default btn-circle">1</a>
+						<div class="donestep"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+						<p>CHOOSE A CAR</p>
+					</div>					
+					<div class="stepwizard-step" ng-click="redirect('dealership')">
+						<a href="#/dealership/{{localmake}}/{{localmodel}}" type="button" class="btn btn-circle btn-default ">2</a>
+						<div class="donestep"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+						<p>FIND A DEALERSHIP</p>
+						
+					</div>
+					<div class="stepwizard-step active-stp">
+						<a href="" type="button" class="btn btn-default btn-circle btn-primary disable" disabled="disabled">3</a>
+						<p>SEARCH FOR FINANCING</p>
+					</div>
+					 <div class="stepwizard-step">
+						<a href="" type="button" class="btn btn-default btn-circle disable" disabled="disabled">4</a>
+						<p>SELECT YOUR LENDER</p>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+		
+ <div class="process-content">
+   <div class="container">	
+	 <form role="form" name="userForm">
+	    <div class="row setup-content" id="step-3">
+			<div class="row">
+			   
+			<div class="col-md-12 pad0 top-spc">
+		    	<h1 class="text-center">Search for Financing</h1>		
+			</div>
+			<aside class="_1ZuhAtc-DYbmBLqSCn-Rh6">
+				<ul class="XIzZi81R7ngU7n3l2AFhu pinfo">
+					<li id="pinfo" class="current"><span>personal information</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="rinfo" class=""><span>residence information</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="einfo" class=""><span>employment information</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="iinfo" class=""><span>identification</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="rwinfo" class=""><span>review</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+				</ul>
+			</aside>
+				
+				<div class="user-details-frm resi-info" >
+				<div class="col-xs-12" ><h4 class="title">Personal Information</h4></div>
+			
+					<div class="frms">
+					  <div class="group col-xs-12 col-sm-6 " >
+						<input type="text" ng-pattern="/^[a-zA-Z\s]*$/"   ng-keyup="validate_firstname()" required  ng-model="user.firstname" name="firstname" ><span class="highlight"></span><span class="bar"></span>
+						<label>First Name</label>
+						<span style="color:red" ng-show="userForm.firstname.$dirty && userForm.firstname.$invalid">allow only letters.</span>
+					  </div>
+					  <div class="group col-xs-12 col-sm-6">
+						<input type="text" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="user.lastname" name="lastname" required><span class="highlight"></span><span class="bar"></span>
+						<label>Last Name</label>
+						  <span style="color:red" ng-show="userForm.lastname.$dirty && userForm.lastname.$invalid">allow only letters.</span>
+					  </div>
+
+					  <div class="group col-xs-12 col-sm-6">
+						 <input type="text" pattern="^(?=.*?[1-9])[0-9()-]+$"  maxlength="10"  ng-model="user.phone_no" name="phone_no" required class="form__input" id="email" name="email"><span class="highlight"></span><span class="bar"></span>
+						 <label>Phone Number</label>
+						  <span class="spanerror" style="color:red">{{phoneerr}}</span>
+						 <span style="color:red" ng-show="userForm.phone_no.$dirty && userForm.phone_no.$invalid">invalid phone number</span>
+					  </div>
+			                                     
+						
+					  <div class="group col-xs-12 col-sm-6">
+						<!--<div id="dobpl">DD/MM/YYYY</div> ng-keyup="add_slash_to_date(user.dob)"-->
+						<input type="text" ng-model="user.dob"  pattern="^(?=.*?[1-9])[0-9()/-]+$" ng-focus="hide_error('dob')"  ng-blur="validate_date(user.dob)" name="dob" id="dob"  required><span class="highlight"></span><span class="bar"></span>
+						<label>Date of Birth</label>
+						  <span style="color:red" ng-show="userForm.dob.$dirty && userForm.dob.$invalid"  required>invalid birthdate.</span>
+						  <span class="spanerror" style="color:red">{{doberrmsg}}</span>
+						</div>
+					</div> 
+					
+					<div class="frms" ng-hide="signupview">
+						
+						
+						<div class="" ng-hide="tgl1">
+							<div class="pull-left w-100">
+								<div class="col-xs-12" ><h4 class="title">Create Account</h4></div>
+								<div class="subtitle col-xs-12" >This is used to create an insta auto account.</div>
+							</div>
+							<div class="mFW8h7g5TQDHwFTmF2OCn" ><div ><span >Already have an account?</span><a href="" ng-click="show_login_form()" class="log1">Log In</a></div></div>
+								<div class="clearfix">		  
+								<div class="group col-xs-12 col-sm-6">
+									<input type="email" name="email"  ng-blur="check_email(user.email)"  ng-model="user.email"  required><span class="highlight"></span><span class="bar"></span>
+									<label>Email</label>
+									<span style="color:red" ng-show="userForm.email.$dirty && userForm.email.$invalid">invalid email address</span>
+									<span class="spanerror" style="color:red" ng-if="msg">{{msg}}</span>
+									</div>
+								</div>
+			
+							
+							<div class="group col-xs-12 col-sm-6">
+								<input type="password" ng-keyup="validate_password(user.password)" name="password"  ng-model="user.password" id="password"  required><span class="highlight"></span><span class="bar"></span>
+								<label>Password</label>
+
+								 <span class="spanerror" style="color:red">{{pwd_msg}}</span>
+								<!--password rule-->
+									<ul class="passrule">
+										<li class="" id="size">At least 8 characters</li>
+										<li class="" id="cletter"> At least 1 lowercase letter</li>
+										<li class="" id="lletter">At least 1 capital letter</li>
+										<li class="" id="num" >At least 1 number</li>
+									</ul>								
+								<!---->
+								
+							  </div>
+							
+							  <div class="group col-xs-12 col-sm-6">
+								<input type="password" name="cpassword" ng-model="con_pwd"  pw-check="password" required><span class="highlight"></span><span class="bar"></span>
+								<label>Confirm Password</label>
+								  <p style="color:red" ng-show="userForm.cpassword.$invalid && !userForm.cpassword.$pristine" class="help-block">password don't match</p>
+							  </div>
+
+							  
+							  <div class="creat-cont col-xs-12">
+								<span>By clicking Create and Continue, you agree to our
+									<a href="#/term_of_use" target="_blank">Terms of Service</a>
+									and that you have read our<a href="#/privacy_policy" target="_blank">Privacy Policy</a>
+									and <a href="#/privacy_notice" target="_blank">Privacy Notice</a>
+								.</span>
+							</div>
+							<div class="nxt-div-btn text-center col-md-12"  >
+								
+								<button ng-if="!edit" ng-click="goto_residential_info()" class="btn btn-primary nxt noLease"  
+										ng-disabled="userForm.email.$invalid || userForm.password.$invalid  || userForm.cpassword.$invalid || userForm.firstname.$invalid || userForm.lastname.$invalid || userForm.phone_no.$invalid "
+										type="button">Create and Continue</button>
+								<!--ng-disabled="userForm.email.$invalid || userForm.password.$invalid  || userForm.cpassword.$invalid || userForm.firstname.$invalid || userForm.lastname.$invalid || userForm.phone_no.$invalid "-->
+							</div>
+						</div> 
+
+						<div class="" ng-show="tgl">
+							<div class="pull-left w-100">
+								<div class="col-xs-12" ><h4 class="title">Log In to Continue</h4></div>
+								<div class="subtitle col-xs-12">Use your credentials to login to account.</div>
+								<span class="subtitle col-xs-12" style="color:red" >{{login_errmsg}}</span>
+							</div>
+							<div class="mFW8h7g5TQDHwFTmF2OCn"><div ><span>Don't have an account?</span><a href=""  ng-click="show_signup_form()" class="log">Sign Up</a></div></div>
+								
+							
+								
+							<div class="clearfix">
+								<div class="group col-xs-12 col-sm-6">
+									<input type="text" name="loginemail" ng-model="loginemail" required><span class="highlight"></span><span class="bar"></span>
+									<label>Email</label>
+									<p style="color:red" ng-show="userForm.loginemail.$invalid && !userForm.loginemail.$pristine" class="help-block">email can not be empty</p>
+								</div>
+								</div>
+							  <div class="group col-xs-12 col-sm-6">
+								<input type="password" name="loginpwd" ng-model="loginpwd" required><span class="highlight"></span><span class="bar"></span>
+								<label>Password</label>
+								  <p style="color:red" ng-show="userForm.loginpwd.$invalid && !userForm.loginpwd.$pristine" class="help-block">password can not be empty</p>
+							  </div>
+							 
+							  <div class="forgot-pass col-xs-12"><a href="" data-toggle="modal" data-target="#forgot_pwd">Forgot Password?</a></div>
+							  <div class="creat-cont col-xs-12">
+								<span>By clicking Create and Continue, you agree to our
+									<a href="#/term_of_use" target="_blank">Terms of Service</a>
+									and that you have read our<a href="#/privacy_policy" target="_blank">Privacy Policy</a>
+									and <a href="#/privacy_notice" target="_blank">Privacy Notice</a>
+								.</span>
+							</div>
+							<div class="nxt-div-btn text-center col-md-12">
+								<button class="btn btn-primary nxt noLease" ng-click="do_login()" ng-disabled="userForm.loginpwd.$invalid || userForm.loginemail.$invalid" type="button">Log In and Continue</button>
+							</div>
+						</div> 
+						
+						
+					</div> 	
+					
+					
+					
+					
+					<div class="dv-center">
+						<button ng-if="edit" class="btn btn-primary nxt noLease" ng-click="edit_personal_info()">submit</button>
+					</div>
+	
+				</div>
+
+			</div>	
+		</div>
+				
+		</div>
+	 </form>
+  </div>
+
+	
+	
+	
+	
+    <div id="myModal1" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content" role="document">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+					Financing Disclosures
+				</div>
+				<div class="u1le6Y2hxjExaMxMdhDl0 modal-body">
+					<div>
+						<div class="text-center">
+							<p>The MSRP and Estimated Monthly Payment are not an advertisement or offer for specific terms of credit. Payment amounts presented are estimates and are for illustrative purposes only. If you used the Calculator, those amounts are reflected in the Estimated Monthly Payment. The Estimated Monthly Payment is based on a 60-month term, a down payment of 9%, Annual Percentage Rate (APR) of 4.5%, a tax rate of 7.0%, and no trade-in. If you change the Down Payment or Term, or if you trade in your current vehicle, the Estimated Monthly Payment will change. The payment amount does not include title, license or registration fees. Actual prices may vary by Dealer. Payment amounts may be different due to various factors such as fees, specials and rebates, term, down payment, APR, trade-in, and tax rate. Actual APR is based on the creditworthiness of the customer. Not all customers will qualify for the lowest rate. You and your selected dealer or 
+								will determine your actual rate. Please contact your selected dealer or lender for program details and actual terms. The MSRP excludes transportation and handling charges, destination charges, taxes, title, registration, preparation and documentary fees, tags, labor and installation charges, insurance, optional equipment or packages and accessories.</p>
+							<p>Additional Disclosures for Lease Transactions:</p>
+							<p>The total due at lease signing is the amount to be paid by the lessee prior to or at signing of the lease or by delivery of the vehicle.  It does not include title, license, and/or registration fees.  It includes the first month’s payment, any acquisition fee, capitalized cost reduction, and any trade-in amount.  A security deposit may be required depending on creditworthiness.</p>
+						</div>
+					</div>
+					<div class="text-center">
+						<button class="btn btn-primary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>	
+
+
+ <div id="forgot_pwd" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content" role="document">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+				</div>
+				<div class="u1le6Y2hxjExaMxMdhDl0 modal-body">
+					<div>
+						<div class="text-center">
+							<h2>Forgot Password</h2>
+							<p>Enter your email address and we will send you a link to reset your password.</p>
+						</div>
+						
+						  <div class="frms">
+							   <div class="group">
+									<input type="text" name="forgetemail" ng-model="forgetemail" required><span class="highlight"></span><span class="bar"></span>
+									<label>Email</label>
+								</div>
+					     </div>	
+						
+					</div>
+					<div class="text-center">
+						<button ng-click="request_reset_password()" class="btn btn-primary" >Request Reset Link</button>
+					</div>
+					<div class="bck-to-lgn">
+						<a href="" data-dismiss="modal">Back to Login</a>
+					</div>
+			   </div>
+		  </div>
+	 </div>
+</div>
+
+	
+
+
+
+
+
+<input type="hidden" step="5000" min="0" max="500000" value="180000" required="">
+								
+								
+<script>
+	var $inputs = $('.input');
+$inputs.each( function(index){
+  var $input = $(this).find('.input__field');
+
+  $input.focus(function (){
+    $input.next('.input__label').addClass('focus');
+  });
+
+  $input.blur( function (){
+    if($input.val() == ''){
+      $input.next('.input__label').removeClass('focus');
+      $input.next('.input__label').removeClass('filled');
+    }
+    else{
+      $input.next('.input__label').removeClass('focus');
+      $input.next('.input__label').addClass('filled');
+    }
+   });
+});
+//alert();
+ $('#step-2').addClass('active-stp');
+	
+$(document).ready(function(){
+  var dob=$('input[name="dob"]'); 
+  var move_in=$('input[name="move_date"]');
+  var prev_move_in=$('input[name="prev_move_in"]');
+  var prev_move_out=$('input[name="prev_move_out"]');
+  var emp_start_date=$('input[name="emp_start_date"]');
+	
+  var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+  var options={
+	format: 'dd/mm/yyyy',
+	container: container,
+	todayHighlight: true,
+	autoclose: true,
+  };
+ // dob.datepicker(options);
+  move_in.datepicker(options);
+  prev_move_in.datepicker(options);
+  prev_move_out.datepicker(options);
+  emp_start_date.datepicker(options);
+})
+$('#dob').inputmask("99/99/9999", {placeholder: 'DD/MM/YYYY' });
+</script>
+

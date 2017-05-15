@@ -1,0 +1,97 @@
+
+
+  <!-- Modal -->
+  
+  
+
+
+ <!--div style="position: relative;">
+												<canvas id="text" style="z-index: 1; position: absolute; left: 0px; top: 0px; width: 200px; height: 200px;"></canvas>
+												<canvas id="canvas" style="z-index: 1; position: absolute; left: 0px; top: 0px; width: 200px; height: 200px;" ></canvas>
+											</div-->
+		
+
+
+
+
+
+
+
+
+	<!--steps-->
+	<div class="main-page">
+	<!--four steps-->
+	 <div class="process nav-unscrolled" id="main-nav"> 
+		<div class="container">
+			<div class="stepwizard">
+				<div class="stepwizard-row setup-panel">
+					<div class="stepwizard-step showstp active-stp">
+						<a href="" type="button" class="btn btn-circle btn-default btn-primary">1</a>
+						<p>CHOOSE A CAR</p>
+					</div>
+<!-- 					<div class="stepwizard-step hidestp">
+						<a href="#step-1" type="button" class="btn btn-circle btn-primary btn-circle">1</a>
+						<p>CHOOSE A CAR</p>
+					</div> -->					
+					<div class="stepwizard-step">
+						<a href="" type="button" class="btn btn-default btn-circle disable" disabled="disabled">2</a>
+						<p>FIND A DEALERSHIP</p>
+						
+					</div>
+					<div class="stepwizard-step">
+						<a href="" type="button" class="btn btn-default btn-circle disable" disabled="disabled">3</a>
+						<p>SEARCH FOR FINANCING</p>
+					</div>
+					 <div class="stepwizard-step">
+						<a href="" type="button" class="btn btn-default btn-circle disable" disabled="disabled">4</a>
+						<p>SELECT YOUR LENDER</p>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+		
+		
+		
+	<!--four steps content-->
+	<div class="process-content">
+	<div class="container">	
+	<form role="form">
+		<div class=" setup-content" id="step-1">
+			<div class="row">
+			  <div class="main-models" ng-show="makeview">
+				<div class="stp-ttl container-fluid text-center"><h1>Choose Your Make</h1></div>
+				<div class="container-fluid" >
+				
+					<div class="gr-bg new-grbg row"><h4>Featured</h4></div>		
+					<div class="all-featured row">
+						<!--featured item-->
+						<div class="model_item col-xs-4 col-sm-3 col-md-2" ng-repeat="fmake in femake track by $index"  ng-click="getmodels(fmake.make_id,fmake.make_name)">
+							<div class="model_name-img">
+								<img ng-if="fmake.badge" class="model-img" ng-src="./upload/{{fmake.badge}}">
+								<img ng-if="!fmake.badge" class="model-img" ng-src="./img/default_badge.png">
+								<h5 class="model-name">{{fmake.make_name}}</h5><i class="fa fa-chevron-right" aria-hidden="true" ></i>
+							</div>
+						</div>
+					</div>
+				
+					<div class="gr-bg new-grbg row"><h4>All</h4></div>		
+					<div class="all-featured row">	
+						<!--all model-item-->				
+				<div class="model_item col-xs-4 col-sm-3 col-md-2 model-item-all" ng-repeat="makes in make track by $index" ng-click="getmodels(makes.make_id,makes.make_name)">
+							<div class="model_name-img">
+								<img ng-if="makes.badge" class="model-img" ng-src="./upload/{{makes.badge}}">
+								<img ng-if="!makes.badge" class="model-img" ng-src="./img/default_badge.png">
+								<h5 class="model-name">{{makes.make_name}}</h5>
+								<i class="fa fa-chevron-right" aria-hidden="true"></i>
+							</div>
+						</div>				
+					</div>
+				
+				</div>
+				</div>
+			</div>
+		</div>
+
+		
+		

@@ -1,0 +1,930 @@
+/*
+Theme : theaxontech
+Author : Madhusudan C Golegaonkar
+Version : 1.0
+Project Name: BikeBeagle
+Company : Theaxontech ,Pune
+Website: http://theaxontech.com/
+
+*/
+
+/* mobile phone Portrait and Landscape */
+@media only screen and (min-device-width: 320px) and (max-device-width: 500px) 
+{ 
+h1 {
+    font-size: 24px;
+    text-align: center;
+}
+/*header*/
+.navbar-toggle {
+    background-color: #fff;
+	    padding: 7px 7px;
+}
+.navbar-toggle .icon-bar {
+    background-color: #65a9e0;
+}
+.login-btn {
+    margin-right: 30px;
+    position: absolute;
+    right: 50px;
+    top: 0px;
+    z-index: 1;
+}
+.navbar-header {
+    margin-left: 5px;
+}
+.navbar-brand {
+    height: 45px;
+    padding: 20px 15px;
+}
+.navbar-brand > img {
+    width: 110px;
+}
+.menus {
+    position: relative;#step-1 div.row{
+	    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+}
+.menus .navbar-nav {
+    text-align: right;
+    background-color: #fff;
+}
+.menus .navbar-nav li {
+    display: block;
+}
+.collapse.in .navbar-nav > li > a {
+    color: #000;
+    border-bottom: 1px solid #efefef;
+}
+.navbar-nav .btn-login {
+    padding: 7px 15px;
+    font-size: 12px;
+}
+/*slider*/
+.carousel.slide.carousel-fade{
+	margin-top:63px;
+}
+.main-searchbox h3 {
+    font-size: 18px;
+}
+.main-searchbox {
+    left: 0;
+    max-width: 260px;
+    margin: 0 auto;
+}
+.main-searchbox .navbar-form {
+    padding: 15px 0px;
+}
+
+#srch-term {
+    height: 30px;
+}
+.navbar-form .input-group-btn .btn img {
+    height: 20px;
+}
+.navbar-form .input-group {
+    width: 260px;
+    margin: 0 auto;
+}
+.input-group-btn {
+    width: 30px;
+}
+.navbar-form .input-group-btn .btn {
+        padding: 5px 8px;
+}
+.join-the-bunch {
+    margin-top: 0;
+}
+.btn-join-dv {
+    bottom: 0;
+}
+.join-text h1 {
+    text-align: center;
+    font-size: 16px;
+	margin-top: 5px;
+}
+.join-text h4 {
+    font-size: 13px;
+}
+.join-text {
+    padding-right: 0;
+	margin-bottom: 5px;
+}
+.btn-jump {
+    font-size: 12px;
+padding: 11px 10px 11px 10px;
+    float: left;
+}
+.btn-facebook {
+    font-size: 12px;
+    padding: 5px 10px 5px 10px;
+}	
+.btn-facebook i {
+    padding: 10px 10px 10px 5px;
+    margin-right: 20px;
+    margin: -1px 10px -2px 0px;
+}
+/*modal popup*/
+.modal-sm {
+    width: 300px;
+	margin: 15px auto;
+}
+/*featured bike*/
+.bike-name {
+    padding: 0px 15px;
+}
+.type-review {
+    float: none;
+}
+.type-review .col-md-6{
+	    padding-right: 8px;
+    padding-left: 8px;
+}
+/*latest blogs*/
+.full-blog {
+    padding-left: 15px;
+}
+.latest-blog .blog-items {
+    margin-bottom: 15px;
+    float: left;
+	    text-align: center;
+}
+.blog-sidebar {
+    padding-left: 20px;
+    background-color: #eaeaea;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-top: 15px;
+}
+.sidebar-signup-form input[type="text"] {
+    background-color: #ffffff;
+}
+.from-the-blog{
+	text-align:center;
+}
+.blog-items img{
+	width:100%;
+}
+.home-blog{
+	text-align:center;
+}
+.home-blog h3{
+	text-align:center;
+}
+.latest-blog{
+    padding: 0;	
+}
+.latest-blog .col-md-4{
+	padding:0;
+}
+.latest-blog .col-md-4.margin-right-20{
+	margin-right:0;
+}
+/*mountain bike result*/
+.brand-model label {
+    padding: 7px 10px;
+    font-size: 14px;
+    height: 35px;
+}
+.brand-model input {
+    height: 35px;
+    padding: 0 5px;
+}
+
+.search-brand-model {
+    text-align: center;
+}
+.breadcrumbs{
+	float:left;
+}
+.adv-main{
+	padding:0;
+}
+.selected-filters{
+	padding:0;
+	    float: left;
+}
+.selected-filters ul li {
+    font-size: 10px;
+}
+.mountain-items .bike-item {
+    padding: 0;
+	float: left;
+}
+.bike-details {
+    width: 100%;
+}
+.bike-content .thumbnail {
+    max-width: 100%;
+}
+.product-promo-banner {
+    padding: 5px 0px;
+    float: left;
+	width: 100%;
+}
+.product-promo-banner img{
+	width:100%;
+}
+/*store finder*/
+.finder-filter-item {
+    margin-bottom: 10px;
+}
+.store-info1 .phone .reveal-text {
+	text-align: center;
+    padding-right: 0;
+}
+/*store page free*/
+.store-img{
+	text-align:center;
+}
+.store-img img{
+	margin:0 auto;
+}
+.our-brand {
+	text-align:center;
+}
+.store-page-content .col-md-7{
+	padding: 0;
+    float: left;
+}
+.store-page-content .col-md-5{
+	padding: 0;
+    float: left;
+}
+.store-page-content .col-md-6{
+	padding: 0;
+    float: left;
+}
+.store-page-content .col-md-12{
+	padding: 0;
+    float: left;
+}
+.store-hours {
+    padding: 20px 50px !important;
+    width: 100%;
+}
+.store-page-content .enquiry-frm{
+	width:100%;
+	padding-left: 15px;
+    padding-right: 15px;
+
+}
+.store-page-content .enquiry-frm label {
+    padding: 0;
+}
+.store-page-content .enquiry-frm input{
+	width:100%;
+}
+.store-page-content .enquiry-frm .col-md-12{
+	width:100%;
+}
+.store-page-content .enquiry-frm .form-group{
+	width:100%;
+}
+.store-free-txt h4 {
+    float: left;
+}
+/*store page premium*/
+.store-about-us {
+    float: left;
+}
+.whatwe-div{
+	    width: 100%;
+}
+.col-md-8.store-hours {
+    margin-top: 15px;
+}
+/*dealer result*/
+.dealer-result-content.section-padding{
+	padding:15px 0;
+}
+.dealer-result .adv-div {
+    margin-top: 20px;
+}
+.back-btn-adv{
+	text-align:left;
+}
+.dealer-result .col-md-4{
+	padding-left:0;
+	padding-right:0;
+}
+.dealer-result .col-md-6{
+	padding-left:0;
+	padding-right:0;
+}
+.dealer-result .col-md-8{
+	padding-left:0;
+	padding-right:0;
+}
+.store-nme {
+    margin-top: 5px;
+}
+.store-info h4 label {
+    float: none;
+}
+.dealer-item {
+    text-align: center;
+}
+.dealer-item img{
+	margin:0 auto;
+}
+.dealer-item .btn-request-quote {
+    margin-right: 5px;
+}
+.dealer-product-img{
+	float:left;
+}
+.product-name-model {
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 16px;
+}
+.website{
+	text-align:center;
+}
+.store-img .reveal-text {
+    width: auto;
+}
+.specification-title h3 {
+    font-size: 16px;
+}
+.specification-label {
+    float: none;
+    width: 100%;
+}
+.specification-text {
+    float: left;
+    padding-left: 0;
+}
+/*bike details*/
+.sale-promo-banner {
+    margin-top: -60px;
+}
+
+.col-md-6.pad-non{
+	float:left;
+}
+.icon-sect {
+    float: left;
+}
+.icon-sect .col-md-3{
+	width:50%;
+	float:left;
+}
+.tab-sect{
+	float:left;
+}
+.btn-div{
+	float:left;
+	    width: 100%;
+}
+.btn-div .btn{
+	font-size:14px;
+	padding:15px 20px;
+	    margin-bottom: 15px;
+}
+.reviewer-name, .reviewer-rating, .reviewer-rating-label, .reviewer-logo{
+	float:left;
+}
+.tab-sect li a {
+    width: 58px;
+    padding: 10px 10px;
+}
+/*about us*/
+.about-content .banner-heading {
+    padding: 60px 0;
+}
+.how-it-works .section-title{
+	margin-bottom:0;
+}
+.why-bike-content {
+    padding: 10px 15px;
+}
+.how-works-item {
+    background-image: none;
+	    margin-bottom: 20px;
+}
+.what-drives-item {
+    width: 100%;
+}
+.newsletter input {
+    width: 290px;
+}
+/*contact us*/
+.contact-banner{
+	margin-top:63px;
+}
+.contact-text {
+    width: 100%;
+}
+.contact-info .col-md-4{
+	padding:0;
+}
+.contact-info .col-md-8{
+	padding:0;
+}
+.contact-info .col-md-6{
+	padding:0;
+}
+.contact-info .col-md-12{
+	padding:0;
+}
+/*footer*/
+.copyright p {
+    margin-bottom: 5px;
+    line-height: 25px;
+    font-size: 13px;
+    text-align: left;
+}
+.about-beagle {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.footer-social {
+    padding-left: 15px;
+    margin-bottom: 10px;
+}
+.footer.section .col-md-3{
+    margin-bottom: 15px;
+    float: left;
+}
+	
+}
+/*mountain bike filter sidebar*/
+/*****************************************************************/
+@media screen and (max-width: 768px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all .25s ease-out;
+         -o-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+  }
+
+  .row-offcanvas-right {
+    right: 0;
+  }
+
+  .row-offcanvas-left {
+    left: -100%;
+	    position: absolute !important;
+		z-index:1;
+  }
+
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -50%; /* 6 columns */
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -50%; /* 6 columns */
+  }
+
+  .row-offcanvas-right.active {
+    right: 50%; /* 6 columns */
+  }
+
+  .row-offcanvas-left.active {
+	left: 0%;
+    background-color: #f3f3f3;
+    z-index: 1;
+    position: absolute !important;
+    height: 450px;
+    overflow: auto !important;
+	    padding-top: 15px;
+	
+  }
+  #toggle-sidebar{
+	  margin-top:60px;
+  }
+.theiaStickySidebar{
+	width: 280px !important;
+	background-color: #f3f3f3;
+	top:85px !important;
+}
+.toggle-div-sidebar{
+    background-color: #fff;
+    width: 100%;
+    padding: 15px 0px;	
+	    z-index: 2;
+}
+.toggle-div-sidebar .btn-primary{
+    background-color: transparent;
+    background-image: none;
+    text-shadow: none;
+    color: #575757;
+    border: 1px solid #575757;
+    box-shadow: none;
+    border-radius: 0;
+}
+.aside-follower-content{
+	float:left;
+	margin-top:0;
+}
+
+}
+
+/**************************** iPad Portrait and Landscape *****************************/
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) 
+{
+/*header*/
+    .navbar-header {
+        float: none;
+    }
+	.navbar-toggle {
+		display: block;
+		background-color: #fff;
+	}
+	.navbar-toggle .icon-bar {
+		background-color: #65a9e0;
+	}
+       .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+		top: 0;
+		border-width: 0 0 1px;
+	}
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+		margin-top: 7.5px;
+	}
+	.header .navbar-nav>li {
+        float: none;
+		   display: block;
+		text-align: right;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+		
+    }
+	#navbarCollapse .navbar-nav>li>a {
+       color:#000;
+	       border: 1px solid #eaeaea;
+    }
+	#navbarCollapse .navbar-nav{
+		background-color: #fff;
+	}
+    .collapse.in{
+  		display:block !important;
+	}
+	.login-btn{
+		position: absolute;
+		right: 40px;
+		top: 0px;
+		z-index: 1;
+	}
+
+.blog-items img{
+	width:100%;
+}
+
+
+/*contact us*/
+.address-container{
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 0 5px;	
+}
+}
+
+/* ipad Portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait)  {
+/*home*/
+.main-searchbox {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+.join-the-bunch {
+    margin-top: -1px;
+}
+.join-text {
+    padding-right: 0;
+    margin-bottom: 30px;
+}
+.btn-join-dv {
+    bottom: 0;
+}
+.home-bikes .bike-item{
+    float: left;
+    width: 50%;	  
+}
+.type-review {
+    width: 100%;
+}
+.latest-blog.home-blg .blog-items {
+    float: left;
+    width: 100%;
+    margin-left: 0;
+	margin-bottom: 20px;
+}
+/*about us*/
+.how-works-item {
+    width: 50%;
+    float: left;
+    background-image: none;
+}
+.what-drives-item {
+    width: 48%;
+}
+/*blogs*/
+.blog-sidebar{
+    float: left;
+    width: 30%;	
+	margin-top: 30px;
+}
+.from-the-blog{
+    width: 70%;
+    float: left;	
+}
+.latest-blog .blog-items {
+	float: left;
+    width: 47%;
+    margin-left: 15px;
+}
+/*dealer result*/
+.dealer-item .col-md-3{
+	float:left;
+}
+.dealer-item .store-info{
+	float:left;
+}
+.dealer-item .reveal-text {
+    padding-right: 47px;
+}
+.dealer-item .store-btns{
+	float:none;
+}
+.srt-list{
+	float:left;
+}
+.prod-img-des{
+	float:left;
+}
+/*bike details*/
+.icon-sect{
+	float:left;
+}
+.icon-sect .col-md-3{
+	float:left;
+}
+.col-md-6.pad-non.black-btn.btn-div .col-md-6 .btn-warning.btn-block.btn-lg{
+	float:left;
+}
+.blogger-name-ratings .reviewer-name{
+	float:left;
+}
+.blogger-name-ratings .reviewer-rating-label{
+	float:left;
+}
+.blogger-name-ratings .reviewer-rating{
+	float:left;
+}
+/*mountain bike result*/
+.toggle-div-sidebar {
+    display: block !important;
+	padding-left: 17px;
+}
+.sidebar-filter{
+	overflow:auto;
+}
+.adv-main{
+	float:left;
+	width:100%;
+}
+.breadcrumbs{
+    float: left;
+    width: 100%;	
+}
+.selected-filters{
+	float: left;
+    width: 100%;		
+}
+.bike-details {
+    width: 100%;
+}
+.row-offcanvas-left.active {
+    height: 100%;
+}
+.mountain-items .bike-item {
+    float: left;
+}
+/*store finder*/
+.finder-filter-item{
+	width:25%;
+	float:left;
+	
+}
+.finder-item{
+    width: 50%;
+    float: left;	
+}
+/*why go premium*/
+.why-item {
+    float: left;
+    width: 50%;
+}
+/*store page free*/
+.store-page-content .col-md-7 .col-md-6{
+	float:left;
+	width:50%;
+}
+.enquiry-frm {
+    width: 100%;
+}
+.store-free-txt h4{
+	float:left;
+}
+/*store page premium*/
+.store-about-us {
+    float: left;
+}
+.whatwe-div{
+	float: left;
+    width: 100%;
+}
+.store-free-txt{
+	float:left;
+}
+.about-main{
+	float:left;
+}
+.service-offer{
+	float:left;
+}
+.promo-banner{
+	margin-top: 20px;
+	float:left;
+}
+.promo-banner-img{
+	  
+	float:left;
+}
+.col-md-8.store-hours {
+    margin-top: 20px;
+    float: left;
+}
+/*footer*/
+.footer-gallery li img{
+	width:100%;
+}
+
+}
+/* ipad landscape */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape)  {
+.dealer-item .store-btns {
+	padding-left: 0;
+}
+.store-btns .btn-request-quote, .btn-view-page{
+    font-size: 13px;
+    width: 100px;
+    padding: 3px 5px;
+}
+.dealer-item .reveal-text {
+    padding-right: 40px;
+}
+/*mountain bike result*/
+.mountain-items .bike-item {
+    width: 50%;
+}
+.slider.slider-horizontal {
+    width: 150px;
+}
+.brand-model label {
+    padding: 5px 6px;
+    font-size: 15px;
+	float: left;
+}
+.brand-model input {
+    width: 125px;
+    margin-left: -1px;
+}
+.sram-scroll{
+    width: 180px;	
+}
+/*store page premium*/
+.store-hours {
+    padding: 20px 40px;
+}
+.promo-banner {
+    margin-top: 0;
+}
+.col-md-8.store-hours {
+    margin-top: 20px;
+}
+
+/*why go premium*/
+.why-go-item {
+    min-height: 520px;
+}
+/*about us*/
+.what-drives-item {
+    width: 48%;
+}
+.how-works-item img {
+    max-width: 100%;
+}
+/*footer*/
+.footer-gallery li {
+	    width: 40%;
+    height: 50px;
+}
+}
+/*************************************************************************/
+
+.togle-bar{
+	display:none;
+	/* color:#fff; */
+}
+
+@media (max-width : 768px)  { 
+
+.togle-bar{
+	display: block;
+    left: 20px;
+    position: relative;
+}
+.tgl-slide{
+	left:0 !important;
+	transition:0.5s ease;
+}
+.sidebar-menu li a{
+	font-size:24px;
+}
+.sidebar-menu li a .fa{
+	margin-right:20px;
+}
+.left-side {
+    width: 300px;
+}
+.comon-align-ipd .col-sm-6{
+	min-height:290px;
+}
+.backbtn {
+    width: 18%;
+}
+input[type=range] {
+    width: 60%;
+}
+.dealer-pad-comon .pad-left-0, .dealer-pad-comon .pad-right-0{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
+
+
+
+}
+
+
+@media (max-width : 320px)  { 
+
+.togle-bar{
+	display: block;
+    left: 20px;
+    position: relative;
+	font-size:22px;
+}
+.tgl-slide{
+	left:0 !important;
+	transition:0.5s ease;
+}
+.sidebar-menu li a{
+    font-size: 13px;
+}
+.sidebar-menu li a .fa{
+	margin-right:0px;
+}
+.left-side{
+    width: 200px;
+}
+.row-offcanvas-left
+ .sidebar-offcanvas {
+    left: -65%;
+}
+
+
+}
+
+
+
+
+

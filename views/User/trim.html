@@ -1,0 +1,360 @@
+   
+  <style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+	  .caldiv{
+	   float: left;
+    width: 100%;
+    margin-bottom: 10px;
+	  }
+.loader1 {
+    margin: 10px auto;
+    font-size: 10px;
+    position: relative;
+    text-indent: -9999em;
+    border-top: 4px solid #dadada;
+    border-right: 4px solid #dadada;
+    border-bottom: 4px solid #dadada;
+    border-left: 4px solid #f68800;
+    -webkit-animation: load8 1s infinite linear;
+    animation: load8 1s infinite linear;
+}
+	  .loader1, .loader1:after {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+		      top: 130px;
+    z-index: 999;
+
+}
+@-webkit-keyframes load8 {  0% {    -webkit-transform: rotate(0deg);    transform: rotate(0deg);  }  100% {    -webkit-transform: rotate(360deg);    transform: rotate(360deg);  }}@keyframes load8 {  0% {    -webkit-transform: rotate(0deg);    transform: rotate(0deg);  }  100% {    -webkit-transform: rotate(360deg);    transform: rotate(360deg);  }}
+  </style>
+
+
+
+
+	<!--steps-->
+	<div class="main-page">
+	<!--four steps-->
+	 <div class="process nav-unscrolled" id="main-nav"> 
+		<div class="container">
+			<div class="stepwizard">
+				<div class="stepwizard-row  setup-panel">
+					<div class="stepwizard-step showstp active-stp">
+						<a href="" type="button" class="btn btn-default btn-primary btn-circle">1</a>
+						<p>CHOOSE A CAR</p>
+					</div>
+				
+					<div class="stepwizard-step">
+						<a href="" type="button" class="btn btn-default btn-circle disable" disabled="disabled">2</a>
+						<p>FIND A DEALERSHIP</p>
+						
+					</div>
+					<div class="stepwizard-step">
+						<a href="" type="button" class="btn btn-default btn-circle disable" disabled="disabled">3</a>
+						<p>SEARCH FOR FINANCING</p>
+					</div>
+					 <div class="stepwizard-step">
+						<a href="" type="button" class="btn btn-default btn-circle disable" disabled="disabled">4</a>
+						<p>SELECT YOUR LENDER</p>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+		
+	<div class="process-content">
+	<div class="container">	
+		
+		
+	<form role="form">
+		<div class=" setup-content" id="step-1">
+			<div class="row">
+
+					<div class="col-md-12 pad0 top-spc" >
+		
+				<div class="stp-ttl text-center container-fluid" >
+					<span class="back-tomodels" ng-click="bckmodel()">
+					<i class="fa fa-chevron-left" aria-hidden="true"></i>Back to Models</span>
+					<h1>Select Trim - {{veh_info.make_name}}
+							&nbsp{{veh_info.model}}</h1>
+				</div>
+				
+			
+				<div class="chscar">
+		          
+			
+				    <div class="left-img col-md-6 col-sm-6 col-xs-12 pad0">
+						  <div ng-if="loading" ><div class="loader1"></div></div>
+						  <carousel >
+							<slide ng-repeat="slide in slides track by $index">
+							  <img ng-src="{{slide.image}}">
+							</slide>
+						  </carousel>
+						
+                     </div>
+		
+					   
+					</div>
+						
+				
+					<div class="right-tbs-cnt col-md-6 col-sm-6 col-xs-12 pad0">
+						
+						<div class="slid-main sel-trm">
+							<!-- <div class=""><h4>Featured</h4></div>		 -->
+						<!--lease loan-->
+						
+						<div class="lease-loan inline-div"  >
+						   <div class="model-name-s col-xs-12 text-center">  
+							   <!--<div class="caldiv" ng-if="dpayment">
+								  <div class="col-xs-12 col-md-8 text-left">
+									  <label>Down Payment :{{dpayment}} </label>
+								  </div>
+								 <div class="col-xs-12 col-md-4 text-left">
+									  <label>APR :{{interest_rate}}</label>
+								  </div>
+									<div class="col-xs-12 col-md-8 text-left">
+									  <label>Estimated Trade :{{estimated_trade_in}}</label>
+								  </div>
+									<div class="col-xs-12 col-md-4 text-left">
+									  <label>Terms : {{terms}}</label>
+								  </div>
+								</div>-->
+           
+							  <!-- {{veh_info.year}}&nbsp{{veh_info.make_name}}
+							&nbsp{{veh_info.model}}&nbsp{{veh_info.trim}}-->
+							</div>
+						  <ul class="nav yearlist">
+						
+							<li ng-click="get_vehicle_data(year.year,veh_info.make,veh_info.model)" ng-repeat="year in modelyear" ><a >{{year.year}}</a></li>
+						  </ul>
+						 <!-- <ul class="nav nav-tabs">
+							<li ng-click="loan_show()" class="active"><a data-toggle="tab">Loan</a></li>
+							<li ng-click="lease_show()" ><a data-toggle="tab">Lease</li>
+						  </ul>-->
+
+						  <div class="tab-content tab-cont scrollbar" id="style-1">
+							<div id="loan" class="tab-pane fade in active" ng-hide="loan">
+							  	<div class="row">
+									<button type="button" ng-if="emi_price" ng-click="show_price()" class="btn btn-link pull-right toggle-prz">Show MSRP</button>
+							  	</div>
+							    	<button type="button" ng-if="msrp_price" ng-click="show_emi()" class="btn btn-link pull-right toggle-prz">Show Monthly Payment</button>
+							  
+							   <!--all item-->
+							 	 <div class="list-group lease-loan-item"  ng-repeat="trim in trims">
+							 	  <!--item-->
+									<div class="list-group-item lease-item lslide row" ng-click="get_trim_img(trim,trim.trim,trim.make,trim.model)">
+									<div class="col-xs-5 col-md-8 trimname">{{trim.trim}}</div>
+									<div class="col-md-4 col-xs-7">
+										<div ng-hide="emi"  class="price col-xs-4">${{trim.monthly_pay}}/mo<sup>*</sup></div>
+										<div ng-show="price" class="price col-xs-4">${{trim.msrp_price}}</div>
+									</div>
+									
+									</div>
+                 
+							 	 </div>
+							  
+							  <!--popup-->
+							  <div class="_1KHWUMab3Ewrndm0wYx70Z">
+								<button class="btn btn-link pop-btn" data-toggle="modal" data-target="#myModal">*Financing Disclosures</button>
+								<!-- Modal -->
+								<div id="myModal" class="modal fade" role="dialog">
+									<div class="modal-dialog">
+										<div class="modal-content" role="document">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+												Financing Disclosures
+											</div>
+											<div class="u1le6Y2hxjExaMxMdhDl0 modal-body">
+												<div>
+													<div class="text-center"> 
+														<p ng-bind-html="finance_disclosure | unsafe"></p>
+												    </div>
+												</div>
+												<div class="text-center">
+													<button class="btn btn-primary" data-dismiss="modal">Close</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>								
+							</div>
+							  
+							  <!--end popup-->
+							</div>
+							</div>
+						<!--<div class="tab-pane fade1" ng-hide="lease" id="lease">
+						  <div class="up-lease text-center">
+							<div class="lease-img-up"></div>
+							<div class="upcomtxt">Leasing coming soon for this vehicle</div>
+						  </div>
+						</div>-->
+							
+						
+						  </div>						
+						
+
+						<!--price section loan-->
+					
+						   <section class="loan-slide inline-div"  >
+				
+								<div class="back-rslt show" ng-click="backresult()" ><i class="fa fa-angle-left" aria-hidden="true"></i><span>Back to results</span></div>
+								<div class="model-price">
+									<div class="modelname" >{{estimation.year}}&nbsp{{estimation.brand}}&nbsp{{estimation.model}}&nbsp{{estimation.trim}}</div>
+									<div class="model-msrp" >
+										<div class="msrpprice" >${{estimation.msrp_price}}</div>
+										<div class="msrpname">MSRP*</div>
+									</div>
+								</div>
+								<div class="undefined row text-center">
+									<div class="esttxt" >Estimated Monthly Payment*</div>
+									<div class="BMHS0SC6jSHAVQRNhILxy clearfix" >
+										<div class=" col-xs-12" >
+											<div class="estpricemonth" >
+												<div class="estprs" >
+													<div class="main-prs">${{estimation.monthly_pay}}<span class="_1z40SRLSAIYbGJjAYEmXVj">/MO</span></div>
+													<div class="estmon">For {{estimation.sel_terms}} months</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div><button class="btn btn-link pop-btn" data-toggle="modal" data-target="#myModal">*Financing Disclosures</button>
+								
+									</div>
+									<div class="select-loan-btn clearfix">
+									<button class="btn btn-primary nextBtn noLease" type="button" ng-click="find_dealership(estimation.make,estimation.model)">SELECT LOAN</button>
+									</div>
+								</div>
+								<div class="smpltxt text-center" >Payment will be adjusted upon the final car price.</div>
+							</section>	
+						    <!--end-->
+						   </div>
+					</div>
+					</div>		
+						
+<!-- 					<div class="nxt-div-btn text-center col-md-12">
+						<button class="btn btn-default prevBtn btn-lg pull-left" type="button" >Prev</button>
+						<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+					</div> -->
+				</div>
+			</div>
+
+		
+
+			
+			</div>
+		</div>
+								
+	</form>
+		
+	</div>	
+
+    
+    
+    
+
+								
+<input type="hidden" step="5000" min="0" max="500000" value="180000" required="">
+<input type="hidden" id="img1" name="img" />
+  <script> 
+  
+   
+   
+
+       var content='';
+   
+   
+      setTimeout(function(){ 
+      
+        var img=$('#img1').val();
+        img=img.split(",");
+        
+        for (i = 0; i < img.length; i++) {
+                 console.log(img[i]);  
+         content = '<div class="gallery-item">'+
+								  '<a href="./upload/'+img[i]+'" data-effect="mfp-zoom-in" title="">'+
+									'<img src="./upload/'+img[i]+'">'+
+								  '</a>'+							
+                '</div>';
+             
+             owl.trigger('add.owl.carousel', [$(content)]).trigger('refresh.owl.carousel').trigger('to.owl.carousel',0);
+      } 
+        
+        
+
+        
+         
+                        
+                           
+                           
+       },100);
+     
+     
+
+    
+    
+    //s$('.gallery-carousel').owlCarousel();
+    
+    var owl = $('.gallery-carousel');
+  //owl.owlCarousel().destroy();
+  $('.gallery-carousel').owlCarousel({
+    
+    
+		nav:      true,
+		navText:  ['<i class="fa fa-angle-left fa-3x" aria-hidden="true"></i>','<i class="fa fa-angle-right fa-3x" aria-hidden="true"></i>'],
+		margin:   10,
+		loop:     true,
+		
+		responsive:{
+			0:{
+					items:1
+			},
+			480:{
+					items:1
+			},
+			768:{
+					items:1
+			},
+			992:{
+					items:1
+			}
+		}
+	});
+             
+
+ 
+    
+    $('.popup-gallery').magnificPopup({
+		delegate: '.owl-item:not(.cloned) a',
+		type: 'image',
+		removalDelay: 500, //delay removal by X to allow out-animation
+		callbacks: {
+			beforeOpen: function() {
+				// just a hack that adds mfp-anim class to markup 
+				 this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+				 this.st.mainClass = this.st.el.attr('data-effect');
+			}
+		},
+		tLoading: 'Loading image #%curr%...',
+		mainClass: 'mfp-img-mobile',
+		gallery: {
+			enabled: true,
+			navigateByImgClick: true,
+			preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+		},
+		image: {
+			tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+			titleSrc: function(item) {
+				return item.el.attr('title') + '<small></small>';
+			}
+		}
+	});
+
+
+	  </script> 
+		<!--slide loan-->
+	
+   

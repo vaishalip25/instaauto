@@ -1,0 +1,139 @@
+<sidebar></sidebar>
+ <aside class="right-side">
+	<section class="content-header">
+		<h4>
+		  <ol class="breadcrumb">
+			 <li><a href="#makes"><i class="fa fa-dashboard"></i> Home</a></li>
+			 <li class="active">Calculator</li>
+		  </ol>
+		</h4>
+	</section>
+	<section class="content">
+       <div class="Calculator">
+	   	    <div class="form-group col-md-12">
+				<h2 class="vtitle">Default Calculator Values</h2>
+			 </div>
+		<div>
+		
+			<div class="col-md-6 Editbox">
+				 
+			   <div class="box box-primary" style="float:left">
+				
+				  <form role="form" name="calform_aus" id="calform">
+					<div class="box-body">
+						<div class="form-group">
+							<h2 class="vtitle">Australia</h2>
+						</div>
+						<div class="form-group">
+							<input type="hidden" ng-model="calc_aus.cal_contry" name="cal_contry" ng-init="calc_aus.cal_contry='AUS'" class="form-control" >
+						</div>
+						<div class="form-group">
+							<label for="car_price">Car Price</label>
+							<input type="text" ng-model="calc_aus.car_price" class="form-control" id="car_price" placeholder="Enter Vehicle Down Payment" name="car_price" ng-pattern="/^[0-9]{1,10}$/" required>
+							<span style="color:red" ng-show="calform_aus.car_price.$dirty && calform_aus.car_price.$invalid">Enter valid Car Price</span>
+						</div>
+						
+						<div class="form-group">
+							<label for="down_payment">Down Payment ( % )</label>
+							<input type="text"  ng-blur="hide_error('d')" ng-model="calc_aus.down_payment" class="form-control" id="down_payment" placeholder="Enter Vehicle Down Payment" name="down_payment" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required>
+							<span style="color:red"  ng-show="calform_aus.down_payment.$dirty && calform_aus.down_payment.$invalid">Enter valid down payment</span>
+					        <span style="color:red">{{derrmsg}}</span>
+						</div>
+						
+					    <div class="form-group">
+							<label for="terms">Terms ( months )</label>
+							<input type="text"  ng-model="calc_aus.terms" class="form-control" id="terms" placeholder="Enter Vehicle Down Payment" name="terms" ng-pattern="/^[0-9]{1,10}$/" required>
+							<span style="color:red" ng-show="calform_aus.terms.$dirty && calform_aus.terms.$invalid">Enter valid Terms</span>
+						</div>
+						<div class="form-group">
+							<label for="interest_rt">Interest Rate ( % )</label>
+							<input type="text" ng-blur="hide_error('i')" ng-model="calc_aus.interest_rt" class="form-control" id="interest_rt" placeholder="Enter interest " name="interest_rt" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required>
+							<span style="color:red" ng-show="calform_aus.interest_rt.$dirty && calform_aus.interest_rt.$invalid">Enter valid interest rate</span>
+						    <span style="color:red">{{ierrmsg}}</span>
+						</div>
+						<div class="form-group">
+							<label for="tax_rate">Tax Rate ( % )</label>
+							<input type="text" ng-blur="hide_error('t')" ng-model="calc_aus.tax_rate" class="form-control" id="tax_rate" placeholder="Enter Vehicle Down Payment" name="tax_rate" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required>
+							<span style="color:red" ng-show="calform_aus.tax_rate.$dirty && calform_aus.tax_rate.$invalid">Enter valid Tax Rate</span>
+						    <span style="color:red">{{terrmsg}}</span>
+						</div>	
+						
+						
+						<div class="box-footer">
+							<button  type="submit" class="btn btn-primary" ng-disabled="calform_aus.$invalid" ng-click="save_cal_aus(calc_aus)" >Save </button>
+						</div>
+					  </div>
+					</form>
+				  </div> 
+		       </div>
+			   
+			   <div class="col-md-6 Editbox">
+			   <div class="box box-primary" style="float:left">
+				
+				  <form role="form" name="calform_us" id="calform_us">
+					<div class="box-body">
+					    <div class="form-group">
+							<h2 class="vtitle">United States</h2>
+						</div>
+					<div class="form-group">
+							<input type="hidden" ng-model="calc.cal_contry" name="cal_contry" ng-init="calc.cal_contry='US'" class="form-control" >
+						</div>
+						<div class="form-group">
+							<label for="car_price">Car Price</label>
+							<input type="text" ng-model="calc.car_price" class="form-control" id="car_price" placeholder="Enter Vehicle Down Payment" name="car_price" ng-pattern="/^[0-9]{1,10}$/" required>
+							<span style="color:red" ng-show="calform_us.car_price.$dirty && calform_us.car_price.$invalid">Enter valid Car Price</span>
+						</div>
+						<div class="form-group">
+							<label for="down_payment">Down Payment ( % )</label>
+							<input type="text" ng-blur="hide_error('dp')" ng-model="calc.down_payment" class="form-control" id="down_payment" placeholder="Enter Vehicle Down Payment" name="down_payment" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required>
+							<span style="color:red" ng-show="calform_us.down_payment.$dirty && calform_us.down_payment.$invalid">Enter valid down payment</span>
+						   <span style="color:red">{{dperrmsg}}</span>
+						</div>
+						<div class="form-group">
+							<label for="terms">Terms ( months )</label>
+							<input type="text" ng-model="calc.terms" class="form-control" id="terms" placeholder="Enter Vehicle Down Payment" name="terms" ng-pattern="/^[0-9]{1,10}$/" required>
+							<span style="color:red" ng-show="calform_us.terms.$dirty && calform_us.terms.$invalid">Enter valid Terms</span>
+						     
+						</div>
+					
+						<div class="form-group">
+							<label for="interest_rt">Interest Rate ( % )</label>
+							<input type="text" ng-blur="hide_error('ip')" ng-model="calc.interest_rt" class="form-control" id="interest_rt" placeholder="Enter interest " name="interest_rt" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required>
+							<span style="color:red" ng-show="calform_us.interest_rt.$dirty && calform_us.interest_rt.$invalid">Enter valid interest rate</span>
+						   <span style="color:red">{{iperrmsg}}</span>
+						</div>
+						
+						<div class="form-group">
+							<label for="tax_rate">Tax Rate ( % )</label>
+							<input type="text" ng-blur="hide_error('tp')" ng-model="calc.tax_rate" class="form-control" id="tax_rate" placeholder="Enter Vehicle Down Payment" name="tax_rate" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" required>
+							<span style="color:red" ng-show="calform_us.tax_rate.$dirty && calform_us.tax_rate.$invalid">Enter valid Tax Rate</span>
+						    <span style="color:red">{{tperrmsg}}</span>
+						</div>
+						
+						<div class="box-footer">
+							<button  type="submit" class="btn btn-primary" ng-disabled="calform_us.$invalid" ng-click="save_cal(calc)" >Save </button>
+						</div>
+					  </div>
+					</form>
+				  </div> 
+		       </div>
+             </div>			   
+		  </div> 
+	</section>
+</aside>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>data udated successfully</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+
+  </div>
+</div>

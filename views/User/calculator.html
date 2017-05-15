@@ -1,0 +1,427 @@
+<style>
+.tgl-btn{
+  display:none;
+}
+.simplecal{
+border: 1px solid #f9f6f6;
+margin: 20px auto;
+max-width: 700px
+}
+	
+</style>
+
+
+
+<div id="calculator" class="right" role="dialog">
+	
+	
+	<div class="simplecal">
+		<div class="modal-content" role="document">
+			 
+			<div class="_3PMFBZJweMNFnZpKR9PZMx modal-body">
+			
+				<div id="calculator1">
+					<div class="ag-calculator container ag-calculator-sm">
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" data-target="#loantab">Loan</a></li>
+							<li><a data-toggle="tab" data-target="#leasetab">Lease</a></li>
+						</ul>
+						<div class="tab-content">
+					   <div id="loantab" class="tab-pane fade in active">
+							<div class="col-xs-12 cust-calci">
+								<div class="row">
+									<section class="calculations clearfix">
+										<div class="col-xs-7">
+											<div id="doughnutChart" class="exp">
+											
+											  <div style="">
+												<canvas id="canvas" style="z-index: 1; position: absolute; left: 96px; top: 41px; width: 180px; height: 180px;" ></canvas>
+											</div>
+											
+											</div>
+										
+											<div class="featured">
+												<div class="copy">Estimated<br>Monthly Payment*</div>
+												<div class="amount" style="margin-top: 0px;margin-right: 22px;">
+													<span class="dollarSign">$</span>
+													<span class="bigNumber"><span>{{estimated_monthly_payment}}</span></span>
+												</div>
+											</div>
+								      </div>
+										<div class="col-xs-5 amts">
+											<dl class="calculated-amounts" id="rangebox">
+												<dt>
+													<div class="img-circle totalInterest"></div>
+													<span> Total Interest </span>
+													<div class="info-icon-container">
+														<a tabindex="0" class="info-icon"><i class="fa fa-info" aria-hidden="true"></i></a>
+														<div class="iconinf">
+															<p ng-bind-html="totalinterest_disclosure | unsafe"></p>
+														</div>
+													</div>
+													
+												</dt>
+												<dd>
+													<div class="img-circle commonLabel"></div>$<span>{{total_interest}}</span>
+													
+												</dd>
+												<dt>
+													<div class="img-circle totalTaxes"></div>
+													<span> Total Taxes </span>
+													<div class="info-icon-container">
+														<a tabindex="0" class="info-icon"><i class="fa fa-info" aria-hidden="true"></i></a>
+														<div class="iconinf">
+															<p ng-bind-html="totaltax_disclosure | unsafe"></p>
+														</div>
+													</div>
+												</dt>
+												<dd>
+													<div class="img-circle commonLabel"></div>$<span>{{total_tax}}</span>
+												</dd>
+												<dt>
+													<div><span> Estimated Total Payment</span></div>
+													<div class="subtext">(including taxes and interest)</div>
+												</dt>
+												<dd class="total">$<span>{{estimated_total_payment}}</span></dd>
+											</dl>
+										</div>
+									</section>
+								</div>
+								
+								<div class="row">
+									<div class="col-xs-12 pad0">
+										<div class="calculation-inputs">
+											<div class="row form-group ag-form-group-with-slider">
+												<div class="col-xs-6">
+													<div>
+														<div class="img-circle commonLabel"></div>
+														<span class="input-label">Car Price (MSRP)*</span>
+													</div>
+												</div>
+												<div class="col-xs-6">
+													<span class="input-group pull-right">
+														<span class="input-group-addon">$</span>
+												<input ng-blur="update_calculator(car_price,down_payment,estimated_trade_in,tax_rate,terms,interest_rate)" type="text" ng-model="car_price"  name="car_price"  class="form-control" placeholder="Car Price" >
+													</span>
+													<div class="info-icon-container">
+														<a tabindex="0" class="info-icon"><i class="fa fa-info" aria-hidden="true"></i></a>
+														<div class="iconinf">
+															<p ng-bind-html="car_disclosure | unsafe"></p></div>
+													</div>
+												</div>
+												<div class="col-xs-12">
+												 <div class="slider">
+													<div class="range-slider-wrapper js-range-slider ">
+														<input onkeypress='validate(event)' ng-change="change_carprice(car_price_selector)" ng-model="car_price_selector" name="car_price_selector"  class="range-slider range-slider-currency bublesele" type="range" min="0" width="10" max="150000" step="100" value="{{car_price}}" id="bublesele">
+													    
+													 </div>
+												</div>
+											</div>
+										</div>
+										<!--slider-->
+										<div class="row form-group ag-form-group-with-slider">
+												<div class="col-xs-6">
+													<div>
+														<div class="img-circle downPayment"></div>
+														<span class="input-label">Down Payment </span>
+													</div>
+												</div>
+												<div class="col-xs-6">
+													<span class="input-group pull-right">
+														<span class="input-group-addon">$</span>
+														<input type="text"  ng-model="down_payment" name="down_payment" class="form-control" placeholder="Down Payment" ng-blur="update_calculator(car_price,down_payment,estimated_trade_in,tax_rate,terms,interest_rate)" id="down_payment">
+													</span>
+													<div class="info-icon-container">
+														<a tabindex="0" class="info-icon"><i class="fa fa-info" aria-hidden="true"></i></a>
+														<div class="iconinf">
+															<p ng-bind-html="downpay_disclosure | unsafe"></p></div>
+													</div>
+												</div>
+												<div class="col-xs-12">
+												 <div class="slider">
+													<div class="range-slider-wrapper js-range-slider">
+														<input  ng-change="change_down_payment(down_payment_selector)"  ng-model="down_payment_selector" name="down_payment_selector" class="range-slider range-slider-currency" type="range" min="0" max="100" step="1"  id="down_payment_selector">
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--slider-->
+										<div class="row form-group ag-form-group-with-slider">
+												<div class="col-xs-6">
+													<div>
+														<div class="img-circle estimatedTrade"></div>
+														<span class="input-label">Estimated Trade-In Optional</span>
+													</div>
+												</div>
+												<div class="col-xs-6">
+													<span class="input-group pull-right">
+														<span class="input-group-addon">$</span>
+														<input onkeypress='validate(event)' ng-blur="update_calculator(car_price,down_payment,estimated_trade_in,tax_rate,terms,interest_rate)" ng-model="estimated_trade_in" name="estimated_trade_in"  type="text" class="form-control" placeholder="Estimated Trade-In" id="estimated_trade_in">
+													</span>
+													<div class="info-icon-container">
+														<a tabindex="0" class="info-icon"><i class="fa fa-info" aria-hidden="true"></i></a>
+														<div class="iconinf">
+																<p ng-bind-html="tradein_disclosure | unsafe"></p>
+														</div>
+													</div>
+												</div>
+												<div class="col-xs-12">
+												 <div class="slider">
+													<div class="range-slider-wrapper js-range-slider">
+														<!--<input ng-change="change_estimated_tradein(estimated_tradein_selector)"  ng-model="estimated_tradein_selector" name="estimated_tradein_selector" class="range-slider range-slider-currency" type="range" min="0" max="{{car_price}}" step="100" >-->
+														<input ng-change="change_estimated_tradein(estimated_tradein_selector)"  ng-model="estimated_tradein_selector" name="estimated_tradein_selector" class="range-slider range-slider-currency est" type="range" min="0" max="{{car_price}}" step="100" id="estimated_tradein_selector" >
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--slider-->
+										<div class="row form-group ag-form-group-with-slider">
+												<div class="col-xs-6">
+													<div>
+														<div class="img-circle taxRate"></div>
+														<span class="input-label">Tax Rate </span>
+													</div>
+												</div>
+												<div class="col-xs-6">
+													<span class="input-group pull-right">
+												
+	   <input onkeypress='validate(event)'  ng-blur="update_calculator(car_price,down_payment,estimated_trade_in,tax_rate,terms,interest_rate)" ng-model="tax_rate" name="tax_rate" type="text" class="form-control"  id="tax_rate">
+																<span class="input-group-addon">%</span>
+													</span>
+													<div class="info-icon-container">
+														<a tabindex="0" class="info-icon"><i class="fa fa-info" aria-hidden="true"></i></a>
+														<div class="iconinf">
+															<p ng-bind-html="taxrate_disclosure | unsafe"></p>
+														</div>	
+													</div>
+												</div>
+												<div class="col-xs-12">
+												 <div class="slider">
+													<div class="range-slider-wrapper js-range-slider">
+														<input ng-change="change_tax_rate(tax_rate_selector)"  ng-model="tax_rate_selector" ng-value="tax_rate_selector" name="tax_rate_selector" class="range-slider range-slider-currency" type="range" min="0" max="100" step="0.1"  id="tax_rate_selector">
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--slider-->
+										<div class="row form-group ag-form-group-with-slider">
+												<div class="col-xs-6">
+													<div>
+														<div class="img-circle commonLabel"></div>
+														<span class="input-label">Term</span>
+													</div>
+												</div>
+												<div class="col-xs-6">
+													<span class="input-group pull-right">
+														
+<input  id="terms"  ng-blur="update_calculator(car_price,down_payment,estimated_trade_in,tax_rate,terms,interest_rate)" ng-blur="update_calculator(down_payment)" onkeypress='validate(event)' ng-model="terms" name="terms" type="text" class="form-control" >
+														<span class="input-group-addon">mo</span>
+													</span>
+													<div class="info-icon-container">
+														<a tabindex="0" class="info-icon"><i class="fa fa-info" aria-hidden="true"></i></a>
+														<div class="iconinf">
+															<p ng-bind-html="term_disclosure | unsafe"></p>
+														</div>
+													</div>
+												</div>
+												<div class="col-xs-12">
+												 <div class="slider">
+													<div class="range-slider-wrapper js-range-slider">
+														<input ng-change="change_terms(terms_selector)"  ng-model="terms_selector" name="terms_selector"    class="range-slider range-slider-currency" type="range" min="0" max="84" step="12" value="60" id="terms_selector">
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--slider-->
+										<div class="row form-group ag-form-group-with-slider">
+												<div class="col-xs-6">
+													<div>
+														<div class="img-circle commonLabel"></div>
+														<span class="input-label">APR</span>
+													</div>
+												</div>
+												<div class="col-xs-6">
+													<span class="input-group pull-right">
+<input id="interest_rate" ng-blur="update_calculator(car_price,down_payment,estimated_trade_in,tax_rate,terms,interest_rate)" 
+	   ng-blur="update_calculator(down_payment)" onkeypress='validate(event)' ng-model="interest_rate"  name="interest_rate" type="text" class="form-control" >
+																<span class="input-group-addon">%</span>
+													</span>
+													<div class="info-icon-container">
+														<a tabindex="0" class="info-icon"><i class="fa fa-info" aria-hidden="true"></i></a>
+														<div class="iconinf">
+															<p ng-bind-html="apr_disclosure | unsafe"></p>
+														</div>
+													</div>
+												</div>
+												<div class="col-xs-12">
+												 <div class="slider">
+													<div class="range-slider-wrapper js-range-slider">
+														<input ng-change="change_interest_rate(interest_rate_selector)" ng-model="interest_rate_selector" name="interest_rate_selector" class="range-slider range-slider-currency" type="range" min="0" max="100" step="0.1" value="{{interest_rate_selector}}"  id="interest_rate_selector">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row bottom-bar">
+											<div class="col-xs-12 text-center">
+												<a href="#" class="btn btn-link pop-btn" data-toggle="modal" data-target="#myModal">*Financing Disclosures</a>
+											</div>
+										</div>										
+										<div class="text-center" style="margin-top: 0.5em;">
+										
+											<button class="btn btn-primary" ng-click="save_calculator_values()" style="margin-left: 0.5em;">Save</button>
+										</div>										
+									</div>
+									<!--slider-->
+										
+								</div>
+						</div>
+					</div>
+				</div>
+							<div id="leasetab" class="tab-pane fade in ">
+								 <div class="up-lease text-center">
+									<div class="lease-img-up"></div>
+									<div class="upcomtxt">Leasing coming soon for this vehicle</div>
+								 </div>
+							</div>	
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div> 
+</div> 	
+
+<script>
+ function validate(evt) {
+  var theEvent = evt || window.event;
+  var key = theEvent.keyCode || theEvent.which;
+  key = String.fromCharCode( key );
+  var regex = /[0-9]|\./;
+  if( !regex.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
+}
+
+$(document).click(function (e) {
+    if (!$(e.target).hasClass('sel')) {
+        $('.sel--black-panther.active').removeClass('active')
+    }
+})
+	           
+function updateDonut(percent, element){
+  if (percent < 50){
+    offset = (360 / 100) * percent;
+    element.parentNode.querySelector("#section3").style.webkitTransform = "rotate(" + offset + "deg)";
+    element.parentNode.querySelector("#section3 .item").style.webkitTransform = "rotate(" + (180 - offset) + "deg)";
+    element.parentNode.querySelector("#section3").style.msTransform = "rotate(" + offset + "deg)";
+    element.parentNode.querySelector("#section3 .item").style.msTransform = "rotate(" + (180 - offset) + "deg)";
+    element.parentNode.querySelector("#section3").style.MozTransform = "rotate(" + offset + "deg)";
+    element.parentNode.querySelector("#section3 .item").style.MozTransform = "rotate(" + (180 - offset) + "deg)";
+    element.parentNode.querySelector("#section3 .item").style.backgroundColor = "#41A8AB";
+  } else { 
+    offset = ((360 / 100) * percent) - 180;
+    element.parentNode.querySelector("#section3").style.webkitTransform = "rotate(180deg)";
+    element.parentNode.querySelector("#section3 .item").style.webkitTransform = "rotate(" +  offset + "deg)";
+    element.parentNode.querySelector("#section3").style.msTransform = "rotate(180deg)";
+    element.parentNode.querySelector("#section3 .item").style.msTransform = "rotate(" +  offset + "deg)";
+    element.parentNode.querySelector("#section3").style.MozTransform = "rotate(180deg)";
+    element.parentNode.querySelector("#section3 .item").style.MozTransform = "rotate(" +  offset + "deg)";   
+    element.parentNode.querySelector("#section3 .item").style.backgroundColor = "#E64C65";
+  }
+  element.parentNode.querySelector("span").innerHTML = percent + "%";
+}
+		  
+		  function initAndSetupTheSliders() {
+	
+    [].forEach.call(document.getElementsByClassName("container"), function(el) {
+      var inputs = [].slice.call(el.querySelectorAll('.range-slider input'));
+      inputs.forEach(function (input) {
+         
+          input.addEventListener('input', function (element) {
+              updateSlider(input);
+          });
+          input.addEventListener('change', function (element) {
+              updateSlider(input);
+          });
+      });
+    });
+}
+	function BubbleShadow( $wrapper, index ) {
+// 		GUI.debugging( 'range-sliders: Setting shadow ', 'report' );
+
+		var $this = $wrapper.find('.range-slider');
+		var value = $this.val();
+		var min = $this.attr('min');
+		var max = $this.attr('max');
+		var percentage = ( 100 / (max - min) ) * ( value - min );
+
+		$wrapper.addClass( 'js-range-slider-' + index );
+
+		var $style = $('<style/>')
+			.addClass('js-rangestyle-' + index)
+			.html('.js-range-slider-' + index + ':after { width: ' + ( percentage > 0 ? percentage : 0 ) + '%; }')
+
+		return $style;
+
+	};
+
+		if( $('.js-range-slider').length ) {
+// 			GUI.debugging( 'range-sliders: Found instance', 'report' );
+
+          setTimeout(function(){
+			i = 0;
+			$('.js-range-slider').each(function iterateSliders() {
+				var $styles = BubbleShadow( $(this), i );
+
+				$(this)
+					.before( $styles )
+					.attr('data-index', i);
+
+
+				i++;
+			});
+			}, 1000);
+			
+			$('.js-range-slider .range-slider').on('mousedown input active focus touchstart', function showBubble() {
+// 				GUI.debugging( 'range-sliders: input changed', 'interaction' );
+
+				var $this = $(this);
+				var $wrapper = $this.parent('.js-range-slider');
+				var index = $wrapper.attr('data-index');
+				var _isCurrency = $this.hasClass('range-slider-currency');
+				var _isPercentage = $this.hasClass('range-slider-percentage');
+				var value = this.value;
+
+				if( _isCurrency ) {
+					var c = isNaN(c = Math.abs(c)) ? 2 : c;
+					var t = ',';
+					var s = value < 0 ? '-' : '';
+					var i = parseInt(value = Math.abs(+ value || 0).toFixed(c)) + '';
+					var j = (j = i.length) > 3 ? j % 3 : 0;
+
+					value = '$' + s + (j ? i.substr(0, j) + t : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, '$1' + t);
+				}
+
+				if( _isPercentage ) {
+					value += '%';
+				}
+
+				$( '.js-rangestyle-' + index ).remove();
+
+				var $styles = BubbleShadow( $wrapper, index );
+				$styles.insertBefore( $this );
+
+				var $styles = $('<style/>')
+					.addClass('js-rangestyle-' + index)
+					.html(
+						' .js-range-slider-' + index + ' .range-slider::-webkit-slider-thumb:after { content: "' + value + '"; }' +
+						' .js-range-slider-' + index + ' .range-slider::-ms-thumb:after { content: "' + value + '"; }' +
+						' .js-range-slider-' + index + ' .range-slider::-moz-range-thumb:after { content: "' + value + '"; }'
+					)
+					.insertBefore( $this );
+
+			});
+		}
+
+</script>

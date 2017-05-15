@@ -1,0 +1,159 @@
+<style>
+.grid {
+  width:auto;
+  height: 250px;
+}
+
+
+</style>
+
+<aside class="right-side">
+	<section class="content-header">
+		<h4>
+		  <ol class="breadcrumb">
+			 <li><a href="#makes"><i class="fa fa-dashboard"></i> Home</a></li>
+			 <li class="active">Make</li>
+		  </ol>
+		</h4>
+	</section>
+	<section class="content">
+	 <div class="make-main">
+		  <div class="col-md-8 text-left" ng-hide="add_btn" >
+	        <button class="btn btn-primary addnewbtn" ng-click="add_new_make()">Add New Make</button>
+			
+		 </div>	
+		 <div class="col-md-4 searchbox text-right" ng-hide="searchinfo">
+		 <input type="text" ng-model="mak" ng-change="searchmake(mak)" class="form-control" id="mak" placeholder="search Make" name="mak">
+		</div>
+		  <div class="col-md-12" ng-hide="make_tbls">
+		
+		     <div id="grid1" ui-grid="gridOptions" class="grid"></div>
+			
+		</div>
+			 <div class="col-md-12">
+				
+				 <div class="col-md-12 text-right make-btn">
+					 
+					 <button  class="btn btn-primary backbtn" ng-click="show_make_list()" ng-show="showform">Back To List</button>
+				 </div>
+		 </div>
+	    <div class="col-md-12" ng-show="showform_make">
+	     <div class="col-md-12">
+		  <form role="form"   name="MakeForm" id="MakeForm">
+	        <div class="box box-primary">
+				<div class="box-body pad-top">
+				
+					<div class="col-md-6 col-sm-6 pad-left-0">
+						<div class="fileinput fileinput-new" data-provides="fileinput" >
+	                        <div ng-show="s1"class="fileinput-preview thumbnail s1" data-trigger="fileinput" style="width: 200px; height: 150px;">
+							  <img id="makeimg" ng-if="make.badge" ng-src="./upload/{{make.badge}}" alt="">
+							  <img id="makeimg" ng-if="!make.badge" ng-src="" alt="">
+		                    </div> 
+							<div ng-hide="s2" class="thumbnail s2" data-trigger="fileinput" style="width: 200px; height: 150px;">
+								<img id="makeimg" ng-if="make.badge" ng-src="./upload/{{make.badge}}" alt="">
+							    <img id="makeimg" ng-if="!make.badge" ng-src="" alt="">
+		                    </div>	
+						<div>
+						  <span class="btn btn-default btn-file">
+						  <span class="fileinput-new">Select image</span>
+						
+							 <input type="file" name="file" file-model="badge" onchange="angular.element(this).scope().abc(this)">
+						  </span>
+						  <span>
+							 <a ng-click="removeimg(make.badge,make.make_id)" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+						  </span>
+						
+						</div>
+					   </div>
+					   </div><!------col-md-6 close-------------->
+					   <div class="col-md-6 col-sm-6 pad-right-0">
+							<div class="form-group">
+									<label>Select Country</label>
+									<select class="selectbox selectpicker"  ng-click="add_make_countries(makeCountry)" ng-model="makeCountry" name="contry"  multiple id="mselect">
+									  <option value="">---Please select Country ---</option>
+									  <option  value='AUS'  >AUS</option>
+									  <option  value='US' selected >US</option>
+									</select>
+							</div>	
+						  
+						    <input ng-show="" type="text" class="form-control" ng-model="make.makeCountry" ng-init="make.makeCountry=sel_country" name="contry"  required >
+							
+						   <div class="form-group">
+								<label for="make">Make</label>
+								<input type="text" class="form-control" ng-model="make.make_name" id="make" placeholder="Enter  make" name="make" required >
+								<span style="color:red" ng-show="MakeForm.make.$dirty && MakeForm.make.$invalid">Enter Make</span>
+							</div>
+							
+					 </div><!------col-md-6 close-------------->	
+					 <div class="col-md-6 col-sm-12 pad-left-0">
+					
+					</div><!------col-md-6 close-------------->
+					
+					<div class="col-md-6 col-sm-12 pad-right-0">					
+					
+					</div><!------col-md-6 close-------------->
+					
+					<div class="col-md-12 col-sm-12 pad-lr-0">
+						<div class="form-group">
+							<label for="make">Disclosure</label>
+								<wysiwyg textarea-id="question" textarea-class="form-control" textarea-height="180px" 
+									 textarea-name="disclosure" textarea-required  ng-model="make.disclosure"  textarea-menu="menu"  >
+								</wysiwyg>
+							<!-- <textarea class="form-control" ng-model="make.disclosure" id="disclosure" placeholder="Enter  disclosure" name="disclosure" required  ></textarea> -->
+						</div>
+					
+					<div class="form-group text-right">
+					   <button  type="submit" ng-click="Add_make(badge)" ng-show="addmake" ng-disabled="MakeForm.$invalid" class="btn backbtn btn-primary" >Add Make</button>
+					  <button  type="submit" class="btn backbtn btn-primary"  ng-disabled="MakeForm.$invalid" ng-click="update_make(make,badge)" ng-show="savemake">Save </button>
+					</div>
+					</div><!------col-md-12 close-------------->
+				</div>
+		     </div>
+		    </form>
+		   </div>
+			
+		  </div> 
+		  
+	   <!--  <div class="col-md-12">
+		    <div class="col-md-6">
+		     <div id="grid1" ui-grid="gridOptions" class="grid"></div>
+			</div> 
+		</div>  --> 
+		
+	  </div>	
+	</section>
+</aside>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>{{msg}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="show_list()" >Ok</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="confirmModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Are you confirm to delete this make</p>
+      </div>
+      <div class="modal-footer">
+		 <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+        <button type="button" class="btn btn-default" ng-click="delete(sel_make)" >Ok</button>
+      </div>
+    </div>
+
+  </div>
+</div>

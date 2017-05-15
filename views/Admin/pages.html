@@ -1,0 +1,63 @@
+<style>
+	.editor{
+	 margin-top:20px;
+	
+	}
+</style>
+
+<sidebar></sidebar>
+ <aside class="right-side">
+	<section class="content-header">
+		<h4>
+		  <ol class="breadcrumb">
+			 <li><a href="#makes"><i class="fa fa-dashboard"></i> Home</a></li>
+			 <li class="active">Pages</li>
+		  </ol>
+		</h4>
+	</section>
+	<section class="content page-tabs">
+		<tabset>
+         <tab ng-repeat="tab in tabs" heading="{{tab.page_name}}" active="tab.active" select="get_content(tab)">
+			
+		  <form role="form"   name="pageForm" id="pageForm">
+			  
+			<div class="col-md-12 col-sm-12 pad-lr-0 editor">
+			   <div class="form-group">
+			     <wysiwyg textarea-id="question" textarea-class="form-control" textarea-height="300px" 
+						textarea-name="content" textarea-required  ng-model="tab.content"  textarea-menu="menu"  >
+			     </wysiwyg>
+			  </div>
+			</div>
+			  
+			<div class="col-md-12 col-sm-12 pad-lr-0 editor">
+			   <div class="form-group">
+			     <button  type="submit" class="btn backbtn btn-primary"  ng-click="save(tab)">Save </button> 
+			  </div>
+			</div>  
+		  </form>
+			
+			
+        </tab>
+      </tabset>
+       
+	</section>
+</aside>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+        </div>
+        <div class="modal-body ">
+			<h2>content updated successfully</h2>
+        </div>
+		 <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+

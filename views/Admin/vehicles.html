@@ -1,0 +1,1030 @@
+<style>
+.thumbnail{
+    height: 160px;
+    width: 160px;
+    margin: 10px;  
+}
+		#result div:first-child img {
+    margin-left: 10px;
+}
+.trans-back{
+	background: transparent !important;
+    border: none !important;
+}
+.vehicle-m .thumbnail {
+    padding:0;
+}
+	
+.edit-thum-img{
+	min-height:60px;
+	overflow:hidden;
+}	
+.edit-thum-img {
+    overflow: hidden;
+    float: left;
+    width: 100%;
+    height: 120px;
+}	
+.edit-thum-img img{
+	width:100%;	
+}	
+.trans-back{
+	bottom: 4px;
+    left: 0;
+    margin: 0 auto;
+	top:auto !important;
+}
+.trans-back input[type="checkbox"]{
+	margin-left: 0px;
+	width: 15px;
+    height: 15px;
+}
+	
+.loader1 {
+    margin: 10px auto;
+    font-size: 10px;
+    position: relative;
+    text-indent: -9999em;
+    border-top: 4px solid #dadada;
+    border-right: 4px solid #dadada;
+    border-bottom: 4px solid #dadada;
+    border-left: 4px solid #3c8dbc;
+    -webkit-animation: load8 1s infinite linear;
+    animation: load8 1s infinite linear;
+}
+	  .loader1, .loader1:after {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+		     
+    z-index: 999;
+
+}
+@-webkit-keyframes load8 {  0% {    -webkit-transform: rotate(0deg);    transform: rotate(0deg);  }  100% {    -webkit-transform: rotate(360deg);    transform: rotate(360deg);  }}@keyframes load8 {  0% {    -webkit-transform: rotate(0deg);    transform: rotate(0deg);  }  100% {    -webkit-transform: rotate(360deg);    transform: rotate(360deg);  }}	
+</style>
+<sidebar></sidebar>
+ <div ng-if="saving_vehicle" class="saveloader">
+	<div class="loader1">
+	</div>
+</div>
+ <aside class="right-side">
+	<section class="content-header">
+		<h4>
+		  <ol class="breadcrumb">
+			 <li><a href="#makes"><i class="fa fa-dashboard"></i> Home</a></li>
+			 <li class="active">Vehicle</li>
+		  </ol>
+		</h4>
+	</section>
+	 
+	 
+	 
+	<section class="content">
+		
+	
+		
+      <div class="vehicle">   
+	
+	    <div class="col-md-8 text-left" ng-hide="vehicleinfo">
+	        <button class="btn btn-primary addnewbtn" ng-click="add_new_vehicle()">Add New Vehicle</button>
+			<button class="btn btn-primary addnewbtn" ng-click="import_vehicle_data()">Import Vehicle data</button>
+		 </div>	
+		<div class="col-md-4 searchbox text-right" ng-hide="searchinfo">
+		 <input type="text" ng-model="veh" ng-change="searchvehicle(veh)" class="form-control" id="vehi" placeholder="search Vehicle" name="vehi">
+		</div>
+		    
+	    <div class="col-md-12" ng-hide="vehicleinfo">
+		     <div id="grid1" ui-grid="gridOptions" class="grid"></div>
+		</div>
+	  
+		
+		 <div class="col-md-12  vm text-right "><button  class="btn btn-primary backbtn" ng-click="show_vahicle_list()" ng-show="showform">Back To List</button></div>
+		 
+		<div class="col-md-12 Editbox" ng-show="showform">
+				<div class="form-group">
+							<h2  class="vtitle vt">Vehicle</h2>
+					
+<input type="text" value="" name="mimgs" id="mnimgs">	
+				</div>
+			   <div class="box box-primary" style="float:left">
+				  <div class="box-header">
+					
+					<h2  ng-if="single_vehicle.added_date" class="box-title">Date : {{single_vehicle.added_date}}</h2>
+				  </div>
+				  <form role="form" name="carform" id="carform">
+				   
+					<div class="box-body">
+	
+			    <div class="box-body">
+				  <div class="col-md-12 col-sm-12 pad-lr-0">
+					  
+					<!-- <div class="fueldata col-md-6"> 
+						 <div class="row">
+					    <select ng-model="fuel_makes1" ng-change="get_fuel_models(fuel_makes1)"  name="fuel_makes1," id="fuel_makes1" data-ng-options="f.id as f.name for f in fuel_makes" class="smdl-textfield__input mdl-dropdown_input" >
+							<option value="">selcet make</option>		 		 
+					   </select>
+						<select ng-model="fuel_models1" ng-change="get_trim_data(fuel_makes1,fuel_models1)"  name="fuel_models1" id="fuel_models1" data-ng-options="m as m.name for m in fuel_models" class="smdl-textfield__input mdl-dropdown_input" >
+							<option value="">selcet model</option>					 
+					   </select>
+						<select ng-model="fuel_trims1"   name="fuel_trims1" id="fuel_trims1" data-ng-options="t.id as t.trim for t in fuel_trims" class="smdl-textfield__input mdl-dropdown_input" >
+							<option value="">selcet trim</option>					 
+					   </select>
+					   <button class="btn btn-primary" ng-click="get_fuel_images(fuel_trims1)">Get Images</button>
+					    <div ng-if="loading" ><div class="loader1"></div></div>
+						</div>
+						  <div class="row">
+							<div   class="fileinput-preview thumbnail" ng-repeat="fuelimg in fuel_images" data-trigger="fileinput" style="width: 180px; height: 150px; margin-right: 13px;">
+								 <img class="fileinput-preview "  alt="" ng-src="{{fuelimg}}">
+							</div>
+						</div>
+					</div>-->
+				</div>
+				
+				<div class="comon-align-ipd">	 
+				 <div class=" col-md-6 col-sm-6 pad-left-0">	 
+					<div class="form-group">
+					        <label>Select Country</label>
+							<select class="selectbox" ng-model="single_vehicle.select_coun" id="select_coun" ng-change="get_makes(single_vehicle.select_coun)"  name="select_coun" >
+							  <option value=''>Select Country</option>
+							  <option value='AUS'>AUS</option>
+							  <option value='US'>US</option>
+							</select>
+						<span style="color:red">{{conerrmsg}}</span>
+					</div>
+					
+					<!--<div class="form-group">
+						<label for="brand">Vehicle Brand</label>
+						<input type="text" ng-model="single_vehicle.brand" class="form-control" id="brand" placeholder="Enter Vehicle Brand" name="brand">
+					</div>-->
+					 <div class="form-group">
+							<label>Type of Vehicle</label>
+							<select class="selectbox" id="typ" ng-model="single_vehicle.vehicle_type"  name="vtyp" >
+							<option value="" >Type Of Vehicle</option>
+							<option  ng-repeat="aus_vehs in aus_veh track by $index" value="{{aus_vehs}}">{{aus_vehs}}</option>
+							</select>
+						</div>
+					   
+						 <div class="form-group">
+							<label>Select Year</label>
+							<select class="selectbox" id="yr"  ng-model="single_vehicle.year" ng-change="hide_error('year')"  name="syear">
+							  <option value="" >Select Year</option>
+							  <option ng-repeat="year in years" value="{{year}}" >{{year}}</option>
+							</select>
+							<span style="color:red">{{yrerr}}</span>
+						</div>
+                    
+
+				</div><!---------------col-md-6 close-------------> 
+					
+				<div class="col-md-6 col-sm-6 pad-right-0">
+					<!--<div class="form-group">
+						<label for="Make">Fuel Make</label>
+						<select class="selectbox" ng-model="fuel_makes1" ng-change="hide_error('fuelmake')"  name="fuel_makes1," id="fuel_makes1" data-ng-options="f.id as f.name for f in fuel_makes" class="smdl-textfield__input mdl-dropdown_input" >
+							<option value="">select fuel make</option>		 		 
+					   </select>
+						<span style="color:red">{{fuelmake_err}}</span>
+					</div>
+					<div class="form-group">
+							<label>Select Year</label>
+							<select class="selectbox" id="yr" ng-change="get_fuel_models(fuel_makes1,single_vehicle.year)" ng-model="single_vehicle.year" ng-change="hide_error('year')"  name="syear">
+							  <option value="" >Select Year</option>
+							  <option ng-repeat="year in years" value="{{year}}" >{{year}}</option>
+							</select>
+							<span style="color:red">{{yrerr}}</span>
+						</div>
+					 
+				    <div class="form-group">
+						<label for="Make">Model</label>
+						 <select class="selectbox" ng-model="fuel_models1" ng-change="get_trim_data(fuel_makes1,fuel_models1)"  name="fuel_models1" id="fuel_models1" data-ng-options="m as m.name for m in fuel_models" class="smdl-textfield__input mdl-dropdown_input" >
+							<option value="">select model</option>	
+					   </select>
+						<span style="color:red">{{model_err}}</span>
+					</div>
+						
+						
+					   <div class="form-group">
+							<label for="Make">Trim</label>
+							<select ng-if="selectable_trim" class="selectbox" ng-model="fuel_trims1" ng-change="assign_trim(fuel_trims1)"  name="fuel_trims1" id="fuel_trims1" data-ng-options="t.id as t.trim for t in fuel_trims" class="smdl-textfield__input mdl-dropdown_input" >
+								<option value="">selcet trim</option>					 
+						   </select>
+						   <input ng-if="edittable_trim" type="text" class="form-control" ng-model="single_vehicle.trim" id="Trim" placeholder="Enter Trim" name="trim" required>
+						</div>-->
+					
+					  <div class="form-group">
+							<label for="Make">Make</label>
+							<select class="selectbox" id="vmake" ng-model="single_vehicle.make" ng-change="hide_error('make')"  name="vmake" >
+							  <option value="" >Select Make</option>
+							  <option  ng-repeat="make in makes" value="{{make.make_id}}">{{make.make_name}}</option>
+							</select>
+							<span style="color:red">{{makerrmsg}}</span>
+							<input  ng-show='' type="text" value='' class="hid">
+						</div>
+					
+					  
+						<div class="form-group">
+							<label for="Model">Model</label>
+							<input type="text" class="form-control" ng-model="single_vehicle.model" id="Model" placeholder="Enter Model" name="model" required>
+							<span style="color:red" ng-show="carform.model.$dirty && carform.model.$invalid">Model is required.</span>
+						</div>
+						<div class="form-group">
+							<label for="Trim">Trim</label>
+							<input type="text" class="form-control" ng-model="single_vehicle.trim" id="Trim" placeholder="Enter Trim" name="trim" required>
+							<span style="color:red" ng-show="carform.trim.$dirty && carform.trim.$invalid">Trim is required.</span>
+						</div>
+
+								
+						</div><!--------------col-md-6 close--------->
+					
+					</div>
+					
+					  <div class="col-md-12 col-sm-12 pad-lr-0">
+						   <hr>
+						  <h2 class="vtitle">Add Vehicle Images</h2>
+						   <div class=" col-md-6 col-sm-6 pad-left-0">	 
+							   <div class="form-group">
+								<label for="Make">Fuel Make</label>
+								<select class="selectbox" ng-model="fuel_makes1" ng-change="hide_error('fuelmake')"  name="fuel_makes1," id="fuel_makes1" data-ng-options="f.id as f.name for f in fuel_makes" class="smdl-textfield__input mdl-dropdown_input" >
+									<option value="">select fuel make</option>		 		 
+							   </select>
+								<span style="color:red">{{fuelmake_err}}</span>
+							</div>
+							<div class="form-group">
+									<label>Select Year</label>
+									<select class="selectbox" id="yr" ng-change="get_fuel_models(fuel_makes1,fuelyear)" ng-model="fuelyear" ng-change="hide_error('year')"  name="syear">
+									  <option value="" >Select Year</option>
+									  <option  ng-repeat="year in fuel_years" value="{{year}}" >{{year}}</option>
+									</select>
+									<span style="color:red">{{yrerr1}}</span>
+								</div>
+
+						   </div>
+						  <div class="col-md-6 col-sm-6 pad-right-0">
+							<div class="form-group">
+								<label for="Make">Fuel Model</label>
+								 <select class="selectbox" ng-model="fuel_models1" ng-change="get_trim_data(fuel_makes1,fuel_models1)"  name="fuel_models1" id="fuel_models1" data-ng-options="m as m.name for m in fuel_models" class="smdl-textfield__input mdl-dropdown_input" >
+									<option value="">select model</option>	
+							   </select>
+								<span style="color:red">{{model_err}}</span>
+							</div>
+
+
+							   <div class="form-group">
+									<label for="Make">Fuel Trim</label>
+									<select ng-if="selectable_trim" class="selectbox" ng-model="fuel_trims1" ng-change="assign_trim(fuel_trims1)"  name="fuel_trims1" id="fuel_trims1" data-ng-options="t.id as t.trim for t in fuel_trims" class="smdl-textfield__input mdl-dropdown_input" >
+										<option value="">selcet trim</option>					 
+								   </select>
+								</div>
+						   </div>
+						   <div class="col-sm-12">
+						     <div class="col-md-2 col-sm-3">
+							  <div class="btn btn-primary" ng-click="get_fuel_images(fuel_trims1)">Get Fuel Images</div>
+							              <div ng-if="loading" ><div class="loader1"></div></div>
+								 <span style="color:red">{{fuel_msg}}</span>
+								 
+								 <span style="padding-left:20px;">OR </span>
+								 
+							</div>
+							
+							<div class="col-md-9 col-sm-7">
+							  <div class="fileinput fileinput-new " data-provides="fileinput">
+								<div class=" kv-main">
+								 <div class="form-group">
+								  <input onchange="angular.element(this).scope().uploadImage(this)" id="images" type="file" multiple class="file">
+
+								 </div>
+								</div>
+							</div>
+							<span style="color:red">{{frontimgerr}}</span>
+							
+							</div>	
+							</div>
+							<div id="deleteerr" style="color:red">can not delete default image</div>
+							<div class="col-md-12 col-sm-12">
+								<output id="result" />
+							</div>	
+							<div class="fileinput-preview thumbnail thu-remov" ng-repeat="fuelimg in fuel_images" data-trigger="fileinput" style="width: 180px; height: 150px; margin-right: 13px; float:left;">
+								<span class='checkbox trans-back'><input type='checkbox' value=''id="checkAll"  ng-click='set_frontfuel_image(fuelimg)'></span>
+								<span ng-click="fuel_images.splice($index, 1)">X</span>	
+								<div class="edit-thum-img">
+									<img class="fileinput-preview "  alt="" ng-src="{{fuelimg}}">
+								</div>
+							</div>
+
+							<div ng-if="fuelimgs" class="fileinput-preview thumbnail thu-remov" data-trigger="fileinput"  ng-repeat="fimg in fuelimgs"  style="width: 180px; height: 150px; margin-right: 13px; float:left;">
+					<span class='checkbox trans-back'><input type='checkbox' 	
+										   ng-checked="single_vehicle.front_fuel_img==fimg" id="checkAll" value='' ng-click='set_frontfuel_image(fimg)'></span>
+								<span ng-click="fuelimgs.splice($index, 1)">X</span>	
+								<div class="edit-thum-img">
+									<img ng-src="{{fimg}}" alt="">
+								</div>
+							</div>
+						
+							<div ng-if="single_vehicle.imgs"  class="fileinput-preview thumbnail thu-remov" ng-repeat="imgs in imge track by $index" data-trigger="fileinput" style="width: 180px; height: 150px; margin-right: 13px; float:left;">
+					<span class='checkbox trans-back'><input type='checkbox' 
+	ng-checked="single_vehicle.front_img==imgs" value='' id="checkAll" ng-click='set_front_image(imgs)'></span>
+							    <span  ng-click="remove_image(imge,imgs,single_vehicle.vehicle_id)">X</span>	
+							   	<div class="edit-thum-img">
+									<img ng-src="./upload/{{imgs}}" alt="" >
+								</div>
+							</div>
+						  
+					      <div>	  
+					
+					 
+					
+						
+					<div class="col-md-12 col-sm-12 pad-left-0">
+						<hr>
+					    <div class="form-group">
+							<h2 class="vtitle">Price & Offers</h2>
+						</div>
+					<div class="col-md-6 col-sm-6 pad-left-0">
+						<input type="range" ng-change="change_downpayment(qty.downpay)" min="0" max="100" ng-model="qty.downpay"  ng-init="qty.downpay=cal.down_payment" />
+						 <div class="form-group">
+							<label for="down_payment">Down Payment</label>
+							<input type="text" class="form-control" ng-model="single_vehicle.down_payment" id="down_payment" placeholder="Enter down payment" name="down_payment" ng-pattern="/^[0-9]{1,10}$/">
+						</div> 
+						<input type="range" ng-change="change_interest(qty.interest)" min="0" max="100" ng-model="qty.interest" />
+						 <div class="form-group">
+							<label for="intrate">Interest Rate </label>
+							<input type="text" class="form-control" ng-model="single_vehicle.interest"  id="intrate" placeholder="Enter Interest Rate" name="interest" ng-pattern="/^[0-9]{1,10}$/">
+						 </div>
+						<input type="range" ng-change="change_taxrate(qty.taxrate)" min="0" max="100" ng-model="qty.taxrate" />
+						 <div class="form-group">
+							<label for="intrate">tax Rate </label>
+							<input type="text" class="form-control" ng-model="single_vehicle.taxrate"  id="taxrate" placeholder="Enter tax Rate" name="taxrate" ng-pattern="/^[0-9]{1,10}$/">
+						 </div>
+						<input type="range" ng-change="change_terms(qty.vterms)" min="0" max="100" ng-model="qty.vterms" />
+						 <div class="form-group">
+							<label for="intrate">Terms </label>
+							<input type="text" class="form-control" ng-model="single_vehicle.terms"  id="vterms" placeholder="Enter terms " name="vterms" >
+						 </div>
+						 
+						<div class="form-group">
+							<label for="monthly_pay">Payment per Month</label>
+							<input type="text" class="form-control" readonly ng-model="single_vehicle.monthly_pay" id="monthly_pay" placeholder="Payment per Month" name="monthly_pay" >
+							
+						</div> 
+						 
+					</div><!---------------col-md-6 close------------->
+					
+					<div class="col-md-6 col-sm-6 pad-right-0">
+					    <!-- <div class="form-group">
+							 <div class="col-md-12">
+							   <div class="col-md-4"><h2 class="vtitle">Special offers</h2></div>
+							  <!-- <div class="col-md-8"> <input ng-checked="single_vehicle.spec_offer==1" type="checkbox" name="spec_offer" ng-model="single_vehicle.spec_offer" >
+								   <span class="vtitle">use special offer prices</span> </div>
+							</div>	 
+						 </div>-->
+						
+						<input type="range" ng-change="change_dap(qty.dapprice)" min="0" max="200000" ng-model="qty.dapprice" />
+                        <div class="form-group">
+							<label for="brand">DAP Price</label>
+							<input type="text" class="form-control" ng-model="single_vehicle.dap_price" ng-init="single_vehicle.dap_price=dap_price" id="brand" placeholder="Enter DAP Price" name="dap_price"  required>
+							<span style="color:red" ng-show="carform.dap_price.$dirty && carform.dap_price.$invalid">Enter Valid DAP Price</span>
+						</div>	
+                        <div class="form-group">
+							<label for="brand">MSRP Price</label>
+							<input type="text" class="form-control" ng-model="single_vehicle.msrp_price" id="brand" placeholder="Enter MSRP Price" name="msrp_price" ng-pattern="/^[0-9]{1,10}$/">
+							<span style="color:red" ng-show="carform.msrp_price.$dirty && carform.msrp_price.$invalid">Enter Valid MSRP multiplier</span>
+						</div>	
+						
+						<input type="range" ng-change="change_special_price(qty.sprice)" min="0" max="{{single_vehicle.msrp_price}}" ng-model="qty.sprice" />
+						<div class="form-group">
+							<label for="offer_price">Special Offer Price </label>
+							<input type="text" class="form-control" ng-model="single_vehicle.offer_price" id="offer_price" placeholder="Enter Special Offer Price" name="offer_price" ng-pattern="/^[0-9]{1,10}$/">
+							<span style="color:red" ng-show="carform.offer_price.$dirty && carform.offer_price.$invalid">Enter Valid Special Offer Price</span>
+						</div>
+						
+						<div class="form-group">
+							<label for="special_price">Special Price </label>
+							<input  type="text" ng-blur="change_offer_prices()" class="form-control" ng-model="single_vehicle.special_price"  id="special_price" placeholder="Special Price" name="special_price" ng-pattern="/^[0-9]{1,10}$/">
+							<span style="color:red" ng-show="carform.special_price.$dirty && carform.special_price.$invalid">Enter Valid Special  Price</span>
+						</div>
+						
+						<div class="form-group">
+							<label for="offer_end">Special Offer End Date </label>
+							 <input class="form-control" id="offer_end_date" name="offer_end" ng-model="single_vehicle.offer_end" placeholder="MM/DD/YYY"  type="text"/>
+						</div>
+						
+						
+						<!--<input type="range" ng-change="change_special_downpayment(qty.spec_downpay)" min="0" max="100" ng-model="qty.spec_downpay" />
+						 <div class="form-group">
+							<label for="spec_downpay"> Down Payment</label>
+							<input type="text" class="form-control" ng-model="single_vehicle.spec_downpay" id="spec_downpay" placeholder="Enter special down payment" name="down_payment" ng-pattern="/^[0-9]{1,10}$/">
+						</div> 
+						
+						<input type="range" ng-change="change_special_interest(qty.spec_interest)" min="0" max="100" ng-model="qty.spec_interest" />
+						 <div class="form-group">
+							<label for="spec_interest">Interest Rate </label>
+							<input type="text" class="form-control" ng-model="single_vehicle.spec_interest"  id="spec_interest" placeholder="Enter Interest Rate" name="interest" ng-pattern="/^[0-9]{1,10}$/">
+						 </div>
+						
+						<input type="range" ng-change="change_special_taxrate(qty.spec_taxrate)" min="0" max="100" ng-model="qty.spec_taxrate" />
+						 <div class="form-group">
+							<label for="intrate">tax Rate </label>
+							<input type="text" class="form-control" ng-model="single_vehicle.spec_taxrate"  id="spec_taxrate" placeholder="Enter tax Rate" name="taxrate" >
+						 </div>
+						
+						<input type="range" ng-change="change_specail_terms(qty.spec_vterms)" min="0" max="100" ng-model="qty.spec_vterms" />
+						 <div class="form-group">
+							<label for="intrate">Terms </label>
+							<input type="text" class="form-control" ng-model="single_vehicle.spec_vterms"  id="spec_vterms" placeholder="Enter terms " name="spec_vterms" >
+						 </div>-->
+						
+						<div class="form-group">
+							<label for="specialrepayment">Special Repayment </label>
+							<input type="text" readonly class="form-control"ng-model="single_vehicle.specialrepayment" id="specialrepayment" placeholder="Special Repayment" name="specialrepayment">
+						</div>
+						
+						</div> 
+						</div>
+					   <div class="col-md-12 col-sm-12 pad-lr-0">
+							<div class="form-group">
+								<label for="Description">Description</label>
+								<wysiwyg textarea-id="description" textarea-class="form-control" textarea-height="180px" 
+								   textarea-name="disclosure" textarea-required  ng-model="single_vehicle.description"  textarea-menu="menu">
+								</wysiwyg>
+								
+							</div>
+						</div>
+						
+					<div class="col-md-12 col-sm-12 pad-lr-0 text-right">
+					  <div class="box-footer pad-lr-0">
+						 
+						
+							<button  type="submit" onclick="add_images()" class="btn btn-primary" ng-click="Add_vehicle(single_vehicle,vehimg)" ng-show="addVehicle" ng-disabled="carform.$invalid">Add Vehicle</button>
+						  
+					
+							<button  type="submit" onclick="add_images()" class="btn btn-primary" ng-click="Update_vehicle(single_vehicle,vehimg)" [disabled]="!carform.form.valid" ng-show="saveVehicle">Save </button>
+							<!-- <button type="submit" class="btn btn-primary editbtn">Save</button> -->
+							<!-- <button *ngIf="single_vehicle.status==1" type="button" (click)="change_vehicle_status(0,single_vehicle.vehicle_id)" class="btn btn-warning editbtn">Hide</button>
+							<button type="button" *ngIf="single_vehicle.status==0" (click)="change_vehicle_status(1,single_vehicle.vehicle_id)" class="btn btn-info editbtn">Active</button> -->
+						</div>
+					
+						</div>
+					  </div>
+					</form>
+				  </div> 
+		       </div>
+			</div>		  
+		
+		</div>
+	</div>
+		
+		<div class="col-md-12 col-sm-12" style="margin-bottom:50px" ng-show="importcsv">
+				<div class="col-md-12 col-sm-12"><button  class="btn btn-primary backbtn" ng-click="show_vahicle_list()" >Back To List</button></div>
+					  
+					
+				<div class="col-md-12 col-sm-12">
+				 <div class="col-md-9">
+				  <form enctype="multipart/form-data" method="post" >
+					<div class="col-md-12 selectfile" >
+					 <strong class="choose">Select CSV File Here</strong>
+					 <input type="file" file-reader="fileContent"/>
+					</div>
+				  </form>
+				 </div>	 
+				 <div class="col-md-3" >
+				   <button class="btn btn-primary rightdiv"><a style="color:#fff" href='carcsv.csv' download>Download sample CSV format</a></button>
+				 </div>  
+				</div>	
+				
+				<div class="box box-primary">
+				 <div class="box-body">
+					<form name="csvuploadform1" ng-submit="upload_cardata()">
+						
+						<div class="form-group">	
+						  <div class="col-md-6 padding-0 padding-left">
+							<div class="col-md-2">
+							  <label>Country</label>				
+						   </div>
+							<div class="col-md-10">
+							  <select id="select2" name="brand" class="select2 form-control" ng-model="csvcolumn2"   aria-hidden="true" reqiured>
+								 <option value="">Select Column</option>
+								 <option ng-repeat="h in cvsHeaders" value="{{h}}">{{h}}</option>
+							  </select>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="form-group">	
+						  <div class="col-md-6 padding-0 padding-left">
+							<div class="col-md-2">
+							  <label>Make</label>				
+						   </div>
+							<div class="col-md-10">  
+							  <select id="select3" name="make" class="select2 form-control" ng-model="csvcolumn3"   aria-hidden="true" reqiured>
+								 <option value="">Select Column</option>
+								 <option ng-repeat="h in cvsHeaders" value="{{h}}">{{h}}</option>
+							  </select>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="form-group">	
+						  <div class="col-md-6 padding-0 padding-left">
+							<div class="col-md-2">
+							   <label>model</label>				
+						   </div>
+							<div class="col-md-10">
+							  <select id="select4" name="model" class="select2 form-control" ng-model="csvcolumn4"   aria-hidden="true" reqiured>
+								 <option value="">Select Column</option>
+								 <option ng-repeat="h in cvsHeaders" value="{{h}}">{{h}}</option>
+							  </select>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="form-group">	
+						  <div class="col-md-6 padding-0 padding-left">
+							<div class="col-md-2">
+							  <label>trim</label>				
+						   </div>
+							<div class="col-md-10"> 
+							  <select id="select5" name="trim" class="select2 form-control" ng-model="csvcolumn5"   aria-hidden="true" reqiured>
+								 <option value="">Select Column</option>
+								 <option ng-repeat="h in cvsHeaders" value="{{h}}">{{h}}</option>
+							  </select>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="form-group">	
+						  <div class="col-md-6 padding-0 padding-left">
+							<div class="col-md-2">
+							  <label>year</label>				
+						   </div>
+							<div class="col-md-10">
+							  <select id="select6" name="year" class="select2 form-control" ng-model="csvcolumn6"   aria-hidden="true" reqiured>
+								 <option value="">Select Column</option>
+								 <option ng-repeat="h in cvsHeaders" value="{{h}}">{{h}}</option>
+							  </select>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="form-group">	
+						  <div class="col-md-6 padding-0 padding-left">
+							<div class="col-md-2">
+							  <label>type of vehicle</label>				
+						   </div>
+							<div class="col-md-10">
+							  <select id="select7" name="type" class="select2 form-control" ng-model="csvcolumn7"   aria-hidden="true" reqiured>
+								 <option value="">Select Column</option>
+								 <option ng-repeat="h in cvsHeaders" value="{{h}}">{{h}}</option>
+							  </select>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="form-group">	
+						  <div class="col-md-6 padding-0 padding-left">
+							<div class="col-md-2">
+							  <label>description</label>				
+						   </div>
+							<div class="col-md-10">
+							  <select id="select8" name="description" class="select2 form-control" ng-model="csvcolumn8"   aria-hidden="true" reqiured>
+								 <option value="">Select Column</option>
+								 <option ng-repeat="h in cvsHeaders" value="{{h}}">{{h}}</option>
+							  </select>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="form-group">	
+						  <div class="col-md-6 padding-0 padding-left">
+							 <div class="col-md-2">
+							  <label>DAP Price</label>				
+						   </div>
+							<div class="col-md-10">
+							  <select id="select10" name="dap_price" class="select2 form-control" ng-model="csvcolumn10"   aria-hidden="true" reqiured>
+								 <option value="">Select Column</option>
+								 <option ng-repeat="h in cvsHeaders" value="{{h}}">{{h}}</option>
+							  </select>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="form-group">	
+						  <div class="col-md-6 padding-0 padding-left">
+							<div class="col-md-2">
+							  <label>MSRP Price</label>				
+						   </div>
+							<div class="col-md-10">
+							  <select id="select11" name="msrp_price" class="select2 form-control" ng-model="csvcolumn11"   aria-hidden="true" reqiured>
+								 <option value="">Select Column</option>
+								 <option ng-repeat="h in cvsHeaders" value="{{h}}">{{h}}</option>
+							  </select>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="form-group">	
+						  <div class="col-md-6 padding-0 padding-left">
+							<div class="col-md-2">
+							  <label>Special Price</label>				
+						   </div>
+							<div class="col-md-10">
+							  <select id="select12" name="special_price" class="select2 form-control" ng-model="csvcolumn12"   aria-hidden="true" reqiured>
+								 <option value="">Select Column</option>
+								 <option ng-repeat="h in cvsHeaders" value="{{h}}">{{h}}</option>
+							  </select>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="form-group">	
+						  <div class="col-md-6 padding-0 padding-left">
+							<div class="col-md-2">
+							  <label>Special Offer Price</label>				
+						   </div>
+							<div class="col-md-10">
+							  <select id="select13" name="offer" class="select2 form-control" ng-model="csvcolumn13"   aria-hidden="true" reqiured>
+								 <option value="">Select Column</option>
+								 <option ng-repeat="h in cvsHeaders" value="{{h}}">{{h}}</option>
+							  </select>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="form-group">	
+						  <div class="col-md-6 padding-0 padding-left">
+							<div class="col-md-2">
+							  <label>Special Offer End Date</label>				
+						   </div>
+							<div class="col-md-10">
+							  <select id="select14" name="offer_end" class="select2 form-control" ng-model="csvcolumn14"   aria-hidden="true" reqiured>
+								 <option value="">Select Column</option>
+								 <option ng-repeat="h in cvsHeaders" value="{{h}}">{{h}}</option>
+							  </select>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="form-group">	
+						  <div class="col-md-6 padding-0 padding-left">
+						   <div class="col-md-2">
+							 <label>Down Payment</label>	
+						   </div>
+							<div class="col-md-10">
+							  <select id="select18" name="down_payment" class="select2 form-control" ng-model="csvcolumn18"   aria-hidden="true" reqiured>
+								 <option value="">Select Column</option>
+								 <option ng-repeat="h in cvsHeaders" value="{{h}}">{{h}}</option>
+							  </select>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="form-group">	
+						  <div class="col-md-6 padding-0 padding-left">
+							<div class="col-md-2">
+							  <label>Interest Rate</label>				
+						   </div>
+							<div class="col-md-10">
+							  <select id="select15" name="interest" class="select2 form-control" ng-model="csvcolumn15"   aria-hidden="true" reqiured>
+								 <option value="">Select Column</option>
+								 <option ng-repeat="h in cvsHeaders" value="{{h}}">{{h}}</option>
+							  </select>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="form-group">	
+						  <div class="col-md-6 padding-0 padding-left">
+							<div class="col-md-2">
+							  <label>Tax Rate</label>				
+						   </div>
+							<div class="col-md-10">
+							  <select id="select19" name="tax_rate" class="select2 form-control" ng-model="csvcolumn19"   aria-hidden="true" reqiured>
+								 <option value="">Select Column</option>
+								 <option ng-repeat="h in cvsHeaders" value="{{h}}">{{h}}</option>
+							  </select>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="form-group">	
+						  <div class="col-md-6 padding-0 padding-left">
+						   <div class="col-md-2">
+							  <label>Terms</label>				
+						   </div>
+							<div class="col-md-10">
+							  <select id="select20" name="terms" class="select2 form-control" ng-model="csvcolumn20"   aria-hidden="true" reqiured>
+								 <option value="">Select Column</option>
+								 <option ng-repeat="h in cvsHeaders" value="{{h}}">{{h}}</option>
+							  </select>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="form-group">	
+						  <div class="col-md-6 padding-0 padding-left">
+							<div class="col-md-2">
+							  <label>Special Repayment</label>				
+						   </div>
+							<div class="col-md-10">
+							  <select id="select16" name="specialrepayment" class="select2 form-control" ng-model="csvcolumn16"   aria-hidden="true" reqiured>
+								 <option value="">Select Column</option>
+								 <option ng-repeat="h in cvsHeaders" value="{{h}}">{{h}}</option>
+							  </select>
+							</div>
+						  </div>
+						</div>
+						
+						<div class="form-group">	
+						  <div class="col-md-6 padding-0 padding-left">
+						   <div class="col-md-2">
+							  <label>Payment Per Month</label>				
+						   </div>
+							<div class="col-md-10">
+							  <select id="select17" name="monthly_pay" class="select2 form-control" ng-model="csvcolumn17"   aria-hidden="true" reqiured>
+								 <option value="">Select Column</option>
+								 <option ng-repeat="h in cvsHeaders" value="{{h}}">{{h}}</option>
+							  </select>
+							</div>
+						  </div>
+						</div>
+						
+						
+					
+						 <div class="form-group">	
+							<div class="col-md-12 col-sm-12">
+							   <div class="form-group col-md-12 text-right">
+								  <input class="btn  btn-md btn-primary rightdiv" type="submit" ng-model="submit" value="upload data">
+							 </div>
+							</div>
+						</div>
+					</form>
+				 </div>
+				</div>	 
+			 </div>	
+
+				   			  
+					  
+		</div> 			  
+         
+		
+				   
+		 
+				
+				
+				
+				
+				
+	</section>
+</aside>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>{{msg}}</p>
+      </div>
+      <div class="modal-footer">  <!--ng-click="show_list()"-->
+        <button type="button" class="btn btn-default" ng-click="show_list()" >Ok</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div id="confirmModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Are you confirm to delete this make</p>
+      </div>
+      <div class="modal-footer">
+		 <button type="button" class="btn btn-default" data-dismiss="modal" >Cancel</button>
+        <button type="button" class="btn btn-default" ng-click="delete(sel_vehicle)" >Ok</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="csvModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>{{msg}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+ 
+<script>
+
+document.getElementById('deleteerr').style.display='none';
+var fname;
+var all_imgs=[]; 
+var all_files=[];	
+var count=0;	 
+	 
+var Lists = [ 
+     document.getElementById("select2"), 
+     document.getElementById("select3"), 
+     document.getElementById("select4"),
+	 document.getElementById("select5"), 
+     document.getElementById("select6"), 
+     document.getElementById("select7"), 
+     document.getElementById("select8"),
+	 document.getElementById("select10"), 
+     document.getElementById("select11"), 
+     document.getElementById("select12"), 
+     document.getElementById("select13"),
+	 document.getElementById("select14"),
+	 document.getElementById("select15"),
+	 document.getElementById("select16"),
+	 document.getElementById("select17"),
+	 document.getElementById("select18"),
+],
+     nbLists = Lists.length;
+
+
+for(var iList = 0; iList < nbLists; iList++) {
+     Lists[iList].onchange = RemoveItems(iList);
+}
+
+
+function RemoveItems(iList) {
+     return function() {
+          var value = [];
+
+          // Add the selected items of all previous lists including the one changed
+          for(var jList = 0; jList <= iList; jList++)              
+		  value.push(Lists[jList].options[Lists[jList].selectedIndex].text);
+
+          // Hide in all succeeding lists these items
+          for(var kList = iList + 1; kList < nbLists; kList++)
+               HideItems(kList, value);
+     }
+}
+
+	function removeImage(img)
+	{
+		alert("fnksdfh");
+	
+	}
+// Hide items selected in previous lists in all next lists
+function HideItems(iList, value) {
+     var nbOptions = Lists[iList].options.length,
+         nbValues = value.length,
+         found;
+
+     if(nbValues === 0) return;
+
+     for(var iOption = 0; iOption < nbOptions; iOption++) {
+          // Find if this element is present in the previous lists
+          found = false;
+          for(var iValue = 0; iValue < nbValues; iValue++) {
+               if(Lists[iList].options[iOption].text === value[iValue]) {
+                    found = true;
+                    break;
+               }
+          }
+
+          // If found, we hide it
+         if(found) {
+             Lists[iList].options[iOption].style.display = "none";
+             Lists[iList].options[iOption].selected = "";
+         }
+          // else we un-hide it (in case it was previously hidden)
+          else 
+               Lists[iList].options[iOption].style.display = "";
+     }
+}
+
+
+ $(document).ready(function(){
+	 
+	 if(window.File && window.FileList && window.FileReader)
+     {
+        var filesInput = document.getElementById("images");
+        
+        filesInput.addEventListener("change", function(event){
+           
+            var files = event.target.files; //FileList object
+            var output = document.getElementById("result");
+            //$(output).empty();
+            for(var i = 0; i< files.length; i++)
+            {
+                var file = files[i];
+	        fname=file.name;
+	        all_imgs.push(fname);
+				
+                console.log(fname);
+                //Only pics
+                if(!file.type.match('image'))
+                  continue;
+                
+                var picReader = new FileReader();
+                
+                picReader.addEventListener("load",function(event){
+                    
+                    var picFile = event.target;
+                   
+                    var div = document.createElement("div");
+                   
+                   div.innerHTML = "<div class='col-sm-2 my-vehicle thumbnail thu-remov ad-vehi' id='mimg"+count+"'><div class='edit-thum-img'><img class=' img-responsive' src='" + picFile.result + "'" +
+                           "title='" + picFile.name + "'/></div> <div onclick='delete_image("+count+")' class=''><span>X</span></div> <div class='checkbox'><input type='checkbox'  onclick='get_front("+count+")' id='fcheck"+count+"'></div></div>";
+                    
+                    output.insertBefore(div,null);   
+                    count++;         
+                
+                });
+                
+                 //Read the image
+                picReader.readAsDataURL(file);
+            }                               
+           
+        });
+    }
+    else
+    {
+        console.log("Your browser does not support File API");
+    }
+      var date_input=$('input[name="offer_end"]'); //our date input has the name "date"
+      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+	 var dateToday = new Date(); 
+      var options={
+        format: 'mm/dd/yyyy',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+		 minDate: dateToday
+      };
+      date_input.datepicker(options).on('changeDate', function(){    $(this).datepicker('hide');});
+	
+    })
+
+ </script>
+ <script>
+
+function get_front(count)
+{
+	console.log(all_imgs);
+	var s='#fcheck'+count;
+	var checkedValue = $(s).is(":checked");
+	console.log(checkedValue);
+	if(checkedValue==true){
+		for(var k=0;k<all_imgs.length;k++){
+		   if(k==count){
+		          console.log(all_imgs[k]);
+			   $(".hid").val(all_imgs[k]);
+		   }
+		}
+	}else{
+		for(var k=0;k<all_imgs.length;k++){
+		   if(k==count){
+		   
+			   $(".hid").val('');
+		   }
+		}
+	}
+	
+}
+function delete_image(count){
+    var s='#fcheck'+count;
+	var checkedValue = $(s).is(":checked");
+	console.log(checkedValue);
+	if(checkedValue==true){
+	   document.getElementById('deleteerr').style.display='block';
+	   setTimeout(function() {
+        document.getElementById('deleteerr').style.display='none';
+       }, 5000);
+	}else{
+	   for(var k=0;k<all_imgs.length;k++){
+		   if(k==count){
+		   var divid='mimg'+count;
+			   all_imgs[k]='';
+			   document.getElementById(divid).style.display='none';
+		   }
+	   }
+	} 
+  
+}
+function add_images(){
+console.log(all_imgs);
+var d=[];
+   for(var k=0;k<all_imgs.length;k++){
+	   if(all_imgs[k]!=''){
+	     d.push(all_imgs[k]);
+	   }
+	}
+	console.log(d);
+	document.getElementById('mnimgs').value=d;
+}
+
+ </script>

@@ -1,0 +1,313 @@
+<style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+	.tgl-btn{
+	  display:none;
+	}
+  
+  h3 img {
+    max-height: 50px;
+}
+#ajax-content-wrap{
+	   overflow: hidden;
+		height: 100%;
+		width: 100%;
+		max-height: 140px;
+		overflow-y: auto;
+		border: 1px solid #eaeaea;
+		padding: 10px;
+
+
+}
+</style>
+
+
+	
+<div class="main-page">
+	 <div class="process nav-unscrolled" id="main-nav"> 
+		<div class="container">
+			<div class="stepwizard">
+				<div class="stepwizard-row setup-panel">
+					<div class="stepwizard-step" ng-click="redirect('home')">
+						<a type="button"  href="#/" class="btn btn-default btn-circle">1</a>
+						<div class="donestep"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+						<p>CHOOSE A CAR</p>
+					</div>					
+					<div class="stepwizard-step" ng-click="redirect('dealership')">
+						<a href="#/dealership/{{localmake}}/{{localmodel}}" type="button" class="btn btn-circle btn-default ">2</a>
+						<div class="donestep"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+						<p>FIND A DEALERSHIP</p>
+						
+					</div>
+					<div class="stepwizard-step active-stp">
+						<a href="" type="button" class="btn btn-default btn-circle btn-primary disable" disabled="disabled">3</a>
+						<p>SEARCH FOR FINANCING</p>
+					</div>
+					 <div class="stepwizard-step">
+						<a href="" type="button" class="btn btn-default btn-circle disable" disabled="disabled">4</a>
+						<p>SELECT YOUR LENDER</p>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+		
+ <div class="process-content">
+   <div class="container">	
+	 <form role="form" name="userForm">
+	    <div class="row setup-content" id="step-3">
+			<div class="row">
+			   
+			<div class="col-md-12 pad0 top-spc">
+		    	<h1 class="text-center">Search for Financing</h1>		
+			</div>
+			<aside class="_1ZuhAtc-DYbmBLqSCn-Rh6">
+				<ul class="XIzZi81R7ngU7n3l2AFhu pinfo">
+					<li id="pinfo" class="done"><span>personal information</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="rinfo" class="done"><span>residence information</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="einfo" class="done"><span>employment information</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="iinfo" class="done"><span>identification</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="rwinfo" class="current"><span>review</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+				</ul>
+			</aside>
+				
+				
+
+				<div class="user-details-frm review_page">
+			
+					<div class="frms rev-none">
+						<div class="model-name-img">
+							<img ng-if="vehicle_img"  class="img-responsive" ng-src="./upload/{{vehicle_img}}" alt="">
+							<img ng-if="vehicle_fuel_img" class="img-responsive" ng-src="{{vehicle_fuel_img}}">
+							<span ng-if="$scope.imgerr">{{$scope.imgerr}}</span>
+						</div>
+						<div class="model-price">
+								<div class="modelname">{{enquiry_data.year}} &nbsp;{{enquiry_data.make_name}} &nbsp;{{enquiry_data.model}} &nbsp;{{enquiry_data.trim}} </div>
+								<div class="model-msrp">
+									<div class="msrpprice">${{enquiry_data.msrp_price}}</div>
+									<div class="msrpname">MSRP*</div>
+								</div>
+						</div>	
+						<section class="_1IfbkVjrfaBFWbDQ4SHTpa text-center">
+							<div class="_11hYX-cLuTQAp9ZnHTnzl">Your Preferred Dealership:</div>
+							<h5>{{selected_dealer.name}}</h5>
+							<div>{{selected_dealer.address}} &nbsp;{{selected_dealer.address2}}</div>
+							<div>{{selected_dealer.city}}&nbsp;{{selected_dealer.state}}</div>
+							<div>{{selected_dealer.country}}&nbsp;{{selected_dealer.postcode}}</div>
+						</section>						
+							  
+					</div>	
+					<div class="frms rev-none">
+						<div class="allinfo">
+							<section class="undefined clearfix">
+								<div class="all-inf-title">Loan Details
+									<i class="_32a_1S1Bh5UWzdaFDuuJ57 fa fa-pencil" aria-hidden="true" href="" ng-click="edit_data('cal_values')"></i>
+								</div>
+								<div class="common-block col-xs-12 col-sm-6">
+									<div class="border-dv">
+										<label>Down Payment</label>
+										<div class="txts">{{calculator.down_payment}}</div>
+									</div>
+								</div>
+								<div class="common-block col-xs-12 col-sm-6">
+									<div class="border-dv">
+										<label>Term (in months)</label>
+										<div class="qPpMJs7w603Fova9ewhd9">{{calculator.terms}}</div>
+									</div>
+								</div>
+								<div class="common-block col-xs-12 col-sm-6">
+									<div class="border-dv">
+										<label>Estimated Trade-in</label>
+										<div class="qPpMJs7w603Fova9ewhd9">{{calculator.estimated_trade}}</div>
+									</div>
+								</div>
+								<div class="amount-req col-xs-12 text-center m-20">
+									<h5 class="">Amount Requested*</h5>
+										<div class="reqamt">${{calculator.requested_amount}}</div>
+										<div class="undefined col-xs-12">
+											<div>
+												<button class="btn btn-link pop-btn" data-toggle="modal" data-target="#myModal1">*Financing Disclosures</button>
+											</div>
+										</div>
+								</div>
+							</section>		
+
+							<section class="undefined clearfix">
+								<div class="all-inf-title">Personal Information
+									<i class="_32a_1S1Bh5UWzdaFDuuJ57 fa fa-pencil" aria-hidden="true" href="#" ng-click="edit_data('personal_info')"></i>
+								</div>
+								<div>First Name: {{user.firstname}}</div>
+								<div>Last Name: {{user.lastname}}</div>
+								<div>Email: {{user.email}}</div>
+								<div>Date of Birth: {{user.dob}}</div>
+								<div>Phone Number: {{user.phone_no}}</div>
+							</section>		
+							
+							<section class="undefined clearfix">
+								<div class="all-inf-title">Residence Information
+									<i class="_32a_1S1Bh5UWzdaFDuuJ57 fa fa-pencil" aria-hidden="true" href="#" ng-click="edit_data('resi_info')"></i>
+								</div>
+								<h5><b>Current Residence</b></h5>
+								<div>Address: {{resi_info.address}},{{resi_info.address2}},{{resi_info.city}},{{resi_info.state}}</div>
+								<div>Move-In Date: {{resi_info.move_date}}</div>
+								<div>Housing Status: {{resi_info.rent_own}}</div>
+								<div>Monthly Payment: {{resi_info.rent_mortgage}}</div>
+							</section>	
+
+							<section class="undefined clearfix">
+								<div class="all-inf-title">Employment Information
+									<i class="_32a_1S1Bh5UWzdaFDuuJ57 fa fa-pencil" aria-hidden="true" href="#" ng-click="edit_data('emp_info')"></i>
+								</div>
+								<h5><b>Current Employer</b></h5>
+								<div>Employer: {{emp.emp_name}}</div>
+								<div>Title: {{emp.emp_title}}</div>
+								<div>Start Date: {{emp.emp_start_date}}</div>
+								<div>Employment Status: {{emp.emp_status}}</div>
+								<div>Employer Phone Number: {{emp.emp_phone}}</div>
+								<h5><b>Income</b></h5>
+								<div>Gross Monthly Income: {{emp.emp_monthly_income}}</div>
+								<div>Other Income Source: {{emp.emp_income_option}}</div>
+								<div>Other Gross Monthly Income: {{emp.other_income_amount}}</div>
+							</section>
+
+							<section class="undefined clearfix">
+								<div class="all-inf-title">Identification
+									<i class="_32a_1S1Bh5UWzdaFDuuJ57 fa fa-pencil" aria-hidden="true" href="#"  ng-click="edit_data('iden_info')"></i>
+								</div>
+								<h5  ng-if="country=='us'"><b>Social Security Number</b></h5>
+								<h5  ng-if="country=='aus'"><b>Driver Liscence Number</b></h5>
+								<div ng-if="country=='aus'" >{{user.license_number}}</div>
+								<div ng-if="country=='us'" >{{user.social_security_no}}</div>
+								<h5 ng-if="country=='aus'" ><b>Liscence State</b></h5>
+								<div ng-if="country=='aus'" >{{user.liscence_state}}</div>
+								<h5><b>Credit History</b></h5>
+								<div>{{user.credit_history}}</div>
+							</section>
+						<form name="finalfForm">
+							<section class="undefined clearfix">
+								<div class="all-inf-title">Authorization
+								<p>Please read the following before submitting your credit inquiry.</p>
+								</div>
+								
+								
+								<div class="e-sign-const">
+									<div class="_1z9uRQFYOIxY5BaR_1Os4L ">
+										<div class="esign-ttl " id="chkag">
+											<div class="ico"><i class="fa fa-bell" aria-hidden="true"></i>
+											<i class="fa fa-check-circle" aria-hidden="true"></i>
+											</div>
+											<div class="ico-name">E-Sign Consent</div>
+										</div>
+										<!--<div class="iframe-txt">
+											<iframe width="100%" height="100%" src="e-sign.html" frameborder="0" allowfullscreen="" style="overflow: hidden; height: 100%; width: 100%;"></iframe>
+										</div>-->
+										<div id="ajax-content-wrap">
+											<p ng-bind-html="esign_disclosure | unsafe"></p> 
+										</div>
+										 <div class="checkbox agr">
+											<label><input type="checkbox" ng-checked="chkagr_checked(agreebtn)" ng-model="agreebtn" name="agreebtn"  id="chkagr" > By checking this box, you agree that you have read and agreed to the E-Sign Consent</label>
+											 <div class="spanerror" style="color:red">{{chkagr_errmsg}}</div>
+											 <span style="color:red" ng-show="finalfForm.agreebtn.$dirty && finalfForm.agreebtn.$invalid">please check above checkbox.</span>
+										</div>
+									</div>
+								</div>
+								
+								<div class="e-sign-const">
+									<div class="_1z9uRQFYOIxY5BaR_1Os4L ">
+										<div class="esign-ttl " id="esgn">
+											<div class="ico"><i class="fa fa-bell" aria-hidden="true"></i>
+											<i class="fa fa-check-circle" aria-hidden="true"></i>
+											</div>
+											<div class="ico-name">State Disclosures and Acknowledgements</div>
+										</div>
+										<!--<div class="iframe-txt">
+											<iframe width="100%" height="100%" src="state-disclosures.html" frameborder="0" allowfullscreen="" style="overflow: hidden; height: 100%; width: 100%;"></iframe>
+										</div>-->
+										<div id="ajax-content-wrap">
+										<p ng-bind-html="state_disclosure | unsafe"></p> 
+										</div>
+										 <div class="checkbox agr">
+											<label><input type="checkbox" ng-checked="checkesign_checked(checkesign)" ng-model="checkesign" name="checkesign"  id="chkesign" > By checking this box, you agree that you have read and agreed to the State Disclosures and Acknowledgements</label>
+										     <div class="spanerror" style="color:red">{{chkesign_errmsg}}</div>
+											 <span style="color:red" ng-show="finalfForm.checkesign.$dirty && finalfForm.checkesign.$invalid">please check above checkbox.</span>
+										</div>
+									</div>
+								</div>
+								
+							</section>
+						    <div class="nxt-div-btn text-center col-md-12">
+							    <button class="btn btn-primary nextBtn noLease"  ng-click="submit_data()" type="button">Submit</button>
+						    </div>
+					    </form>		
+					  </div>
+					</div>
+			   </div>
+				
+				
+				
+			</div>	
+		</div>
+				
+		</div>
+	 </form>
+  </div>
+
+	
+	
+	
+	
+    <div id="myModal1" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content" role="document">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+					Financing Disclosures
+				</div>
+				<div class="u1le6Y2hxjExaMxMdhDl0 modal-body">
+					<div>
+						<div class="text-center">
+							 	<p ng-bind-html="finance_disclosure | unsafe"></p>
+						</div>
+					</div>
+					<div class="text-center">
+						<button class="btn btn-primary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>	
+
+<input type="hidden" step="5000" min="0" max="500000" value="180000" required="">
+								
+								
+<script>
+//alert();
+ $('#step-2').addClass('active-stp');
+	
+$(document).ready(function(){
+  var dob=$('input[name="dob"]'); 
+  var move_in=$('input[name="move_date"]');
+  var prev_move_in=$('input[name="prev_move_in"]');
+  var prev_move_out=$('input[name="prev_move_out"]');
+  var emp_start_date=$('input[name="emp_start_date"]');
+	
+  var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+  var options={
+	format: 'dd/mm/yyyy',
+	container: container,
+	todayHighlight: true,
+	autoclose: true,
+  };
+  dob.datepicker(options);
+  move_in.datepicker(options);
+  prev_move_in.datepicker(options);
+  prev_move_out.datepicker(options);
+  emp_start_date.datepicker(options);
+})
+</script>
+

@@ -1,0 +1,375 @@
+<style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+	.tgl-btn{
+	  display:none;
+	}
+  
+  h3 img {
+    max-height: 50px;
+}
+	.tgl-btn{
+  display:none;
+}
+</style>	
+<div class="main-page">
+	 <div class="process nav-unscrolled" id="main-nav"> 
+		<div class="container">
+			<div class="stepwizard">
+				<div class="stepwizard-row setup-panel">
+					<div class="stepwizard-step" ng-click="redirect('home')">
+						<a type="button"  href="#/" class="btn btn-default btn-circle">1</a>
+						<div class="donestep"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+						<p>CHOOSE A CAR</p>
+					</div>					
+					<div class="stepwizard-step" ng-click="redirect('dealership')">
+						<a href="#/dealership/{{localmake}}/{{localmodel}}" type="button" class="btn btn-circle btn-default ">2</a>
+						<div class="donestep"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+						<p>FIND A DEALERSHIP</p>
+						
+					</div>
+					<div class="stepwizard-step active-stp">
+						<a href="" type="button" class="btn btn-default btn-circle btn-primary disable" disabled="disabled">3</a>
+						<p>SEARCH FOR FINANCING</p>
+					</div>
+					 <div class="stepwizard-step">
+						<a href="" type="button" class="btn btn-default btn-circle disable" disabled="disabled">4</a>
+						<p>SELECT YOUR LENDER</p>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+		
+ <div class="process-content">
+   <div class="container">	
+	 <form role="form" name="userForm">
+	    <div class="row setup-content" id="step-3">
+			<div class="row">
+			   
+			<div class="col-md-12 pad0 top-spc">
+		    	<h1 class="text-center">Search for Financing</h1>		
+			</div>
+			<aside class="_1ZuhAtc-DYbmBLqSCn-Rh6">
+				<ul class="XIzZi81R7ngU7n3l2AFhu pinfo">
+					<li id="pinfo" class="done"><span>personal information</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="rinfo" class="done"><span>residence information</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="einfo" class="current"><span>employment information</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="iinfo" class=""><span>identification</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="rwinfo" class=""><span>review</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+				</ul>
+			</aside>
+				
+				
+
+				
+				<div class="user-details-frm">
+				<div class="col-xs-12" ><h4 class="title">Employment Information</h4></div>
+				<div class="col-xs-12 gr-bg" ><h5 class="title">Current Employer</h5></div>
+			    <div ng-show="" id="empstatus">{{emp.emp_status}}</div>
+				<div ng-show="" id="empincomeoption">{{emp.emp_income_option}}</div>
+						
+					<div class="frms">
+					  <div class="group col-xs-12 col-sm-6">
+						<input ng-pattern="/^[a-zA-Z\s]*$/" type="text" name="emp_name" ng-model="emp.emp_name"  required><span class="highlight"></span><span class="bar"></span>
+						<label>Employer Name</label>
+						<span style="color:red" ng-show="userForm.emp_name.$dirty && userForm.emp_name.$invalid">allow only letters.</span>
+					  </div>
+					  <div class="group col-xs-12 col-sm-6">
+						<input ng-pattern="/^[a-zA-Z\s]*$/" type="text" name="emp_title" ng-model="emp.emp_title"  required><span class="highlight"></span><span class="bar"></span>
+						<label>Title</label>
+						<span style="color:red" ng-show="userForm.emp_title.$dirty && userForm.emp_title.$invalid">allow only letters.</span>
+					  </div>
+					  <div class="group col-xs-12 col-sm-4">
+						<!--<div id="dobpl">MM/YYYY</div>  ng-keyup="add_slash_to_date(emp.emp_start_date)" -->
+						<input type="text" id="emp_start_date"  pattern="^(?=.*?[1-9])[0-9()/-]+$" ng-focus="hide_error('emp_start_date')" ng-blur="validate_start_date(emp.emp_start_date)"   name="emp_start_date" ng-model="emp.emp_start_date" required><span class="highlight"></span><span class="bar"></span>
+						<label>Start Date</label>
+						  <span class="spanerror" style="color:red">{{empstartdateerrmsg}}</span>
+					    <span style="color:red" ng-show="userForm.emp_start_date.$dirty && userForm.emp_start_date.$invalid">invalid date.</span> 
+					  </div>
+	
+						<!--<div class="group col-xs-12 col-sm-4 state">
+								<div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label" style="">
+							 <select class="mdl-textfield__input mdl-dropdown_input" ng-change="hide_error('emp_status')" ng-model="emp.emp_status"  name="emp_status" id="emp_status">
+									  <option value="" class="mdl-menu__item">Employee Status</option>
+									   <option value="full_time" class="mdl-menu__item">Full Time</option>
+									 <option value="self_employed" class="mdl-menu__item">Self Employed</option>
+									 <option value="unemployed" class="mdl-menu__item">Unemployed</option>
+									 <option value="other" class="mdl-menu__item">Other</option>
+								  </select>
+									<span style="color:red">{{empstatus_errmsg}}</span>
+								 <span style="color:red" ng-show="userForm.emp_status.$dirty && userForm.emp_status.$invalid">required.</span> 
+								
+								</div>
+						</div>	-->
+						
+						<div class="col-sm-4 col-xs-12 custo-select-bx smal-pad cursel ">
+							<div class="sel sel--black-panther emp_status">					
+								<select ng-model="emp.emp_status"  name="emp_status" id="emp_status" >
+									 <option value="" >Employee Status</option>
+									 <option value="full_time" >Full Time</option>
+									 <option value="self_employed" >Self Employed</option>
+									 <option value="unemployed" >Unemployed</option>
+									 <option value="other" >Other</option>
+								</select>
+								<i class="fa fa-caret-down" aria-hidden="true"></i>
+
+						 	</div>
+						</div>
+						
+					  <div class="group col-xs-12 col-sm-4">
+						<input name="emp_phone"  pattern="[0-9.]+" maxlength="10" ng-model="emp.emp_phone" type="text" required><span class="highlight"></span><span class="bar"></span>
+						<label>Employer Phone Number</label>
+						<span style="color:red" ng-show="userForm.emp_phone.$dirty && userForm.emp_phone.$invalid">invalid  phone number</span>
+						  <span class="spanerror" style="color:red">{{phoneerr}}</span>
+					  </div>
+					  <div class="group col-xs-12 col-sm-4">
+						<span ng-show="doller1" class="doller">$</span>
+						<input type="text" class="dollerinput" pattern="^(?=.*?[1-9])[0-9()-]+$" ng-keyup="add_doller_sign(emp.emp_monthly_income,'monthly_income')" name="emp_monthly_income" ng-model="emp.emp_monthly_income" required><span class="highlight"></span><span class="bar"></span>
+						<label>Gross Monthly Income</label>
+						<span class="spanerror" style="color:red" ng-show="userForm.emp_monthly_income.$dirty && userForm.emp_monthly_income.$invalid"> allow only numbers.</span> 
+					  </div>
+	
+						<!--<div class="group col-xs-12 col-sm-4 state">
+								<div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label" style="">
+									<select class="mdl-textfield__input mdl-dropdown_input" ng-change="hide_error('emp_income_option')" ng-model="emp.emp_income_option"  name="emp_income_option" id="emp_income_option">
+										<option value="" class="mdl-menu__item">Other Income Options</option>
+										<option value="alimoni" class="mdl-menu__item">Alimoni</option>
+										<option value="bonus" class="mdl-menu__item">Bonus</option>
+										<option value="children_support" class="mdl-menu__item">Children Support</option>
+										<option value="disabitlity" class="mdl-menu__item">Disability</option>
+										<option value="investments" class="mdl-menu__item">Investments</option>
+										<option value="multiple" class="mdl-menu__item">Multiple</option>
+										<option value="other" class="mdl-menu__item">Other</option>
+										<option value="pension" class="mdl-menu__item">Pension</option>
+										<option value="rental" class="mdl-menu__item">Rental</option>
+										<option value="retirement" class="mdl-menu__item">Retirement</option>
+										<option value="sles_comm" class="mdl-menu__item">Sales Commissions</option>
+										<option value="search_job" class="mdl-menu__item">Second Job</option>
+										<option value="social_security" class="mdl-menu__item">Social Security</option>
+										<option value="spouse" class="mdl-menu__item">Spouse</option>
+										<option value="trust_fund" class="mdl-menu__item">Trust Fund</option>
+									</select>	
+									<span style="color:red">{{empincomeoption_errmsg}}</span>
+								</div>
+						</div>	-->
+						
+						<div class="col-sm-4 col-xs-12 custo-select-bx smal-pad cursel ">
+							<div class="sel sel--black-panther emp_income_option" >					
+								<select  ng-model="emp.emp_income_option"  name="emp_income_option" id="emp_income_option" >
+									<option value="" class="mdl-menu__item">Other Income Options</option>
+										<option  value="alimoni" >Alimoni</option>
+										<option value="bonus" >Bonus</option>
+										<option value="children_support" >Children Support</option>
+										<option value="disabitlity" >Disability</option>
+										<option value="investments" >Investments</option>
+										<option  value="multiple" >Multiple</option>
+										<option value="other" >Other</option>
+										<option value="pension" >Pension</option>
+										<option value="rental" >Rental</option>
+										<option value="retirement" >Retirement</option>
+										<option value="sles_comm" >Sales Commissions</option>
+										<option value="search_job" >Second Job</option>
+										<option value="social_security" >Social Security</option>
+										<option value="spouse" >Spouse</option>
+										<option value="trust_fund" >Trust Fund</option>
+								</select>
+								<i class="fa fa-caret-down" aria-hidden="true"></i>
+						 	</div>
+						</div>
+						
+						
+					<div class="group col-xs-12 col-sm-4" >
+						<span ng-show="doller2" class="doller">$</span>
+						<input type="text" class="dollerinput" pattern="^(?=.*?[1-9])[0-9()-]+$" ng-keyup="add_doller_sign(emp.other_income_amount,'other_income')" name="other_income_amount" ng-model="emp.other_income_amount" required><span class="highlight"></span><span class="bar"></span>
+						<label>Other Gross Monthly Income</label>
+						<span style="color:red" ng-show="userForm.other_income_amount.$dirty && userForm.other_income_amount.$invalid"> allow only numbers.</span> 
+					  </div>
+						
+						
+						<div class="col-sm-6 col-xs-12 col-sm-offset-3 custo-select-bx smal-pad cursel ">
+							<div class="sel sel--black-panther business">
+								<select  ng-model="business" name="business" id="business" onchange="report(this.value)">
+								     <option value="" >Is the loan for business purpose</option>
+									 <option value="yes" >YES</option>
+									 <option value="no" >NO</option>
+								</select>
+								<i class="fa fa-caret-down" aria-hidden="true"></i>
+						 	</div>
+						</div>
+						
+						
+						<div class="nxt-div-btn text-center col-md-12" >
+							<button ng-if="edit" class="btn btn-primary nxt noLease" ng-click="edit_employment_info()">submit</button>
+							<button ng-if="!edit" id="nextbtn" class="btn btn-primary ident-nxt noLease" ng-click="goto_identification_info()"
+									ng-disabled="userForm.emp_name.$invalid || userForm.emp_title.$invalid ||  userForm.emp_status.$invalid || userForm.emp_phone.$invalid" 
+									type="button">Next</button>
+							<!--  ng-disabled="userForm.emp_name.$invalid || userForm.emp_title.$invalid ||  userForm.emp_status.$invalid || userForm.emp_phone.$invalid"  -->
+						</div>	
+						<div class="col-xs-12 text-center m-20">
+							<h6>If you subsequently add a joint applicant to your inquiry, the final decision will be affected by the joint applicant’s creditworthiness.</h6>
+							<h6>You need not reveal alimony, child support, or separate maintenance income if you do not wish it to be considered as a basis for repaying this obligation</h6>
+						</div>								  
+					</div>	
+				</div>	
+			</div>	
+		</div>
+		</div>
+	 </form>
+  </div>
+
+	
+	
+	
+	
+    <div id="myModal1" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content" role="document">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+					Financing Disclosures
+				</div>
+				<div class="u1le6Y2hxjExaMxMdhDl0 modal-body">
+					<div>
+						<div class="text-center">
+							<p>The MSRP and Estimated Monthly Payment are not an advertisement or offer for specific terms of credit. Payment amounts presented are estimates and are for illustrative purposes only. If you used the Calculator, those amounts are reflected in the Estimated Monthly Payment. The Estimated Monthly Payment is based on a 60-month term, a down payment of 9%, Annual Percentage Rate (APR) of 4.5%, a tax rate of 7.0%, and no trade-in. If you change the Down Payment or Term, or if you trade in your current vehicle, the Estimated Monthly Payment will change. The payment amount does not include title, license or registration fees. Actual prices may vary by Dealer. Payment amounts may be different due to various factors such as fees, specials and rebates, term, down payment, APR, trade-in, and tax rate. Actual APR is based on the creditworthiness of the customer. Not all customers will qualify for the lowest rate. You and your selected dealer or 
+								will determine your actual rate. Please contact your selected dealer or lender for program details and actual terms. The MSRP excludes transportation and handling charges, destination charges, taxes, title, registration, preparation and documentary fees, tags, labor and installation charges, insurance, optional equipment or packages and accessories.</p>
+							<p>Additional Disclosures for Lease Transactions:</p>
+							<p>The total due at lease signing is the amount to be paid by the lessee prior to or at signing of the lease or by delivery of the vehicle.  It does not include title, license, and/or registration fees.  It includes the first month’s payment, any acquisition fee, capitalized cost reduction, and any trade-in amount.  A security deposit may be required depending on creditworthiness.</p>
+						</div>
+					</div>
+					<div class="text-center">
+						<button class="btn btn-primary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>	
+
+<input type="hidden" step="5000" min="0" max="500000" value="180000" required="">
+								
+								
+<script>
+
+$('#emp_income_option').hide();
+$('#emp_status').hide();
+$('#business').hide();
+setTimeout(function(){		/* ===== Logic for creating fake Select Boxes ===== */
+	
+var emp_status=$("#empstatus").text();
+var emp_income_option=$('#empincomeoption').text();	
+$('.sel').each(function() {
+	
+  $(this).children('select').css('display', 'none');
+  var $current = $(this);
+  $(this).find('option').each(function(i) {
+	  
+    if (i == 0) {
+      $current.prepend($('<div>', {
+			class: $current.attr('class').replace(/sel/g, 'sel__box ')
+		  }));
+
+		  var placeholder = $(this).text();
+		  $current.prepend($('<span>', {
+			class: $current.attr('class').replace(/sel/g, 'sel__placeholder'),
+			text: placeholder,
+			'data-placeholder': placeholder
+		  }));
+
+		  return;
+	  }
+    
+	 
+    if($(this).text()==emp_status){
+		var index = $(this).index();
+		$current.children('div').append($('<span>', {
+		  class: $current.attr('class').replace(/sel/g, ' sel__box__options selected'),
+		  text: $(this).text()
+		}));
+		 var $currentSel = $(this).closest('.sel');
+         $currentSel.children('.sel__placeholder').text(emp_status);
+         $currentSel.children('select').prop('selectedIndex', index + 1);
+		
+	}else if($(this).text()==emp_income_option){
+	    
+		var index = $(this).index();
+		$current.children('div').append($('<span>', {
+		  class: $current.attr('class').replace(/sel/g, ' sel__box__options selected'),
+		  text: $(this).text()
+		}));
+		 var $currentSel = $(this).closest('.sel');
+         $currentSel.children('.sel__placeholder').text(emp_income_option);
+         $currentSel.children('select').prop('selectedIndex', index + 1);
+	
+	}else{
+	 
+		 $current.children('div').append($('<span>', {
+		  class: $current.attr('class').replace(/sel/g, 'sel__box__options'),
+		  text: $(this).text()
+		}));
+	
+	}
+    
+  });
+});
+
+	// Toggling the `.active` state on the `.sel`.
+$('.sel').click(function() {
+  $('.sel').not(this).removeClass('active');
+  $(this).toggleClass('active');
+  
+   
+});
+
+
+// Toggling the `.selected` state on the options.
+$('.sel__box__options').click(function() {
+  var txt = $(this).text();
+  if(txt=='NO'){
+     prompt('we can only assist with business purpose loans at present');
+     $('#nextbtn').attr("disabled","disabled");
+  }else if(txt=='YES'){
+      $('#nextbtn').attr("disabled",false);
+  }
+  
+  var index = $(this).index();
+  $(this).siblings('.sel__box__options').removeClass('selected');
+  $(this).addClass('selected');
+  
+  var $currentSel = $(this).closest('.sel');
+  $currentSel.children('.sel__placeholder').text(txt);
+  $currentSel.children('select').prop('selectedIndex', index + 1);
+	
+});
+},1500);
+//alert();
+ $('#step-2').addClass('active-stp');
+	
+$(document).ready(function(){
+  var dob=$('input[name="dob"]'); 
+  var move_in=$('input[name="move_date"]');
+  var prev_move_in=$('input[name="prev_move_in"]');
+  var prev_move_out=$('input[name="prev_move_out"]');
+  var emp_start_date=$('input[name="emp_start_date"]');
+	
+  var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+  var options={
+	format: 'dd/mm/yyyy',
+	container: container,
+	todayHighlight: true,
+	autoclose: true,
+  };
+ // dob.datepicker(options);
+  //move_in.datepicker(options);
+  //prev_move_in.datepicker(options);
+ // prev_move_out.datepicker(options);
+ // emp_start_date.datepicker(options);
+})
+$('#emp_start_date').inputmask("99/9999", {placeholder: 'MM/YYYY' });
+</script>
+

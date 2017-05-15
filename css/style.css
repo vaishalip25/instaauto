@@ -1,0 +1,477 @@
+.logo{
+
+    float: left;
+    font-size: 20px;
+    line-height: 50px;
+    text-align: center;
+    padding: 0 10px;
+    width: 220px;
+    font-family: 'Kaushan Script', cursive;
+    font-weight: 500;
+    height: 50px;
+    display: block;
+    background-color: #f8f8f8;
+    color: #f9f9f9;	
+}
+.no-print{
+	display:none;
+}
+.selectbox{
+	width:100%;
+	height:33px;
+}
+.timelabel{
+	float: left;
+    width: 10%;
+    margin: 10px;
+}
+.form-control.timepicker{
+	float: left;
+    width: 30%;
+    margin: 10px;
+}
+.stitle{
+	text-align:center;
+}
+.timebtn{
+	width:25%;
+	    margin-left: 33%;
+}
+.imgbox{
+	height: 200px;
+    width: 200px;
+	float:left;
+}
+.content .addnewbtn{
+	margin-bottom:20px;
+}
+input[type=textarea]{
+	height:100px;
+}
+input{
+	border-radius:10px;
+}
+.vtitle{
+	color: #3c8dbc;
+}
+.editbtn{
+	width: 25%;
+}
+.box-title.msg{
+	color: #3cbc4d;
+}
+.carimgs{
+	 margin: 20px 0px;
+}
+.backbtn{
+   margin-bottom: 20px !important;
+    width: 12%;
+}
+.viewlabel{
+	font-size: 18px;
+}
+.userinfo table tr td{
+	    font-size: 20px;
+		    padding: 15px;
+}
+.addnewbtn{
+	margin-bottom:20px;
+}
+.makelist{
+	background-color: #3c8dbc;
+    width: 100px;
+    padding: 6px;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+	float:left;
+	margin-right:10px;
+	margin-bottom:20px;
+}
+.selectmake{
+	width:30%
+}
+.addbtn{
+	    margin-top: 20px;
+}
+.box{
+	float:left;
+}
+.tble
+{
+	margin-bottom: 13px;
+}
+.no-print{
+	display:none;
+}
+.logo{
+	position:fixed;
+}
+.left-side{
+	position:fixed !important;
+}
+.logo img{
+	width:80%;
+}
+.select2{
+   margin-bottom: 30px;
+}
+.container{
+   margin-left:-33px;	
+}
+.selectfile{
+	margin-bottom:40px;
+}
+.rightdiv{
+	float:right;
+}
+.ui-grid-row,.ui-grid-cell,  .ui-grid-cell .ui-grid-vertical-bar{
+	height:50px!important;
+}
+.uigridbtn{
+	margin:10px;
+}
+.grid {
+  width:auto;
+  height:500px;
+}
+.searchbox
+{
+	margin-bottom: 19px;
+	
+}
+.txt{
+  display: block;
+  width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+ #slides_control > div{
+  height: 200px;
+}
+img{
+  margin:auto;
+  width: 400px;
+}
+#slides_control {
+  position:absolute;
+  width: 400px;
+  left:50%;
+  top:20px;
+ margin-left:-200px;
+}
+ 
+.panel-group.custom-panel {
+    margin-top: 20px;
+}
+.custom-panel .panel-success>.panel-heading, .custom-pa .panel-success>.panel-heading{
+    color: #ffffff;
+    background-color: #3c8dbc;
+    border-color: #3c8dbc;
+} 
+.custom-panel .panel-success, 
+.custom-pa .panel-success{
+    border-color: #3c8dbc;
+}
+.box .pad-top{
+    float: left;
+    padding-top: 15px;
+	width:100%
+}
+.pad-lr-0{
+padding-left:0px;
+padding-right:0px;
+}
+.pad-left-0{
+padding-left:0px;
+}
+.pad-right-0{
+padding-right:0px;
+}
+.box.same-space{
+border-color:#3c8dbc;
+}
+.same-space .box-body{
+padding:20px 0px 0px;
+}
+.dealer-top{
+    margin-top: -55px;
+    position: relative;
+    top: 45px;
+	z-index: 99;
+}
+#dealerForm{
+	float: left;
+    width: 100%;
+}
+#dealerForm .box-title{
+margin-top:0px;
+}
+#dealerForm .form-control.timepicker{
+    width: 40%;
+}
+.vehicle-m .vm{
+    margin-top: -35px;
+    margin-bottom: 0px;
+    position: relative;
+    left: 0px;
+    top: 15px;
+    z-index: 99;
+}
+.vehicle-m h2.vtitle {
+    margin-top: 0px;
+
+}
+.vehicle-m h2.vtitle.vt{
+	padding-left:20px;
+}
+.vehicle-m .Editbox{
+	margin-top: -35px;
+}
+.vehicle-m .thumbnail{
+float:left;
+}
+#result div:first-child img{
+margin-left:0px;
+}
+select{
+    border-color: #cccccc;
+    background-color: transparent;
+}
+.searchbox{
+	float:right;
+}
+.lead{
+margin:0px;
+}
+.lead h3.box-title{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 3px 0px;
+}
+select:focus{
+	outline:none;
+}
+/***************************************************/
+
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 14.3px 0;
+  width: 34%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 6.4px;
+  cursor: pointer;
+  background: #3071a9;
+  border-radius: 1.3px;
+ 
+}
+input[type=range]::-webkit-slider-thumb {
+
+  border: 1px solid #004400;
+  height: 35px;
+  width: 12px;
+  border-radius: 11px;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -14.5px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #367ebd;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+
+  background: #3071a9;
+  border-radius: 1.3px;
+
+}
+input[type=range]::-moz-range-thumb {
+
+  border: 1px solid #004400;
+  height: 35px;
+  width: 13px;
+  border-radius: 11px;
+  background: #ffffff;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 6.4px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+
+
+}
+input[type=range]::-ms-fill-upper {
+  background: #3071a9;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+
+}
+input[type=range]::-ms-thumb {
+
+  border: 1px solid #004400;
+  height: 37px;
+  width: 13px;
+  border-radius: 11px;
+  background: #ffffff;
+  cursor: pointer;
+  height: 8.4px;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #3071a9;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #367ebd;
+}
+.margin-top-15{
+margin-top:15px;
+}
+.make-main .ui-grid-viewport.ng-isolate-scope{
+height:469px !important;
+border: 1px solid #ccc;
+}
+
+
+.my-vehicle input[type="checkbox"]{
+	float:none;
+	/* margin-left:-25px; */
+}
+.thu-remov{
+	position:relative;
+}
+.thu-remov span{
+	position: absolute;
+    right: 0;
+    border: 1px solid;
+    padding: 0px 6px;
+    width: 22px;
+    height: 22px;
+    background: #c10000;
+    color: #fff;
+    top: 0;
+	cursor:pointer;
+}
+
+.my-vehicle .checkbox{
+	text-align:center;
+}
+
+
+/******** date 31/3/2017********/
+
+.my-vehicle .thumbnail {
+    height: auto;
+    width: 100%;
+    margin: 10px;
+	margin-left: 0 !important;
+}
+
+.comon-info{
+    width: 100%;
+    float: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+.info-bd-pan{
+	padding:0;
+}
+
+
+/******date 5/4/2017***********/
+.page-cont .nav-tabs li{
+	margin-left:0;
+}
+
+
+/*************** date 8/4/2017 *********/
+.enq-list .col-sm-12{
+	padding-top:20px;
+}
+.enq-list{
+	margin-bottom:20px;
+}
+.enq-mdl .modal-header{
+	border-bottom:0;
+}
+.det-leads .comon-info{
+	border-bottom:0;
+	border-right: 1px solid #b3b3b3;
+	min-height:200px;
+	margin: 15px 0;
+}
+.det-leads .col-md-4:last-child .comon-info{
+	border-right: 0;
+}
+.det-leads .comon-info .form-group{
+	margin-bottom:5px;
+}
+
+
+#pwdmodal .modal-body{
+	max-width: 400px;
+    margin: 0 auto;
+}
+#pwdmodal .input-group{
+	width:100%;
+}
+#pwdmodal h4{
+	text-align:center;
+}
+#successmodal .modal-body {
+    padding: 50px;
+    max-width: 500px;
+    margin: 0 auto;
+	text-align:center;
+}
+#successmodal .modal-body h4{
+	color:green;
+}
+
+.saveloader{
+	width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background: rgba(0, 0, 0, 0.54);
+    z-index: 9;
+}
+.saveloader .loader1{
+	position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+#result .ad-vehi img {
+    margin-left: 0px !important;
+	padding: 10px;
+}
+.ad-vehi.my-vehicle .checkbox {
+    text-align: center;
+    float: left;
+    width: 100%;
+}
+.ad-vehi .edit-thum-img img{
+	position:absolute;
+	top:0;
+	bottom:0;
+}

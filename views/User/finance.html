@@ -1,0 +1,906 @@
+<style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+	.tgl-btn{
+	  display:none;
+	}
+  
+  h3 img {
+    max-height: 50px;
+}
+	#ajax-content-wrap{
+	       overflow: hidden;
+			height: 100%;
+			width: 100%;
+			max-height: 140px;
+			overflow-y: auto;
+			border: 1px solid #eaeaea;
+			padding: 10px;
+
+	
+	}
+</style>
+
+
+	
+<div class="main-page">
+	 <div class="process nav-unscrolled" id="main-nav"> 
+		<div class="container">
+			<div class="stepwizard">
+				<div class="stepwizard-row setup-panel">
+					<div class="stepwizard-step" ng-click="bck_first()">
+						<a type="button"  href="#/" class="btn btn-default btn-circle">1</a>
+						<p>CHOOSE A CAR</p>
+					</div>					
+					<div class="stepwizard-step">
+						<a href="#/dealership/{{localmake}}/{{localmodel}}" type="button" class="btn btn-circle btn-default ">2</a>
+						<p>FIND A DEALERSHIP</p>
+						
+					</div>
+					<div class="stepwizard-step active-stp">
+						<a href="" type="button" class="btn btn-default btn-circle btn-primary disable" disabled="disabled">3</a>
+						<p>SEARCH FOR FINANCING</p>
+					</div>
+					 <div class="stepwizard-step">
+						<a href="" type="button" class="btn btn-default btn-circle disable" disabled="disabled">4</a>
+						<p>SELECT YOUR LENDER</p>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+		
+		
+    <div class="process-content">
+   <div class="container">	
+	 <form role="form" name="userForm">
+	    <div class="row setup-content" id="step-3">
+			
+			
+			<div class="col-md-12 pad0 top-spc" ng-hide="finance_div">
+				<h1 class="text-center">Search for Financing</h1>
+				<div class="">
+				<h4>Confirm Details</h4>
+					<div class="left-img col-md-6 col-sm-6 col-xs-12 pad0">
+						<div class="model-name-img">
+							<!-- <img src="./upload/{{vehicle_img}}"  alt="Flower" width="460" height="345"> -->
+							<img ng-if="vehicle_img" class="img-responsive" ng-src="./upload/{{vehicle_img}}"  alt="" width="460" height="345" />
+							<span ng-if="$scope.imgerr">{{$scope.imgerr}}</span>
+							<div class="our-promise">
+								<div class="promins-txt">OUR PROMISE</div>
+								<div class="promise-step">
+									<div class="simple"></div>
+									A simple 4-step process
+								</div>
+								<div class="promise-step"><div class="encrypt"></div>Your information is safe with us. We use advanced encryption technology</div>
+								<div class="promise-step"><div class="time-ico"></div>Personalized decisions within minutes</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="">
+
+						<!--price section loan-->
+						<section class="loan-slide">
+							<div class="model-price">
+								<div class="modelname" >{{year}}&nbsp;{{brand}}&nbsp;{{model}}&nbsp;{{trim}}</div>
+								<div class="model-msrp" >
+									<div class="msrpprice" >${{price}}</div>
+									<div class="msrpname">MSRP*</div>
+								</div>
+							</div>
+							<div class="undefined row text-center">
+								<div class="esttxt" >Before we begin, please confirm a few details.</div>
+								
+								<div class="confirmdetails">
+									<div class="clearfix">
+										<div class="_3FFI_ccRC1esG6zey4TR_0 col-xs-12 col-sm-6">
+											<div class="muiInput ">
+												<label style="" class="forlabel " for="tradeintextfield">Down payment</label>
+												<div class="hddv">(optional)</div>
+												<input type="text" class="inp" ng-model="calculator.down_payment" name="down_payment" ng-change="update_amount_requested()"  id="tradeintextfield" style="">
+												<div>
+													<hr>
+													<hr>
+												</div>
+											</div>
+											<div class="popoverdv" aria-describedby="popover">
+												<i data-trigger="hover" data-placement="top" class="_1NMwlyCTnWXq_xEloGEaSs fa fa-info-circle" aria-hidden="true"   data-toggle="popover" title="Down Payment" data-content="This is the initial amount you pay upfront at the time of finalizing the transaction. This is optional but including a down payment will reduce the total amount you finance and thus reduce your monthly payments."></i>
+											</div>
+										</div>
+										
+										<div class="_3xZIKrgDKueInrGcoaXKYF col-xs-12 col-sm-6">
+										<div class="mdl-textfield mdl-js-textfield mdl-dropdown mdl-textfield--floating-label" style="">
+											  
+											  <label class="forlabel mdl-textfield__label" for="termmonth">Term (in months)</label>
+											   <!--<select class="mdl-textfield__input mdl-dropdown_input" ng-model="calculator.terms"  name="terms" id="terms">
+												 <option ng-repeat="terms in terms_array" ng-selected="calculator.terms=terms.value"  class="mdl-textfield__input mdl-dropdown_input" id="termmonth"
+                                                      value="{{terms.value}}">{{terms.name}}</option>
+											  </select>-->
+											
+											<select ng-model="calculator.terms"  name="terms" id="terms" data-ng-options="terms.value as terms.name for terms in terms_array" class="smdl-textfield__input mdl-dropdown_input" >
+											 
+											</select>
+											  
+											 <!--<input ng-model="enquiry.terms" name="terms" readonly class="mdl-textfield__input mdl-dropdown_input" type="text" value="60 Months" id="termmonth">
+											  <ul class="mdl-menu mdl-js-menu mdl-dropdown-menu" for="termmonth">
+												<li class="mdl-menu__item" ng-repeat="terms in terms_array">{{terms.name}}</li>
+											  </ul>-->
+											</div>	
+											<div class="popoverdv" aria-describedby="popover">
+												<i data-trigger="hover" data-placement="top" class="_1NMwlyCTnWXq_xEloGEaSs fa fa-info-circle" aria-hidden="true"   data-toggle="popover" title="Term (in months)" data-content="Term represents the repayment period in months for the amount financed."></i>
+											</div>
+										
+										</div>
+									   <div class="clearfix">
+										<div class="_3FFI_ccRC1esG6zey4TR_0 col-xs-12 col-sm-6">
+											<div class="muiInput ">
+												<label style=""  class="forlabel" for="tradeintextfield">Estimated Trade-in</label>
+												<div class="hddv">(optional)</div>
+												<input ng-model="calculator.estimated_trade_in"  ng-change="update_amount_requested()"  name="estimated_trade" type="text" class="inp" value="$0" id="tradeintextfield" style="">
+												<div>
+													<hr>
+													<hr>
+												</div>
+											</div>
+											<div class="popoverdv" aria-describedby="popover">
+												<i data-trigger="hover" data-placement="top" class="_1NMwlyCTnWXq_xEloGEaSs fa fa-info-circle" aria-hidden="true"   data-toggle="popover" title="Estimated Trade-in" data-content="The Net Trade-In Amount is the market value of your trade-in vehicle minus any remaining loan amount on the vehicle."></i>
+											</div>
+										</div>
+									</div>
+								</div>							
+								
+								
+								<div class="BMHS0SC6jSHAVQRNhILxy clearfix" >
+									<div class=" col-xs-12 text-center" >
+										<div class="estpricemonth" >
+											<div class="estprs" >
+											
+												<div class="estmon">Amount Requested*</div>
+												<div class="main-prs">{{calculator.amount_reqested}}</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div><button class="btn btn-link pop-btn" data-toggle="modal" data-target="#myModal1">*Financing Disclosures</button>
+							
+								</div>
+								<div class="select-loan-btn clearfix" ng-click="get_personal_info()">
+								   <button ng-if="!edit" class="btn btn-primary selloanbtn noLease" type="button" >Start Credit Inquiry</button>
+								   <button ng-if="edit" class="btn btn-primary nxt noLease" ng-click="edit_cal_data()">submit</button>
+								</div>
+							</div>
+							<div class="smpltxt text-center" >Payment will be adjusted upon the final car price.</div>
+						</section>	
+						
+					</div>					
+				</div>
+			</div>
+		</div>
+
+				
+	         <div class="row" ng-show="personal_info_div">
+			
+			<div class="col-md-12 pad0 top-spc">
+				<h1 class="text-center">Search for Financing</h1>		
+			</div>
+			<aside class="_1ZuhAtc-DYbmBLqSCn-Rh6">
+				<ul class="XIzZi81R7ngU7n3l2AFhu pinfo">
+					<li id="pinfo" class="current"><span>personal information</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="rinfo" class=""><span>residence information</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="einfo" class=""><span>employment information</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="iinfo" class=""><span>identification</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="rwinfo" class=""><span>review</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+				</ul>
+			</aside>
+			
+			
+			<!--personal info-->
+			<div class="user-details-frm resi-info" ng-show="personal_info">
+				<div class="col-xs-12" ><h4 class="title">Personal Information</h4></div>
+				
+				
+					<div class="frms">
+					  <div class="group col-xs-12 col-sm-6 ">
+						<input type="text" ng-model="user.firstname" name="firstname" required><span class="highlight"></span><span class="bar"></span>
+						<label>First Name</label>
+						<span style="color:red" ng-show="userForm.firstname.$dirty && userForm.firstname.$invalid">First Name is required.</span>
+					  </div>
+					  <div class="group col-xs-12 col-sm-6">
+						<input type="text" ng-model="user.lastname" name="lastname" required><span class="highlight"></span><span class="bar"></span>
+						<label>Last Name</label>
+						  <span style="color:red" ng-show="userForm.lastname.$dirty && userForm.lastname.$invalid">Last Name is required.</span>
+					  </div>
+
+					  <div class="group col-xs-12 col-sm-6">
+						 <input type="text" pattern="[0-9.]+" ng-model="user.phone_no" name="phone_no" required class="form__input" id="email" name="email"><span class="highlight"></span><span class="bar"></span>
+						 <label>Phone Number</label>
+						 <span style="color:red" ng-show="userForm.phone_no.$dirty && userForm.phone_no.$invalid">please enter valid phone number</span>
+					  </div>
+						
+					  <div class="group col-xs-12 col-sm-6">
+						<input type="text" ng-model="user.dob" ng-blur="hide_error('dob')"  name="dob" id="dob"  required><span class="highlight"></span><span class="bar"></span>
+						<label>Date of Birth</label>
+						  <span style="color:red" ng-show="userForm.dob.$dirty && userForm.dob.$invalid"  required>Date of Birth is required.</span>
+						  <span style="color:red">{{doberrmsg}}</span>
+						</div>
+					</div> 
+					
+					<div class="frms">
+						
+						<div class="" ng-hide="tgl1">
+							<div class="pull-left w-100">
+								<div class="col-xs-12" ><h4 class="title">Create Account</h4></div>
+								<div class="subtitle col-xs-12" >This is used to create an AutoGravity account.</div>
+							</div>
+							<div class="mFW8h7g5TQDHwFTmF2OCn" ><div ><span >Already have an account?</span><a href="" ng-click="show_login_form()" class="log1">Log In</a></div></div>
+								<div class="clearfix">		  
+								<div class="group col-xs-12 col-sm-6">
+									<input type="email" name="email" ng-blur="check_email(user.email)"  ng-model="user.email" pattern="" required><span class="highlight"></span><span class="bar"></span>
+									<label>Email</label>
+									<span style="color:red" ng-show="userForm.email.$dirty && userForm.email.$invalid">please enter valid email address</span>
+									<span style="color:red" ng-if="msg">{{msg}}</span>
+									</div>
+								</div>
+			
+							
+							<div class="group col-xs-12 col-sm-6">
+								<input type="password" ng-keyup="validate_password(user.password)" name="password"  ng-model="user.password" id="password"  required><span class="highlight"></span><span class="bar"></span>
+								<label>Password</label>
+
+								 <span style="color:red">{{pwd_msg}}</span>
+								<!--password rule-->
+									<ul class="passrule">
+										<li class="" id="size">At least 8 characters</li>
+										<li class="" id="cletter"> At least 1 lowercase letter</li>
+										<li class="" id="lletter">At least 1 capital letter</li>
+										<li class="" id="num" >At least 1 number</li>
+									</ul>								
+								<!---->
+								
+							  </div>
+							
+							  <div class="group col-xs-12 col-sm-6">
+								<input type="password" name="cpassword" ng-model="con_pwd"  pw-check="password" required><span class="highlight"></span><span class="bar"></span>
+								<label>Confirm Password</label>
+								  <p style="color:red" ng-show="userForm.cpassword.$invalid && !userForm.cpassword.$pristine" class="help-block">password don't match</p>
+							  </div>
+
+							  
+							  <div class="creat-cont col-xs-12">
+								<span>By clicking Create and Continue, you agree to our
+									<a href="#" target="_blank">Terms of Service</a>
+									and that you have read our<a href="#" target="_blank">Privacy Policy</a>
+									and <a href="#" target="_blank">Privacy Notice</a>
+								.</span>
+							</div>
+							<div class="nxt-div-btn text-center col-md-12"  >
+								
+								<button ng-if="!edit" ng-click="goto_residential_info()" class="btn btn-primary nxt noLease"  
+										 ng-disabled="userForm.email.$invalid || userForm.password.$invalid  || userForm.cpassword.$invalid || userForm.firstname.$invalid || userForm.lastname.$invalid || userForm.phone_no.$invalid "
+										type="button">Create and Continue</button>
+								<button ng-if="edit" class="btn btn-primary nxt noLease" ng-click="edit_personal_info()">submit</button>
+								<!--ng-disabled="userForm.email.$invalid || userForm.password.$invalid  || userForm.cpassword.$invalid || userForm.firstname.$invalid || userForm.lastname.$invalid || userForm.phone_no.$invalid "-->
+							</div>
+						</div> 
+
+						<div class="" ng-show="tgl">
+							<div class="pull-left w-100">
+								<div class="col-xs-12" ><h4 class="title">Log In to Continue</h4></div>
+								<div class="subtitle col-xs-12">Use your credentials to login to account.</div>
+							</div>
+							<div class="mFW8h7g5TQDHwFTmF2OCn"><div ><span>Don't have an account?</span><a href=""  ng-click="show_signup_form()" class="log">Sign Up</a></div></div>
+								<div class="clearfix">		  
+								<div class="group col-xs-12 col-sm-6">
+									<input type="text" required><span class="highlight"></span><span class="bar"></span>
+									<label>Email</label>
+								</div>
+								</div>
+							  <div class="group col-xs-12 col-sm-6">
+								<input type="password" required><span class="highlight"></span><span class="bar"></span>
+								<label>Password</label>
+							  </div>
+							  <div class="forgot-pass col-xs-12"><a href="#">Forgot Password?</a></div>
+							  <div class="creat-cont col-xs-12">
+								<span>By clicking Create and Continue, you agree to our
+									<a href="#" target="_blank">Terms of Service</a>
+									and that you have read our<a href="#" target="_blank">Privacy Policy</a>
+									and <a href="#" target="_blank">Privacy Notice</a>
+								.</span>
+							</div>
+							<div class="nxt-div-btn text-center col-md-12">
+								<button class="btn btn-primary nxt noLease" type="button">Log In and Continue</button>
+							</div>
+						</div> 
+						
+						
+					</div> 	
+				</div>
+			
+				<!--residential info-->
+			<div class="user-details-frm " ng-show="residential_info">
+			  <div class="col-xs-12" ><h4 class="title">Residence Information</h4></div>
+				<div class="col-xs-12 gr-bg" ><h5 class="title">Current Residence</h5></div>
+			
+					<div class="frms">
+					  <div class="group col-xs-12 col-sm-6">
+						<input type="text" ng-model="resi_info.address"  name="address" required><span class="highlight"></span><span class="bar"></span>
+						<label>Address</label>
+						  <span style="color:red" ng-show="userForm.address.$dirty && userForm.address.$invalid">address field is required.</span>
+					  </div>
+					  <div class="group col-xs-12 col-sm-6">
+						<input type="text" ng-model="resi_info.address2"  name="address2" required><span class="highlight"></span><span class="bar"></span>
+						<label>Address (Line 2)</label>
+					  </div>
+					  <div class="group col-xs-12 col-sm-4">
+						<input type="text" ng-model="resi_info.city"  name="city" required><span class="highlight"></span><span class="bar"></span>
+						<label>City</label>
+						<span style="color:red" ng-show="userForm.city.$dirty && userForm.city.$invalid">city fiels is required.</span>
+					  </div>
+					 <div class="group col-xs-12 col-sm-4">
+						<!--<input type="text" ng-model="resi_info.state"  name="state" required><span class="highlight"></span><span class="bar"></span>
+						<label>State</label>
+						<span style="color:red">{{state_errmsg}}</span>
+					    <span style="color:red" ng-show="userForm.state.$dirty && userForm.state.$invalid">state field is required.</span>
+					 -->
+					<select ng-model="resi_info.state" class="mdl-textfield__input mdl-dropdown_input" name="state" id="state" data-ng-options="state.name as state.name for state in state_list" class="smdl-textfield__input mdl-dropdown_input" >
+							<option value="" class="mdl-menu__item">Select State</option>				   
+					</select>	 
+                    </div>
+	
+						<!--<div class="group col-sm-4 col-xs-6 state">
+							<div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label" style="">
+							  <input type="text" ng-model="resi_info.state"  name="state" required><span class="highlight"></span><span class="bar"></span>
+								<select class="mdl-textfield__input mdl-dropdown_input" ng-change="hide_error('state')" ng-model="resi_info.state"  name="state" id="state">
+									<option value="Ambala" class="mdl-menu__item">Ambala</option>
+									<option value="Alaska" class="mdl-menu__item">Alaska</option>
+								</select>
+								<label>State</label>
+								<span style="color:red">{{state_errmsg}}</span>
+							   <span style="color:red" ng-show="userForm.state.$dirty && userForm.state.$invalid">state field is required.</span>
+								  <!--<ul class="mdl-menu mdl-js-menu mdl-dropdown-menu" for="state">
+									<li class="mdl-menu__item">Ambala</li>
+									<li class="mdl-menu__item">Alaska</li>
+								  </ul>
+							</div>
+						</div>	-->
+						
+					  <div  class="group col-sm-4 col-xs-6">
+						<input type="text" pattern="[0-9.]+" maxlength="5" ng-model="resi_info.postcode"  name="postcode" required><span class="highlight"></span><span class="bar"></span>
+						<label ng-if="country=='aus'">Post Code</label>
+						<label ng-if="country=='us'">Zip Code</label>
+						<span style="color:red" ng-show="userForm.postcode.$dirty && userForm.postcode.$invalid">postcode field is required.</span>
+					  </div>
+					  
+					  <div class="group col-xs-12 col-sm-4">{{resi_info.move_date}}
+						<input type="text" ng-blur="hide_error('move_date')" ng-model="resi_info.move_date"  id="move_date" name="move_date"   required><span class="highlight"></span><span class="bar"></span>
+						<label>Move In date</label>
+					      <span style="color:red">{{movedate_errmsg}}</span>
+						  <span style="color:red" ng-show="userForm.move_date.$dirty && userForm.move_date.$invalid">Move In Date field is required.</span> 
+					  </div>
+	
+						<div class="group col-xs-12 col-sm-4 state">
+								<div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label" style="">
+								 <!-- <input name="rent_own" ng-model="resi_info.rent_own"  readonly class="mdl-textfield__input mdl-dropdown_input" type="text" id="Rent">-->
+									<select class="mdl-textfield__input mdl-dropdown_input" ng-change="hide_error('rent_own')" ng-model="resi_info.rent_own"  name="rent_own" id="rent_own">
+										<option value="" class="mdl-menu__item">Rent/Own</option>
+										<option value="rent" class="mdl-menu__item">RENT</option>
+										<option value="own" class="mdl-menu__item">OWN</option>
+									</select>
+								
+									<!-- <label class="mdl-textfield__label" for="Rent"><span>Rent/Own</span></label>-->
+								    <span style="color:red">{{rent_own_errmsg}}</span>
+									<span style="color:red" ng-show="userForm.rent_own.$dirty && userForm.rent_own.$invalid">please select rent/own field.</span> 
+								 <!-- <ul class="mdl-menu mdl-js-menu mdl-dropdown-menu" for="Rent">
+									<li class="mdl-menu__item">RENT</li>
+									<li class="mdl-menu__item">OWN</li>
+								  </ul>-->
+								</div>
+						</div>					  
+					  <div class="group col-xs-12 col-sm-4">
+						<input type="text" name="rent_mortgage" ng-model="resi_info.rent_mortgage" required><span class="highlight"></span><span class="bar"></span>
+						<label>Monthly Rental/ Mortgage</label>
+						<span style="color:red" ng-show="userForm.rent_mortgage.$dirty &&  userForm.rent_mortgage.$invalid">Monthly Rental/ Mortgage field is required.</span> 
+					  </div>				  
+					</div>	
+
+					<!--Previous Residence-->
+					<div class="frms" >
+					<div class="col-xs-12 gr-bg" >
+						<h5 class="title">Previous Residence</h5>
+						<p>This information is needed because you have been living in your current residence for less than three months.</p>
+					</div>
+					  <div class="group col-xs-12 col-sm-6">
+						<input name="prev_address" ng-model="resi_info.prev_address" type="text" required><span class="highlight"></span><span class="bar"></span>
+						<label>Address</label>
+						  <span style="color:red" ng-show="userForm.prev_address.$dirty && userForm.prev_address.$invalid">address field is required.</span> 
+					  </div>
+					  <div class="group col-xs-12 col-sm-6">
+						<input name="prev_address2" ng-model="resi_info.prev_address2" type="text" required><span class="highlight"></span><span class="bar"></span>
+						<label>Address (Line 2)</label>
+					  </div>
+					  <div class="group col-xs-12 col-sm-4">
+						<input name="prev_city" ng-model="resi_info.prev_city" type="text" required><span class="highlight"></span><span class="bar"></span>
+						<label>City</label>
+						<span style="color:red" ng-show="userForm.prev_city.$dirty && userForm.prev_city.$invalid">city field is required.</span> 
+					  </div>
+	                   <div class="group col-xs-12 col-sm-4">
+						<!--<input type="text" ng-model="resi_info.prev_state"  name="prev_state" required><span class="highlight"></span><span class="bar"></span>
+						<label>State</label>
+						 <span style="color:red">{{prevstate_errmsg}}</span>
+						<span style="color:red" ng-show="userForm.prev_state.$dirty && userForm.prev_state.$invalid">state field is required.</span> 
+					  -->
+					   <select ng-model="resi_info.prev_state" class="mdl-textfield__input mdl-dropdown_input" name="prev_state" id="prev_state" data-ng-options="state.name as state.name for state in state_list" class="smdl-textfield__input mdl-dropdown_input" >
+						   	  	<option value="" class="mdl-menu__item">Select State</option>
+					  </select>
+
+                      </div>
+						<!--<div class="group col-xs-12 col-sm-4 state">
+								<div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label" style="">
+								<input type="text" ng-model="resi_info.prev_state"  name="prev_state" required><span class="highlight"></span><span class="bar"></span>
+
+								  <input name="prev_state" ng-model="resi_info.prev_state" readonly class="mdl-textfield__input mdl-dropdown_input" type="text" id="mg-rnt">
+									 <select class="mdl-textfield__input mdl-dropdown_input" ng-change="hide_error('prev_state')" ng-model="resi_info.prev_state"  name="prev_state" id="prev_state">
+										<option value="Ambala" class="mdl-menu__item">Ambala</option>
+										<option value="Alaska" class="mdl-menu__item">Alaska</option>
+									</select>
+									<label>State</label>
+									<!--<label class="mdl-textfield__label" for="mg-rnt"><span>State</span></label>
+									<span style="color:red">{{prevstate_errmsg}}</span>
+									<span style="color:red" ng-show="userForm.prev_state.$dirty && userForm.prev_state.$invalid">state field is required.</span> 
+								  <ul class="mdl-menu mdl-js-menu mdl-dropdown-menu" for="mg-rnt">
+									<li class="mdl-menu__item">Ambala</li>
+									<li class="mdl-menu__item">Alaska</li>
+								  </ul>
+								</div>
+						</div>	-->				  
+					  <div class="group col-xs-12 col-sm-4">
+						<input name="prev_postcode" pattern="[0-9.]+" ng-model="resi_info.prev_postcode" type="text" required><span class="highlight"></span><span class="bar"></span>
+						  <label ng-if="country=='aus'">Post Code</label>
+						  <label ng-if="country=='us'">Zip Code</label>
+						  <span style="color:red" ng-show="userForm.prev_postcode.$dirty && userForm.prev_postcode.$invalid">postcode field is required.</span> 
+					  </div>
+					  <div class="group col-xs-12 col-sm-4">
+						<input name="prev_move_in" ng-blur="hide_error('prev_move_in')" id="prev_move_in" ng-model="resi_info.prev_move_in" type="text" required><span class="highlight"></span><span class="bar"></span>
+						<label>Move In date</label>
+						  <span style="color:red">{{prevmovein_errmsg}}</span>
+						  <span style="color:red" ng-show="userForm.prev_move_in.$dirty && userForm.prev_move_in.$invalid">move in date field is required.</span> 
+					  </div>
+					 
+					  <div class="group col-xs-12 col-sm-4">
+						<input name="prev_move_out" ng-blur="hide_error('prev_move_out')" id="prev_move_out" ng-model="resi_info.prev_move_out" type="text" required><span class="highlight"></span><span class="bar"></span>
+						<label>Move Out date</label>
+						<span style="color:red">{{prevmoveout_errmsg}}</span>
+						  <span style="color:red" ng-show="userForm.prev_move_out.$dirty && userForm.prev_move_out.$invalid">move out date field is required.</span> 
+					  </div>
+						<div class="group col-xs-12 col-sm-4 state">
+								<div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label" style="">
+								  <!--<input name="prev_rent_own" ng-model="resi_info.prev_rent_own" readonly class="mdl-textfield__input mdl-dropdown_input" type="text" id="preRent">-->
+								  <select class="mdl-textfield__input mdl-dropdown_input" ng-change="hide_error('prev_rent_own')" ng-model="resi_info.prev_rent_own"  name="prev_rent_own" id="prev_rent_own">
+										<option value="" class="mdl-menu__item">Rent/Own</option>
+									    <option value="rent" class="mdl-menu__item">RENT</option>
+										<option value="own" class="mdl-menu__item">OWN</option>
+									</select>
+								
+									<!--<label class="mdl-textfield__label" for="preRent"><span>Rent/Own</span></label>-->
+								    <span style="color:red">{{prevrent_own_errmsg}}</span>
+									<span style="color:red" ng-show="userForm.prev_rent_own.$dirty && userForm.prev_rent_own.$invalid">rent/own field is required.</span>
+								  <!--<ul class="mdl-menu mdl-js-menu mdl-dropdown-menu" for="preRent">
+									<li class="mdl-menu__item">RENT</li>
+									<li class="mdl-menu__item">OWN</li>
+								  </ul>-->
+								</div>
+						</div>	
+						<div class="clearfix mg-rnt">						
+						  <div class="group col-xs-12 col-sm-4">
+							<input name="prev_rent_mortgage"  ng-model="resi_info.prev_rent_mortgage" type="text" required><span class="highlight"></span><span class="bar"></span>
+							<label>Monthly Rental/ Mortgage</label>
+							<span style="color:red" ng-show="userForm.prev_rent_mortgage.$dirty && userForm.prev_rent_mortgage.$invalid">Monthly Rental/ Mortgage field is required.</span>
+						  </div>
+					  
+						</div>
+						<div class="nxt-div-btn text-center col-md-12" >
+							<button ng-if="edit" class="btn btn-primary nxt noLease" ng-click="edit_residential_info()">submit</button>
+							<button ng-if="!edit" ng-click="goto_employment_info()" class="btn btn-primary nxt noLease resi-nxt" 
+									ng-disabled="userForm.address.$invalid || userForm.city.$invalid || userForm.state.$invalid || userForm.postcode.$invalid  || userForm.rent_own.$invalid || userForm.rent_mortgage.$invalid ||
+												 userForm.prev_address.$invalid || userForm.prev_city.$invalid || userForm.prev_state.$invalid || userForm.prev_postcode.$invalid  || userForm.prev_rent_own.$invalid || userForm.prev_rent_mortgage.$invalid"
+									type="button">Next</button>
+							<!--ng-disabled="userForm.address.$invalid || userForm.city.$invalid || userForm.state.$invalid || userForm.postcode.$invalid  || userForm.rent_own.$invalid || userForm.rent_mortgage.$invalid ||
+												 userForm.prev_address.$invalid || userForm.prev_city.$invalid || userForm.prev_state.$invalid || userForm.prev_postcode.$invalid  || userForm.prev_rent_own.$invalid || userForm.prev_rent_mortgage.$invalid" -->
+						</div>	
+						<div class="col-xs-12 text-center m-20">
+							<h6>If you subsequently add a joint applicant to your inquiry, the final decision will be affected by the joint applicant’s creditworthiness.</h6>
+						</div>
+					</div>	
+					
+						
+				</div>	
+
+				<!--Employment Information-->
+			<div class="user-details-frm" ng-show="employment_info">
+				<div class="col-xs-12" ><h4 class="title">Employment Information</h4></div>
+				<div class="col-xs-12 gr-bg" ><h5 class="title">Current Employer</h5></div>
+			
+					<div class="frms">
+					  <div class="group col-xs-12 col-sm-6">
+						<input type="text" name="emp_name" ng-model="emp.emp_name"  required><span class="highlight"></span><span class="bar"></span>
+						<label>Employer Name</label>
+						<span style="color:red" ng-show="userForm.emp_name.$dirty && userForm.emp_name.$invalid">Employee Name is required.</span>
+					  </div>
+					  <div class="group col-xs-12 col-sm-6">
+						<input type="text" name="emp_title" ng-model="emp.emp_title"  required><span class="highlight"></span><span class="bar"></span>
+						<label>Title</label>
+						<span style="color:red" ng-show="userForm.emp_title.$dirty && userForm.emp_title.$invalid">Title is required.</span>
+					  </div>
+					  <div class="group col-xs-12 col-sm-4">
+						<input type="text" id="emp_start_date" ng-blur="hide_error('emp_start_date')"  name="emp_start_date" ng-model="emp.emp_start_date" required><span class="highlight"></span><span class="bar"></span>
+						<label>Start Date</label>
+						  <span style="color:red">{{empstartdateerrmsg}}</span>
+					    <span style="color:red" ng-show="userForm.emp_start_date.$dirty && userForm.emp_start_date.$invalid">Start Date is required.</span> 
+					  </div>
+	
+						<div class="group col-xs-12 col-sm-4 state">
+								<div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label" style="">
+								  <!--<input name="emp_status" ng-model="emp.emp_status" readonly class="mdl-textfield__input mdl-dropdown_input" type="text" id="EmploymentStatus">
+								  <label class="mdl-textfield__label" for="EmploymentStatus"><span>Employment Status</span></label>-->
+								   <select class="mdl-textfield__input mdl-dropdown_input" ng-change="hide_error('emp_status')" ng-model="emp.emp_status"  name="emp_status" id="emp_status">
+									 <option value="" class="mdl-menu__item">Select Employee Status</option>
+									 <option value="full_time" class="mdl-menu__item">Full Time</option>
+									 <option value="self_employed" class="mdl-menu__item">Self Employed</option>
+									 <option value="unemployed" class="mdl-menu__item">Unemployed</option>
+									 <option value="other" class="mdl-menu__item">Other</option>
+								  </select>
+								 
+									<span style="color:red">{{empstatus_errmsg}}</span>
+								 <span style="color:red" ng-show="userForm.emp_status.$dirty && userForm.emp_status.$invalid">Employee Status is required.</span> 
+								  <!--<ul class="mdl-menu mdl-js-menu mdl-dropdown-menu" for="EmploymentStatus">
+									<li class="mdl-menu__item">Full Time</li>
+									<li class="mdl-menu__item">Self Employed</li>
+									<li class="mdl-menu__item">Unemployed</li>
+									<li class="mdl-menu__item">Other</li>
+								  </ul>-->
+								</div>
+						</div>					  
+					  <div class="group col-xs-12 col-sm-4">
+						<input name="emp_phone" pattern="[0-9.]+" ng-model="emp.emp_phone" type="text" required><span class="highlight"></span><span class="bar"></span>
+						<label>Employer Phone Number</label>
+						<span style="color:red" ng-show="userForm.emp_phone.$dirty && userForm.emp_phone.$invalid">Please Enter valid phone number.</span> 
+					  </div>
+					  <div class="group col-xs-12 col-sm-4">
+						<input type="text" pattern="[0-9.]+" name="emp_monthly_income" ng-model="emp.emp_monthly_income" required><span class="highlight"></span><span class="bar"></span>
+						<label>Gross Monthly Income</label>
+						<span style="color:red" ng-show="userForm.emp_monthly_income.$dirty && userForm.emp_monthly_income.$invalid">monthly income is required.</span> 
+					  </div>
+	
+						<div class="group col-xs-12 col-sm-4 state">
+								<div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label" style="">
+								 <!-- <input name="emp_income_option" ng-model="emp.emp_income_option" readonly class="mdl-textfield__input mdl-dropdown_input" type="text" id="otherinc">
+								  <label class="mdl-textfield__label" for="otherinc"><span>Other Income Option</span></label>
+								  <ul class="mdl-menu mdl-js-menu mdl-dropdown-menu" for="otherinc">
+									<li class="mdl-menu__item">Other Income (Optional)</li>
+									<li class="mdl-menu__item">Alimoni</li>
+									<li class="mdl-menu__item">Bonus</li>
+									<li class="mdl-menu__item">Children Support</li>
+									<li class="mdl-menu__item">Disability</li>
+									<li class="mdl-menu__item">Investments</li>
+									<li class="mdl-menu__item">Multiple</li>
+									<li class="mdl-menu__item">Other</li>
+									<li class="mdl-menu__item">Pension</li>
+									<li class="mdl-menu__item">Rental</li>
+									<li class="mdl-menu__item">Retirement</li>
+									<li class="mdl-menu__item">Sales Commissions</li>
+									<li class="mdl-menu__item">Second Job</li>
+									<li class="mdl-menu__item">Social Security</li>
+									<li class="mdl-menu__item">Spouse</li>
+									<li class="mdl-menu__item">Trust Fund</li>
+								  </ul>-->
+									<select class="mdl-textfield__input mdl-dropdown_input" ng-change="hide_error('emp_income_option')" ng-model="emp.emp_income_option"  name="emp_income_option" id="emp_income_option">
+										<option value="" class="mdl-menu__item">Select Other Income Option</option>
+										<option value="other_income" class="mdl-menu__item">Other Income (Optional)</option>
+										<option value="alimoni" class="mdl-menu__item">Alimoni</option>
+										<option value="bonus" class="mdl-menu__item">Bonus</option>
+										<option value="children_support" class="mdl-menu__item">Children Support</option>
+										<option value="disabitlity" class="mdl-menu__item">Disability</option>
+										<option value="investments" class="mdl-menu__item">Investments</option>
+										<option value="multiple" class="mdl-menu__item">Multiple</option>
+										<option value="other" class="mdl-menu__item">Other</option>
+										<option value="pension" class="mdl-menu__item">Pension</option>
+										<option value="rental" class="mdl-menu__item">Rental</option>
+										<option value="retirement" class="mdl-menu__item">Retirement</option>
+										<option value="sles_comm" class="mdl-menu__item">Sales Commissions</option>
+										<option value="search_job" class="mdl-menu__item">Second Job</option>
+										<option value="social_security" class="mdl-menu__item">Social Security</option>
+										<option value="spouse" class="mdl-menu__item">Spouse</option>
+										<option value="trust_fund" class="mdl-menu__item">Trust Fund</option>
+									</select>	
+									
+									<span style="color:red">{{empincomeoption_errmsg}}</span>
+								</div>
+						</div>					  
+						<div class="nxt-div-btn text-center col-md-12" >
+							<button ng-if="edit" class="btn btn-primary nxt noLease" ng-click="edit_employment_info()">submit</button>
+							<button ng-if="!edit" class="btn btn-primary ident-nxt noLease" ng-click="goto_identification_info()"
+									ng-disabled="userForm.emp_name.$invalid || userForm.emp_title.$invalid ||  userForm.emp_status.$invalid || userForm.emp_phone.$invalid" 
+									type="button">Next</button>
+							<!--  ng-disabled="userForm.emp_name.$invalid || userForm.emp_title.$invalid ||  userForm.emp_status.$invalid || userForm.emp_phone.$invalid"  -->
+						</div>	
+						<div class="col-xs-12 text-center m-20">
+							<h6>If you subsequently add a joint applicant to your inquiry, the final decision will be affected by the joint applicant’s creditworthiness.</h6>
+							<h6>You need not reveal alimony, child support, or separate maintenance income if you do not wish it to be considered as a basis for repaying this obligation</h6>
+						</div>								  
+					</div>	
+
+					
+						
+				</div>	
+
+				<!--Identification Information-->
+			<div class="user-details-frm " ng-show="identification_info" >
+				<div class="col-xs-12" ><h4 class="title">Identification</h4></div>
+				<div ng-if="US" class="col-xs-12 gr-bg" ><h5 class="title">We need your SSN to verify your identity.</h5></div>
+			
+					<div class="frms">
+						<div class="clearfix">
+							
+						  <div  class="group col-xs-12 col-sm-6">
+							<input type="text" name="security" ng-model="security" required><span class="highlight"></span><span class="bar"></span>
+							<label ng-if="country=='aus'">DRIVERS LICENSE NUMBER</label>
+							 <label ng-if="country=='us'">SOCIAL SECURITY NUMBER</label>
+							<span style="color:red" ng-show="userForm.security.$dirty && userForm.security.$invalid">license number is required.</span> 
+					      </div>
+						
+						</div>
+						</div>
+						<div class="ssl-secured">
+							<div class="ssl-ico"></div>
+							<div class="ssl-txt">Your information is safe with us. We use advanced encryption technology.</div>
+						</div>
+					  
+						<div class="nxt-div-btn text-center col-md-12"  >
+							<button ng-if="edit" class="btn btn-primary nxt noLease" ng-click="edit_identification_info()">submit</button>
+							<button ng-if="!edit" class="btn btn-primary id-nxt noLease" ng-click="goto_review()" 
+									ng-disabled="userForm.security.$invalid" type="button">Next</button>
+						</div>								  
+					</div>	
+
+
+				<!--review-->
+			<div class="user-details-frm " ng-show="review">
+			
+					<div class="frms rev-none">
+						<div class="model-name-img">
+							<img ng-if="vehicle_img"  class="img-responsive searchfin" ng-src="./upload/{{vehicle_img}}" alt="">
+							<span ng-if="$scope.imgerr">{{$scope.imgerr}}</span>
+							
+						</div>
+						<div class="model-price">
+								<div class="modelname">{{enquiry_data.year}} &nbsp;{{enquiry_data.make}} &nbsp;{{enquiry_data.model}} &nbsp;{{enquiry_data.trim}} </div>
+								<div class="model-msrp">
+									<div class="msrpprice">${{enquiry_data.msrp_price}}</div>
+									<div class="msrpname">MSRP*</div>
+								</div>
+						</div>	
+						<section class="_1IfbkVjrfaBFWbDQ4SHTpa text-center">
+							<div class="_11hYX-cLuTQAp9ZnHTnzl">Your Preferred Dealership:</div>
+							<h5>{{selected_dealer.name}}</h5>
+							<div>{{selected_dealer.address}} &nbsp;{{selected_dealer.address2}}</div>
+							<div>{{selected_dealer.city}}&nbsp;{{selected_dealer.state}}</div>
+							<div>{{selected_dealer.country}}&nbsp;{{selected_dealer.postcode}}</div>
+						</section>						
+							  
+					</div>	
+					<div class="frms rev-none">
+						<div class="allinfo">
+							<section class="undefined clearfix">
+								<div class="all-inf-title">Loan Details
+									<i class="_32a_1S1Bh5UWzdaFDuuJ57 fa fa-pencil" aria-hidden="true" href="" ng-click="edit_data('cal_values')"></i>
+								</div>
+								<div class="common-block col-xs-12 col-sm-6">
+									<div class="border-dv">
+										<label>Down Payment</label>
+										<div class="txts">{{calculator.down_payment}}</div>
+									</div>
+								</div>
+								<div class="common-block col-xs-12 col-sm-6">
+									<div class="border-dv">
+										<label>Term (in months)</label>
+										<div class="qPpMJs7w603Fova9ewhd9">{{calculator.terms}}</div>
+									</div>
+								</div>
+								<div class="common-block col-xs-12 col-sm-6">
+									<div class="border-dv">
+										<label>Estimated Trade-in</label>
+										<div class="qPpMJs7w603Fova9ewhd9">{{calculator.estimated_trade_in}}</div>
+									</div>
+								</div>
+								<div class="amount-req col-xs-12 text-center m-20">
+									<h5 class="">Amount Requested*</h5>
+										<div class="reqamt">{{calculator.amount_reqested}}</div>
+										<div class="undefined col-xs-12">
+											<div>
+												<button class="btn btn-link pop-btn" data-toggle="modal" data-target="#myModal1">*Financing Disclosures</button>
+											</div>
+										</div>
+								</div>
+							</section>		
+
+							<section class="undefined clearfix">
+								<div class="all-inf-title">Personal Information
+									<i class="_32a_1S1Bh5UWzdaFDuuJ57 fa fa-pencil" aria-hidden="true" href="#" ng-click="edit_data('personal_info')"></i>
+								</div>
+								<div>First Name: {{user.firstname}}</div>
+								<div>Last Name: {{user.lastname}}</div>
+								<div>Email: {{user.email}}</div>
+								<div>Date of Birth: {{user.dob}}</div>
+								<div>Phone Number: {{user.phone_no}}</div>
+							</section>		
+							
+							<section class="undefined clearfix">
+								<div class="all-inf-title">Residence Information
+									<i class="_32a_1S1Bh5UWzdaFDuuJ57 fa fa-pencil" aria-hidden="true" href="#" ng-click="edit_data('resi_info')"></i>
+								</div>
+								<h5>Current Residence</h5>
+								<div>Address: {{resi_info.address}},{{resi_info.address2}},,{{resi_info.city}},{{resi_info.state}}</div>
+								<div>Move-In Date: {{resi_info.move_date}}</div>
+								<div>Housing Status: {{resi_info.rent_own}}</div>
+								<div>Monthly Payment: {{resi_info.rent_mortgage}}</div>
+							</section>	
+
+							<section class="undefined clearfix">
+								<div class="all-inf-title">Employment Information
+									<i class="_32a_1S1Bh5UWzdaFDuuJ57 fa fa-pencil" aria-hidden="true" href="#" ng-click="edit_data('emp_info')"></i>
+								</div>
+								<h5>Current Employer</h5>
+								<div>Employer: {{emp.emp_name}}</div>
+								<div>Title: {{emp.emp_title}}</div>
+								<div>Start Date: {{emp.emp_start_date}}</div>
+								<div>Employment Status: {{emp.emp_status}}</div>
+								<div>Employer Phone Number: {{emp.emp_phone}}</div>
+								<h5>Income</h5>
+								<div>Gross Monthly Income: {{emp.emp_monthly_income}}</div>
+								<div>Other Income Source: {{emp.emp_income_option}}</div>
+								<div>Other Gross Monthly Income: {{emp.emp_monthly_income}}</div>
+							</section>
+
+							<section class="undefined clearfix">
+								<div class="all-inf-title">Identification
+									<i class="_32a_1S1Bh5UWzdaFDuuJ57 fa fa-pencil" aria-hidden="true" href="#"  ng-click="edit_data('iden_info')"></i>
+								</div>
+								<h5>Social Security Number</h5>
+								<div>{{license_number}}</div>
+							</section>
+						<form name="finalfForm">
+							<section class="undefined clearfix">
+								<div class="all-inf-title">Authorization
+								<p>Please read the following before submitting your credit inquiry.</p>
+								</div>
+								
+								
+								<div class="e-sign-const">
+									<div class="_1z9uRQFYOIxY5BaR_1Os4L ">
+										<div class="esign-ttl " id="chkag">
+											<div class="ico"><i class="fa fa-bell" aria-hidden="true"></i>
+											<i class="fa fa-check-circle" aria-hidden="true"></i>
+											</div>
+											<div class="ico-name">E-Sign Consent</div>
+										</div>
+										<!--<div class="iframe-txt">
+											<iframe width="100%" height="100%" src="e-sign.html" frameborder="0" allowfullscreen="" style="overflow: hidden; height: 100%; width: 100%;"></iframe>
+										</div>-->
+										<div id="ajax-content-wrap">
+											<p ng-bind-html="esign_disclosure | unsafe"></p> 
+										</div>
+										 <div class="checkbox agr">
+											<label><input type="checkbox" ng-checked="chkagr_checked(agreebtn)" ng-model="agreebtn" name="agreebtn"  id="chkagr" > By checking this box, you agree that you have read and agreed to the E-Sign Consent</label>
+											 <span style="color:red">{{chkagr_errmsg}}</span>
+											 <span style="color:red" ng-show="finalfForm.agreebtn.$dirty && finalfForm.agreebtn.$invalid">please check above checkbox.</span>
+										</div>
+									</div>
+								</div>
+								
+								
+								
+								
+								<div class="e-sign-const">
+									<div class="_1z9uRQFYOIxY5BaR_1Os4L ">
+										<div class="esign-ttl " id="esgn">
+											<div class="ico"><i class="fa fa-bell" aria-hidden="true"></i>
+											<i class="fa fa-check-circle" aria-hidden="true"></i>
+											</div>
+											<div class="ico-name">State Disclosures and Acknowledgements</div>
+										</div>
+										<!--<div class="iframe-txt">
+											<iframe width="100%" height="100%" src="state-disclosures.html" frameborder="0" allowfullscreen="" style="overflow: hidden; height: 100%; width: 100%;"></iframe>
+										</div>-->
+										<div id="ajax-content-wrap">
+										<p ng-bind-html="state_disclosure | unsafe"></p> 
+										</div>
+										 <div class="checkbox agr">{{checkesign}}
+											<label><input type="checkbox" ng-checked="checkesign_checked(checkesign)" ng-model="checkesign" name="checkesign"  id="chkesign" > By checking this box, you agree that you have read and agreed to the State Disclosures and Acknowledgements</label>
+										     <span style="color:red">{{chkesign_errmsg}}</span>
+											 <span style="color:red" ng-show="finalfForm.checkesign.$dirty && finalfForm.checkesign.$invalid">please check above checkbox.</span>
+										</div>
+									</div>
+								</div>
+								
+							</section>
+						    <div class="nxt-div-btn text-center col-md-12">
+							    <button class="btn btn-primary nextBtn noLease"  ng-click="submit_data()" type="button">Submit</button>
+						    </div>
+					    </form>		
+					  </div>
+					</div>
+			   </div>
+		</div>
+				
+		</div>
+				
+		</div>
+	 </form>
+  </div>
+
+	
+	
+	
+	
+    <div id="myModal1" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content" role="document">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+					Financing Disclosures
+				</div>
+				<div class="u1le6Y2hxjExaMxMdhDl0 modal-body">
+					<div>
+						<div class="text-center">
+								<p ng-bind-html="finance_disclosure | unsafe"></p>
+						</div>
+					</div>
+					<div class="text-center">
+						<button class="btn btn-primary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+	</div>	
+
+<input type="hidden" step="5000" min="0" max="500000" value="180000" required="">
+								
+								
+<script>
+$('input[name="move_date"]').on('change', function(ev){
+    var dateData = $(this).val();
+    console.log(dateData);
+});
+//alert();
+ $('#step-2').addClass('active-stp');
+	
+$(document).ready(function(){
+  var dob=$('input[name="dob"]'); 
+  var move_in=$('input[name="move_date"]');
+  var prev_move_in=$('input[name="prev_move_in"]');
+  var prev_move_out=$('input[name="prev_move_out"]');
+  var emp_start_date=$('input[name="emp_start_date"]');
+	
+  var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+  var options={
+	format: 'dd/mm/yyyy',
+	container: container,
+	todayHighlight: true,
+	autoclose: true,
+  };
+  dob.datepicker(options);
+  move_in.datepicker(options);
+  prev_move_in.datepicker(options);
+  prev_move_out.datepicker(options);
+  emp_start_date.datepicker(options);
+})
+</script>
+

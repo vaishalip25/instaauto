@@ -1,0 +1,128 @@
+   
+<header class="header">
+	<a href="index.html" class="logo">
+	   <img src="./img/logo/InstaAuto-logo.png" alt="logo">
+	   
+	</a>
+	<nav class="navbar navbar-static-top" role="navigation">
+		
+	</nav>
+</header>
+<i class="fa fa-bars fa-3x togle-bar" aria-hidden="true"></i>
+<div class="wrapper row-offcanvas row-offcanvas-left skin-black">
+  <aside class="left-side sidebar-offcanvas ">
+	<section class="sidebar">
+		<div class="user-panel">
+			
+		</div>
+				
+		<ul class="sidebar-menu">
+		
+			
+		
+			<!--<li id="dash">
+				<a href="#dashboard">
+					<i class="fa fa-dashboard"></i> <span>Dashboard</span>
+				</a>
+			</li>-->
+			<li id="make">
+				<a href="#makes">
+					<i class="fa fa-th"></i> <span>Make</span> 
+				</a>
+			</li>
+			<li id="vehicle">
+				<a href="#vehicles">
+					<i class="fa fa-th"></i> <span>Vehicles</span> 
+				</a>
+			</li>
+			<li id="dealer">
+				<a href="#dealers">
+					<i class="fa fa-th"></i> <span>Dealers</span> 
+				</a>
+			</li>
+			<li id="leads">
+				<a href="#leads">
+					<i class="fa fa-th"></i> <span>Leads</span> 
+				</a>
+			</li>
+			<li id="calculator">
+				<a href="#calculator">
+					<i class="fa fa-th"></i> <span>Calculator</span> 
+				</a>
+			</li>
+			<li id="pages">
+				<a href="#pages">
+					<i class="fa fa-th"></i> <span>Pages</span> 
+				</a>
+			</li>
+			<li id="disclosure">
+				<a href="#disclosure">
+					<i class="fa fa-th"></i> <span>Disclosure</span> 
+				</a>
+			</li>
+			<li id="disclosure" data-toggle="modal" data-target="#pwdmodal">
+				<a href="" >
+					<i class="fa fa-th"></i> <span>Change Password</span> 
+				</a>
+			</li>
+			<li>
+				<a href="" ng-click="logout()">
+					<i class="fa fa-th"></i> <span>logout</span> 
+				</a>
+			</li>
+			
+		</ul>
+	</section>
+</aside>
+
+</div>
+	
+<div id="pwdmodal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Change Password</h4>
+      </div>
+      <div class="modal-body">
+		  <form role="form" ng-submit="change_password(password)" >
+			  <div class="frms">
+					<div class="form-group">
+						<div class="input-group group">
+							<label>Password</label>
+					<input type="password" name="password" class="form-control" id="Password" ng-model="password" required>							
+						</div> 
+					</div>
+			  </div>
+			  <button class="btn btn-default" type="submit" >Change</button>
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</form> 
+		   
+        
+      </div>
+    </div>
+
+  </div>
+</div>	
+
+<div id="successmodal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+     
+      <div class="modal-body">
+		  <h4>Password Changed successfully</h4>
+		  <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+
+  </div>
+</div>	
+<script>
+$(".togle-bar").click(function(){
+    $(".left-side").toggleClass("tgl-slide");
+});
+</script>	

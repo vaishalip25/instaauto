@@ -1,0 +1,30 @@
+[03-Apr-2017 09:44:25 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 87
+[03-Apr-2017 09:44:25 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 87
+[03-Apr-2017 09:44:25 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 87
+[03-Apr-2017 09:44:25 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 87
+[03-Apr-2017 09:44:26 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 87
+[03-Apr-2017 09:44:33 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 87
+[03-Apr-2017 09:44:35 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 87
+[03-Apr-2017 09:44:35 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 87
+[03-Apr-2017 09:44:35 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 87
+[03-Apr-2017 09:44:35 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 87
+[03-Apr-2017 09:44:35 UTC] PHP Parse error:  syntax error, unexpected '=' in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 87
+[03-Apr-2017 13:36:20 UTC] PHP Warning:  require_once(/home/indybuildcorp/public_html/autogravity/system/core/CodeIgniter.php): failed to open stream: Permission denied in /home/indybuildcorp/public_html/autogravity/index.php on line 315
+[03-Apr-2017 13:36:20 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/indybuildcorp/public_html/autogravity/system/core/CodeIgniter.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/indybuildcorp/public_html/autogravity/index.php on line 315
+[03-Apr-2017 13:37:26 UTC] PHP Warning:  require_once(/home/indybuildcorp/public_html/autogravity/system/core/CodeIgniter.php): failed to open stream: Permission denied in /home/indybuildcorp/public_html/autogravity/index.php on line 315
+[03-Apr-2017 13:37:26 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/indybuildcorp/public_html/autogravity/system/core/CodeIgniter.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/indybuildcorp/public_html/autogravity/index.php on line 315
+[05-Apr-2017 12:39:15 UTC] PHP Parse error:  syntax error, unexpected 'color' (T_STRING) in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 112
+[05-Apr-2017 12:39:15 UTC] PHP Parse error:  syntax error, unexpected 'color' (T_STRING) in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 112
+[05-Apr-2017 12:39:15 UTC] PHP Parse error:  syntax error, unexpected 'color' (T_STRING) in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 112
+[05-Apr-2017 12:39:15 UTC] PHP Parse error:  syntax error, unexpected 'color' (T_STRING) in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 112
+[05-Apr-2017 12:39:16 UTC] PHP Parse error:  syntax error, unexpected 'color' (T_STRING) in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 112
+[05-Apr-2017 12:39:23 UTC] PHP Parse error:  syntax error, unexpected 'color' (T_STRING) in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 112
+[05-Apr-2017 12:39:24 UTC] PHP Parse error:  syntax error, unexpected 'color' (T_STRING) in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 112
+[05-Apr-2017 12:39:24 UTC] PHP Parse error:  syntax error, unexpected 'color' (T_STRING) in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 112
+[05-Apr-2017 12:39:24 UTC] PHP Parse error:  syntax error, unexpected 'color' (T_STRING) in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 112
+[05-Apr-2017 12:39:24 UTC] PHP Parse error:  syntax error, unexpected 'color' (T_STRING) in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 112
+[05-Apr-2017 12:39:24 UTC] PHP Parse error:  syntax error, unexpected 'color' (T_STRING) in /home/indybuildcorp/public_html/autogravity/application/controllers/User/Finance_Controller.php on line 112
+[25-Apr-2017 07:13:03 UTC] PHP Parse error:  syntax error, unexpected 'd06' (T_STRING) in /home/indybuildcorp/public_html/autogravity/application/controllers/Admin/Vehicle_Controller.php on line 142
+[25-Apr-2017 07:13:03 UTC] PHP Parse error:  syntax error, unexpected 'd06' (T_STRING) in /home/indybuildcorp/public_html/autogravity/application/controllers/Admin/Vehicle_Controller.php on line 142
+[25-Apr-2017 07:13:09 UTC] PHP Parse error:  syntax error, unexpected 'd06' (T_STRING) in /home/indybuildcorp/public_html/autogravity/application/controllers/Admin/Vehicle_Controller.php on line 142
+[25-Apr-2017 07:13:09 UTC] PHP Parse error:  syntax error, unexpected 'd06' (T_STRING) in /home/indybuildcorp/public_html/autogravity/application/controllers/Admin/Vehicle_Controller.php on line 142

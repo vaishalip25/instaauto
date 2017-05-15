@@ -1,0 +1,236 @@
+  <style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+  
+  h3 img {
+    max-height: 50px;
+}
+#map { 
+    height:300px;
+    width:100%;
+    margin: 18px 0;
+    border-radius: 5px;
+    border: 1px solid silver;
+}
+.btn-for{
+    padding-bottom: 32px;
+    height: 10px;
+}
+
+.tgl-btn{
+  display:none;
+}
+  
+
+</style>
+
+
+	<!--steps-->
+	<div class="main-page">
+	<!--four steps-->
+	 <div class="process nav-unscrolled" id="main-nav"> 
+		<div class="container">
+			<div class="stepwizard">
+				<div class="stepwizard-row setup-panel">
+					<div class="stepwizard-step" ng-click="bck_first()">
+						<a type="button" class="btn btn-circle btn-default ">1</a>
+						<div class="donestep"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+						<p>CHOOSE A CAR</p>
+					</div>					
+					<div class="stepwizard-step active-stp">
+						<a href="" type="button" class="btn btn-circle btn-default btn-primary">2</a>
+						<p>FIND A DEALERSHIP</p>
+						
+					</div>
+					<div class="stepwizard-step">
+						<a href="" type="button" class="btn btn-default btn-circle disable" disabled="disabled">3</a>
+						<p>SEARCH FOR FINANCING</p>
+					</div>
+					 <div class="stepwizard-step">
+						<a href="" type="button" class="btn btn-default btn-circle disable" disabled="disabled">4</a>
+						<p>SELECT YOUR LENDER</p>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="process-content">
+	<div class="container">	
+	<form role="form">
+		<div class="row setup-content">
+			<div class="col-md-12 pad0 top-spc">
+				<h1 class="text-center">Find a Dealership</h1>
+				<div class="">
+		<div class="left-img col-md-6 col-sm-6 col-xs-12 pad0 dealermap">
+		<div class="box box-primary">
+	  <div class="box-header">
+		<h3 class="box-title">Select Dealership</h3>
+	  </div>			   
+	  <div class="col-md-12 pad-left-0" style="margin-top: -36px;">
+	    <div class="box-body" style="margin-top: 40px;"> 
+	 
+		  <div class="alert alert-danger text-center" role="alert" ng-show="apiError">
+			<b>API Error : </b>
+			<span>{{ apiStatus }}</span>
+		  </div>
+			
+		  <div class="input-group">
+				<input name="place" type="text" class="form-control" 
+				ng-model="searchPlace" autofocus id="searchBox" />
+				<span class="input-group-btn">
+				<i class="fa fa-search" aria-hidden="true">	<button class="btn btn-for" 
+					ng-disabled="searchForm.$invalid" ng-click="search()"></button>
+					</i>
+				</span>
+		   </div>
+			   
+			<div id="map"></div>
+			        <div class="form-group col-md-12">
+						<input name="resName" type="hidden" ng-model="dealer.suburb"class="form-control" id="ct_townarea"/>
+					</div>
+					<div class="form-group col-md-6" >
+						
+						<input name="resLat" type="hidden" ng-model="dealer.latitude" class="form-control" id="placeLat"/>
+					</div>
+					<div class="form-group col-md-6">
+						
+						<input name="resLng" type="hidden" ng-model="dealer.longitude" class="form-control" id="placeLng"
+					   required />
+					</div>
+					<div class="form-group col-md-6">
+						
+						<input name="resLng" type="hidden" class="form-control" ng-model="dealer.address" id="ct_al1"/>
+					</div>
+					<div class="form-group col-md-6">
+					
+						<input name="resLng" type="hidden" ng-model="dealer.address2" class="form-control" id="ct_al2"/>
+					</div>
+					<div class="form-group col-md-6">
+						
+						<input name="resLng" type="hidden" ng-model="dealer.city" class="form-control" id="ct_city"/>
+					</div>
+					<div class="form-group col-md-6">
+						
+						<input name="resLng" ng-model="dealer.postcode" type="hidden" class="form-control" id="ct_zip"/>
+					</div>
+					<div class="form-group col-md-6">
+					
+						<input name="resLng" type="hidden" ng-model="dealer.state" class="form-control" id="ct_state"/>
+					</div>
+					
+					<div class="form-group col-md-6">
+						
+						<input name="resLng" type="hidden" ng-model="dealer.country" class="form-control" id="ct_country"/>
+					</div>
+		    </div>
+		 </div>
+       </div>
+	</div>
+					<div class="right-tbs-cnt col-md-6 col-sm-6 col-xs-12 pad0">
+						<div class="slid-main deal-add">
+						<!--lease loan-->
+						<div class="lease-loan inline-div" >
+					
+
+						  <div class="">
+							<div id="find-dealer" class="">
+							   <!--all item-->
+							  <div class="list-group lease-loan-item">
+							   <!--item-->
+								<div ng-if="dealership.length!=0" class="list-group-item lease-item dealer-add row hidesh" ng-repeat="dealerships in dealership track by $index" id="customhover{{dealerships.dealer_id}}">
+								
+								<div class="abc" ng-click="get_par_dealer(dealerships.dealer_id,dealerships['0'])" >
+									<a class="dealer-details media-body">
+										<div>
+											<div class="dealer-name">{{dealerships.name}}</div>
+											<div class="dealer-address">{{dealerships.suburb}}&nbsp{{dealerships.address}}&nbsp{{dealerships.address2}}</div>
+											<div class="dealer-address">{{dealerships.city}}&nbsp{{dealerships.postcode}}</div>
+										</div>
+										<div class="dealer-distancce">{{dealerships['0']}}</div>
+									</a>
+								</div>
+								</div>
+								<div ng-if="dealership.length==0" class="list-group-item lease-item dealer-add row" >
+								
+									<a class="dealer-details media-body">
+										<div>
+											<p style="padding-left: 20px;">No results found</p>
+										</div>
+										<div class="dealer-distancce">17.4 mi</div>
+									</a>
+								</div>
+							   	
+							  </div>
+	
+							</div>
+
+						  </div>						
+						</div>
+						<!--price section loan-->
+						<section class="loan-slide deal-sld inline-div">
+						<div class="back-rslt row show bkmap" ng-click="back_dealer()"><i class="fa fa-angle-left" aria-hidden="true"></i><span>Back to results</span></div>
+							
+							<div class="undefined par_dealer text-center" ng-repeat="single_dealers in single_dealer track by $index">
+								<div class="dealer-image">
+								<img ng-if="single_dealers.profile" ng-src="./upload/{{single_dealers.profile}}"  alt="" style="height: 290px;">
+								<img ng-if="!single_dealers.profile" src="https://maps.googleapis.com/maps/api/streetview?size=600x300&location={{single_dealers.latitude}},{{single_dealers.longitude}}&fov=90&heading=235&pitch=10&key=AIzaSyD2KmVm-m6-gOf1Tk75b5xrG893FOTlQN4"  alt="" style="height: 290px;">
+								</div>
+								<div class="map-addr">
+									<div class="text-left">
+										<div class="map-dealername">{{single_dealers.name}}</div>
+										<div>{{single_dealers.address}}</div>
+										<div>{{single_dealers.address2}}&nbsp{{single_dealers.city}}&nbsp{{single_dealers.postcode}}</div>
+									</div>
+									<div class="mapdirection">
+										<a target="_blank" href="https://www.google.com/maps?z=12&t=m&q=loc:{{single_dealers.latitude}}+{{single_dealers.longitude}}">
+											<i class="dir-icon" aria-hidden="true"></i>
+										</a>
+										<div class="dir-link">
+											<a target="_blank" href="#">Directions</a>
+											<div>{{dist}}</div>
+										</div>
+									</div>
+								</div>
+							
+								<div class="contact-time text-left">
+									<ul>
+										<li class="website"  ng-click="open_link(single_dealers.website)"><i class="web"></i><a ng-href="">{{single_dealers.website}}</a></li>
+										<li class="mai"><i class="mail-ico"></i><a href="#">{{single_dealers.email}}</a></li>
+										<li class="numbe"><i class="numb"></i><a href="#">{{single_dealers.phone}}</a></li>
+										<li class="tim"><i class="tm"></i><a href="#">Todays Hours: {{shop_time_open}}-{{shop_time_close}}</a></li>
+									</ul>
+								</div>
+								<div class="select-loan-btn clearfix" ng-click="select_dealer()">
+								   <button class="btn btn-primary nextBtn noLease" type="button" data-toggle="modal" data-target="#select-dlr">SELECT THIS DEALER</button>
+								</div>
+							</div>
+							
+						</section>	
+						<!--end-->
+						</div>
+					</div>					
+<!-- 					<div class="nxt-div-btn text-center col-md-12">
+						<button class="btn btn-default prevBtn btn-lg pull-left" type="button" >Prev</button>
+						<button class="btn btn-primary nextBtn btn-lg pull-right" type="button" >Next</button>
+					</div> -->
+				</div>
+			</div>
+
+		</div>
+	
+	</form>
+		
+	</div>	
+</div>
+								
+								<input type="hidden" step="5000" min="0" max="500000" value="180000" required="">
+								
+								
+								<script>
+								//alert();
+								$('#step-2').addClass('active-stp');
+								</script>
+

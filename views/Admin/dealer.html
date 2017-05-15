@@ -1,0 +1,375 @@
+<style>
+
+h3 img {
+    max-height: 50px;
+}
+#map { 
+    height:300px;
+    width:100%;
+    margin: 18px 0;
+    border-radius: 5px;
+    border: 1px solid silver;
+}
+
+
+</style>
+
+
+<aside class="right-side">
+	<section class="content-header">
+		<h4>
+		  <ol class="breadcrumb">
+			 <li><a href="#makes"><i class="fa fa-dashboard"></i> Home</a></li>
+			 <li class="active">Dealer</li>
+		  </ol>
+		</h4>
+	</section>
+	<section class="content">
+	 <div class="row">
+	 <div class="col-md-12" ng-hide="dealer_list" >
+	     <div class="col-md-8 text-left" >
+	        <button class="btn btn-primary addnewbtn" ng-click="add_new_dealer()">Add New Dealer</button>
+			<!-- <div style="float:right">
+			 <input ng-model='filterValue' class="form-control" />
+			 <button class="btn btn-primary" ng-click='filter()'>Filter</button>
+			</div> -->
+		 </div>	
+		<div class="col-md-4 searchbox" ng-hide="searchinfo">
+          <input type="text" ng-model="deal" ng-change="searchdealer(deal)" class="form-control" id="deal" placeholder="search Dealer" name="deal">
+		</div>
+	     
+	    <div class="col-md-12">
+		<div ng-model="no_found">{{no_found}}</div>	
+		   <div id="grid1" ui-grid="gridOptions" class="grid"></div>
+		</div> 
+          <!--  <div class="box">
+				<div class="box-header">
+				
+				</div>
+				<div class="box-body table-responsive">
+					<table id="vehicletable" class="table table-bordered table-striped">
+						<thead>
+							<tr >
+								<th>name</th>
+								<th>email</th>
+								<th>address</th>
+								<th>country</th>
+								<th>postcode</th>
+								<th>website</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+						    <tr ng-repeat="s in dealers">
+								<td>{{s.name}}</td>
+								<td>{{s.email}}</td>
+								<td>{{s.address}},{{s.city}},{{s.state}}</td>
+								<td>{{s.country}}</td>
+								<td>{{s.postcode}}</td>
+								<td>{{s.website}}</td>
+								<td>
+								  <button class="btn btn-primary" ng-click="show_dealer(s)">Edit</button>
+								  <button type="button" ng-if="s.status==0" ng-click="change_status(1,s.dealer_id)" class="btn btn-success">Activate</button>
+					              <button type="button" ng-if="s.status==1" ng-click="change_status(0,s.dealer_id)" class="btn btn-warning">Deactivate</button>
+								  <button type="button" ng-click="delete_dealer(s)" class="btn btn-danger">Delete</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			  </div> -->	
+			</div>
+			
+	<div class="col-md-12" ng-show="dealer_form">
+			 
+	    <form role="form" name="dealerForm" id="dealerForm">
+			<div class="col-md-12 text-right dealer-top" >
+				<button class="btn btn-primary backbtn" ng-click="show_list()">Back To List</button> <!-- <h2 style="color:#3c8dbc">{{msg}}</h2> -->
+			</div>	
+	     <div class="col-md-6 col-sm-6 dealer-pad-comon">
+				<div class="box-header">
+				  <h3 class="box-title">Profile</h3>
+			    </div>
+	       <div class="box box-primary">
+			    <div class="box-body">
+				<div class="fileinput fileinput-new" data-provides="fileinput">
+					<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;">
+					<img ng-if="dealer.profile" ng-src="./upload/{{dealer.profile}}" alt="">
+					<img ng-if="!dealer.profile" ng-src="" alt="">
+					</div>
+                <div>
+				
+                  <span class="btn btn-default btn-file">
+                  <span class="fileinput-new">Select image</span>
+                     <input type="file" name="file" file-model="profile">
+                  </span>
+                      <span>
+				<a ng-click="remimg(dealer.profile,dealer.dealer_id)" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+						  </span>
+				</div>
+					<span style="color:red">{{dimgerror}}</span>
+					
+					
+               </div>
+			</div>
+		   
+				<div class="box-body">
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" class="form-control" ng-model="dealer.name" id="name" placeholder="Enter dealer name" name="name" required  >
+						 <span style="color:red" ng-show="dealerForm.name.$dirty && dealerForm.name.$invalid">Username is required.</span>
+					</div>
+					
+					<div class="form-group">
+						<label for="email">Email</label>
+				<input type="email" class="form-control" ng-model="dealer.email"  id="email"  placeholder="Enter Email"  name="email" required >
+                      	<span style="color:red" ng-show="dealerForm.email.$dirty && dealerForm.email.$invalid">please enter valid email</span>			
+					</div>
+                    <div class="form-group">
+						<label>Select Country</label>
+                        <select class="selectbox"  id="selectedcountry" ng-change="get_makes(dealer.selectedcountry)" ng-model="dealer.selectedcountry" name="selectedcountry" >
+						   <option  value=''>---select country---</option>
+						   <option ng-selected="dealer.selectedcountry=='aus'" value='aus'>AUS</option>
+						  <option ng-selected="dealer.selectedcountry=='us'" value='us'>US</option>
+						</select>
+						<span style="color:red">{{scon_errmsg}}</span>
+						<span style="color:red" ng-show="dealerForm.selectedcountry.$dirty && dealerForm.selectedcountry.$invalid">please select country.</span>
+					</div>
+					
+					 <div class="form-group col-md-12 pad-left-0">
+					    <label>Select Make</label>
+						<select class="selectbox"  ng-model="dealer.make"  name="make" >
+							<option value="">---Please select Make ---</option>
+						  <option ng-selected="dealer.make==m.make_id" ng-repeat="m in makes" class="selectbox" value="{{m.make_id}}" class="form-control" >
+							{{m.make_name}}
+						 </option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="phone">Phone</label>
+				         <div ng-hide="ausphone">
+						<input type="text" class="form-control" data-inputmask='"mask": "(99) 9999-9999"' data-mask ng-model="dealer.phone" id="phone"   placeholder="Phone no" name="phone" required >
+                         </div>
+                        <div ng-show="usphone">
+						<input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask ng-model="dealer.phone" id="phone"   placeholder="Phone no" name="phone" required >
+                         </div>
+                      	<span style="color:red" ng-show="dealerForm.phone.$dirty && dealerForm.phone.$invalid">please enter valid phone</span>			
+					</div>
+					<div class="form-group">
+						<label for="Trim">Website</label>
+						<input type="text" class="form-control" ng-model="dealer.website" id="website" placeholder="Enter website url" name="website" required >
+						<span style="color:red" ng-show="dealerForm.website.$dirty && dealerForm.website.$invalid">Website is required.</span>
+					</div>
+				
+				</div>
+				
+			   
+			   
+			   
+			   
+			    <!--<div class="box-header">
+				  <h2 class="box-title"><b>Make</b></h2>
+			    </div>
+				<div class="box-body" >
+			        <div class="form-group col-md-6 pad-left-0">
+					    <label>Select Make</label>
+						<select class="selectbox"  ng-model="dealer.make"  name="make" >
+							<option value="">---Please select Make ---</option>
+						  <option ng-selected="dealer.make==m.make_id" ng-repeat="m in makes" class="selectbox" value="{{m.make_id}}" class="form-control" >
+							{{m.make_name}}
+						 </option>
+						</select>
+					</div>
+					<div class="form-group col-md-6 pad-right-0">
+					    <label>Select Model</label>
+						<select class="selectbox"  ng-model="model" ng-change="show_models(model)" name="model" >
+							<option value="">---Please select Model ---</option>
+						  <option  ng-repeat="m in models" class="selectbox" value="{{m}}" class="form-control" >
+							{{m.model}}
+						 </option>
+						</select>
+					</div>
+					<div class="form-group " style="margin-bottom:20px">
+						  <div ng-repeat="m in selected_models" >
+							<div class="makelist">{{m.model}}</div>
+						 </div>
+					</div>
+					
+				  </div>	-->
+			   
+			   
+			   
+			   
+			   
+				</div>
+		 </div>
+		 
+		 <div class="col-md-6 col-sm-6 dealer-pad-comon"> 
+		 	  <div class="box-header">
+				<h3 class="box-title">Add address</h3>
+			  </div>	
+		   <div class="box box-primary">
+				<div class="col-md-12 pad-left-0" style="margin-top: -36px;">
+				<div class="box-body" style="margin-top: 40px;"> 
+			 
+				  <div class="alert alert-danger text-center" role="alert" ng-show="apiError">
+					<b>API Error : </b>
+					<span>{{ apiStatus }}</span>
+				  </div>
+					
+				  <div class="input-group">
+					  <span style="color:red">{{addr_errmsg}}</span>
+						<input name="place" type="text" class="form-control" 
+						ng-model="searchPlace" autofocus id="searchBox" />
+						<span class="input-group-btn">
+							<button class="btn btn-primary" 
+							ng-disabled="searchForm.$invalid" ng-click="search()">Search</button>
+						</span>
+				   </div>
+					   
+					<div id="map"></div>
+							<div class="form-group col-md-12 pad-lr-0">
+								<label for="name">Suburb</label>
+								<input name="resName" type="text" ng-model="dealer.suburb"class="form-control" id="ct_townarea"/>
+							</div>
+							<div class="form-group col-md-6 pad-left-0" >
+								<label for="name">Latitude</label>
+								<input name="resLat" type="text" ng-model="dealer.latitude" class="form-control" id="placeLat" />
+								
+							</div>
+							<div class="form-group col-md-6 pad-right-0">
+								<label for="name">Longitude</label>
+						<input name="resLng" type="text" ng-model="dealer.longitude" class="form-control" id="placeLng"  />
+							
+							</div>
+							<div class="form-group col-md-6 pad-left-0">
+								<label for="name">Address 1</label>
+								<input name="add1" type="text" class="form-control" ng-model="dealer.address" id="ct_al1"/>
+							</div>
+							<div class="form-group col-md-6 pad-right-0">
+								<label for="name">Address 2</label>
+								<input name="add2" type="text" ng-model="dealer.address2" class="form-control" id="ct_al2"/>
+							</div>
+							<div class="form-group col-md-6 pad-left-0">
+								<label for="name">City</label>
+								<input name="city" type="text" ng-model="dealer.city" class="form-control" id="ct_city"/>
+							</div>
+							<div class="form-group col-md-6 pad-right-0">
+								<label for="name">Zip</label>
+								<input name="zip" ng-model="dealer.postcode" type="text" class="form-control" id="ct_zip"/>
+							</div>
+							<div class="form-group col-md-6 pad-left-0">
+								<label for="name">State</label>
+								<input name="state" type="text" ng-model="dealer.state" class="form-control" id="ct_state"/>
+							</div>
+							
+							<div class="form-group col-md-6 pad-right-0">
+								<label for="name">Country</label>
+								<input name="country" type="text" ng-model="dealer.country" class="form-control" id="ct_country" />
+								
+							</div>
+					</div>
+				 </div>
+			   </div>
+     </div>	
+            <div class="col-md-12 col-sm-12">
+				 <div class="box-header">
+				  <h3 class="box-title col-md-12">Shop Time</h3>
+			    </div>
+		    <div class="box box-primary">   		
+			   
+				<div class="box-body">
+				     <div class="col-md-6 col-sm-6">
+				     <div class="form-group">
+						<label class="timelabel">Monday</label>
+						<input type="text" class="form-control timepicker" ng-model="time.Mon_open" id="mon_open" name="mon_open" value="9:30 AM" >
+						<input type="text" class="form-control timepicker" ng-model="time.Mon_close" id="mon_close" name="mon_close" value="9:30 PM" >
+					 </div>
+				     <div class="form-group">
+						<label class="timelabel">Tuesday</label>
+						<input type="text" class="form-control timepicker" ng-model="time.Tue_open" id="tue_open" name="tue_open" value="9:30 AM" >
+						<input type="text" class="form-control timepicker" ng-model="time.Tue_close" id="tue_close" name="tue_close" value="9:30 PM" >
+						
+					 </div>
+					 <div class="form-group">
+						<label class="timelabel">Wednesday</label>
+						<input type="text" class="form-control timepicker" ng-model="time.Wed_open" id="wed_open" name="wed_open"  value="9:30 AM" >
+						<input type="text" class="form-control timepicker" ng-model="time.Wed_close" id="wed_close" name="wed_close" value="9:30 PM" >
+					 </div>
+					
+					 <div class="form-group">
+						<label class="timelabel">Thursday</label>
+						<input type="text" class="form-control timepicker" ng-model="time.Thu_open" id="thu_open" name="thu_open" value="9:30 AM" >
+						<input type="text" class="form-control timepicker" ng-model="time.Thu_close" id="thu_close" name="thu_close" value="9:30 PM" >
+						
+					 </div>
+					</div>
+					<div class="col-md-6 col-sm-6">
+					 <div class="form-group">
+						<label class="timelabel">Friday</label>
+						<input type="text" class="form-control timepicker" ng-model="time.Fri_open" id="fri_open" name="fri_open"  value="9:30 AM">
+						<input type="text" class="form-control timepicker" ng-model="time.Fri_close" id="fri_close" name="fri_close" value="9:30 PM" >
+					 </div>
+					 <div class="form-group">
+						<label class="timelabel">Saturday</label>
+						<input type="text" class="form-control timepicker" ng-model="time.Sat_open" id="sat_open" name="sat_open"  value="9:30 AM">
+						<input type="text" class="form-control timepicker" ng-model="time.Sat_close" id="sat_close" name="sat_close" value="9:30 PM" >
+					 </div>
+					 <div class="form-group">
+						<label class="timelabel">Sunday</label>
+						<input type="text" class="form-control timepicker" ng-model="time.Sun_open" id="sun_open" name="sun_open" value="9:30 AM" >
+						<input type="text" class="form-control timepicker" ng-model="time.Sun_close" id="sun_close" name="sun_close" value="9:30 PM" >
+						 
+					 </div>
+					</div>
+					<div class="col-md-12 col-sm-12">
+					 <div class="box-footer ">
+						<div class="box-footer text-right">
+								<button  type="submit" ng-show="addbtn" ng-click="Add_dealer(dealer,time,selected_models,profile)" ng-disabled="dealerForm.name.$invalid || dealerForm.email.$invalid || dealerForm.phone.$invalid || dealerForm.website.$invalid" class="btn btn-primary backbtn"  >Add </button>
+								<button  type="submit" ng-show="updatebtn" ng-click="update_dealer(dealer,time,selected_models,profile)" [disabled]="!dealerForm.form.valid" class="btn btn-primary backbtn">Save </button>
+						</div>
+					</div>
+					</div>
+				  
+				 </div>
+			    </div>
+		  </div>	
+	</form>  
+
+ </section>
+</aside>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>{{msg}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="show_list()" >Ok</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+$(".timepicker").timepicker({
+
+
+});
+</script>
+<script>
+    $('form input').keydown(function (e) {
+    if (e.keyCode == 13) {
+        e.preventDefault();
+        return false;
+    }
+});
+ </script>
+<script>
+	$(function () {  
+		$("[data-mask]").inputmask(); 
+	});
+	</script>

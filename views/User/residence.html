@@ -1,0 +1,506 @@
+<style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;
+  }
+	.tgl-btn{
+	  display:none;
+	}
+  
+  h3 img {
+    max-height: 50px;
+}
+</style>
+
+
+	
+<div class="main-page">
+	 <div class="process nav-unscrolled" id="main-nav"> 
+		<div class="container">
+			<div class="stepwizard">
+				<div class="stepwizard-row setup-panel">
+					<div class="stepwizard-step" ng-click="redirect('home')">
+						<a type="button"  href="#/" class="btn btn-default btn-circle">1</a>
+						<div class="donestep"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+						<p>CHOOSE A CAR</p>
+					</div>					
+					<div class="stepwizard-step" ng-click="redirect('dealership')">
+						<a href="#/dealership/{{localmake}}/{{localmodel}}" type="button" class="btn btn-circle btn-default ">2</a>
+						<div class="donestep"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+						<p>FIND A DEALERSHIP</p>
+						
+					</div>
+					<div class="stepwizard-step active-stp">
+						<a href="" type="button" class="btn btn-default btn-circle btn-primary disable" disabled="disabled">3</a>
+						<p>SEARCH FOR FINANCING</p>
+					</div>
+					 <div class="stepwizard-step">
+						<a href="" type="button" class="btn btn-default btn-circle disable" disabled="disabled">4</a>
+						<p>SELECT YOUR LENDER</p>
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+		
+ <div class="process-content">
+   <div class="container">	
+	 <form role="form" name="userForm">
+	    <div class="row setup-content" id="step-3">
+			<div class="row">
+			   
+			<div class="col-md-12 pad0 top-spc">
+		    	<h1 class="text-center">Search for Financing</h1>		
+			</div>
+			<aside class="_1ZuhAtc-DYbmBLqSCn-Rh6">
+				<ul class="XIzZi81R7ngU7n3l2AFhu pinfo">
+					<li id="pinfo" class="done"><span>personal information</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="rinfo" class="current"><span>residence information</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="einfo" class=""><span>employment information</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="iinfo" class=""><span>identification</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+					<li id="rwinfo" class=""><span>review</span><div class="_1ClaPLjaE3XYhi0J58n7J9"></div></li>
+				</ul>
+			</aside>
+				
+				
+			<div class="user-details-frm " >
+			  <div class="col-xs-12" ><h4 class="title">Residence Information</h4></div>
+				<div class="col-xs-12 gr-bg" ><h5 class="title">Current Residence</h5></div>
+			       
+				   <div ng-show="" id="rstate">{{resi_info.state}}</div>
+				   <div ng-show="" id="rprev_state">{{resi_info.prev_state}}</div>
+				   <div ng-show="" id="rrent_own">{{resi_info.rent_own}}</div>
+			       <div  ng-show="" id="rprev_rent_own">{{resi_info.prev_rent_own}}</div>
+				
+				
+				
+					<div class="frms" >
+					  <div class="group col-xs-12 col-sm-6">
+						<input type="text" ng-model="resi_info.address"  name="address" required><span class="highlight"></span><span class="bar"></span>
+						<label>Address</label>
+						  <span style="color:red" ng-show="userForm.address.$dirty && userForm.address.$invalid">required.</span>
+					  </div>
+					  <div class="group col-xs-12 col-sm-6">
+						<input type="text" ng-model="resi_info.address2"  name="address2" required><span class="highlight"></span><span class="bar"></span>
+						<label>suburb</label>
+					  </div>
+					  <div class="group col-xs-12 col-sm-4">
+						<input type="text" ng-pattern="/^[a-zA-Z\s]*$/" ng-model="resi_info.city"  name="city" required><span class="highlight"></span><span class="bar"></span>
+						<label>City</label>
+						<span style="color:red" ng-show="userForm.city.$dirty && userForm.city.$invalid"> allow letters only.</span>
+					  </div>
+					
+					  <!--<div class="group col-xs-12 col-sm-4">
+						<select ng-model="resi_info.state" class="mdl-textfield__input mdl-dropdown_input" name="state" id="state" data-ng-options="state.name as state.name for state in state_list" class="smdl-textfield__input mdl-dropdown_input" >
+							<option value="" class="mdl-menu__item">Select State</option>				   
+					      </select>	
+					  </div>-->
+						
+						<div class="col-sm-4 col-xs-12 custo-select-bx smal-pad cursel">
+							<div class="sel sel-state sel--black-panther state">					
+								<select ng-model="resi_info.state"  name="state" id="state" >
+									 <option value="" >Select State</option>
+								 	<option ng-class="{selected:state.name==resi_info.state}" value="{{state.name}}" ng-repeat="state in state_list" >{{state.name}}</option>
+								</select>
+								<i class="fa fa-caret-down" aria-hidden="true"></i>
+
+						 	</div>
+						</div>
+						
+					  <div class="group col-sm-4 col-xs-12">
+						<input pattern="[0-9.]+"  maxlength="6" type="text" ng-model="resi_info.postcode"  name="postcode" required><span class="highlight"></span><span class="bar"></span>
+						<label ng-if="country=='aus'">Post Code</label>
+						  <label ng-if="country=='us'">Zip Code</label>
+						<span style="color:red" ng-show="userForm.postcode.$dirty && userForm.postcode.$invalid"> allow only numbers.</span>
+					  </div>
+					  <div class="group col-xs-12 col-sm-4">
+						<!--<div id="movedate">MM/YYYY</div> ng-keyup="add_slash_to_date(resi_info.move_date,'movein')"-->
+						<input type="text"  pattern="^(?=.*?[1-9])[0-9()/-]+$"   ng-focus="hide_error('move_date')"  ng-blur="validate_move_date(resi_info.move_date)" ng-model="resi_info.move_date"  id="move_date" name="move_date"   required><span class="highlight"></span><span class="bar"></span>
+						<label>Move In date</label>
+					      <span class="spanerror" style="color:red">{{movedate_errmsg}}</span>
+						  <span style="color:red" ng-show="userForm.move_date.$dirty && userForm.move_date.$invalid">invalid date.</span> 
+					  </div>
+						
+						<div class="col-sm-4 col-xs-12 custo-select-bx smal-pad cursel">
+							<div class="sel sel--black-panther rentown">					
+								<select ng-model="resi_info.rent_own" name="rent_own" id="rent_own" >
+									<option value="" >Rent/Own</option>
+									<option value="RENT" >RENT</option>
+									<option value="OWN" >OWN</option>
+								</select>
+								<i class="fa fa-caret-down" aria-hidden="true"></i>
+						 	</div>
+						</div>
+							
+							
+	
+						<!--<div class="group col-xs-12 col-sm-4 state">
+								<div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label" style="">
+									<select class="mdl-textfield__input mdl-dropdown_input" ng-change="hide_error('rent_own')" ng-model="resi_info.rent_own"  name="rent_own" id="rent_own">
+										<option value="" class="mdl-menu__item">Rent/Own</option>
+										<option value="rent" class="mdl-menu__item">RENT</option>
+										<option value="own" class="mdl-menu__item">OWN</option>
+									</select>
+								
+								    <span style="color:red">{{rent_own_errmsg}}</span>
+									<span style="color:red" ng-show="userForm.rent_own.$dirty && userForm.rent_own.$invalid">please select rent/own field.</span> 
+								</div>
+						</div>	-->
+						
+						
+					  <div class="group col-xs-12 col-sm-4">
+						  <span ng-show="doller" class="doller">$</span>
+						<input pattern="[0-9.]+"   class="dollerinput" type="text" name="rent_mortgage" ng-keyup="add_doller_sign(resi_info.rent_mortgage,'current')" ng-model="resi_info.rent_mortgage" required><span class="highlight"></span><span class="bar"></span>
+						<label>Monthly Rental/ Mortgage</label>
+						<span style="color:red" ng-show="userForm.rent_mortgage.$dirty &&  userForm.rent_mortgage.$invalid">allow  only numbers.</span> 
+					  </div>				  
+					</div>	
+
+					<!--Previous Residence-->
+					<div class="frms" ng-show="previous_residence">
+					<div class="col-xs-12 gr-bg" >
+						<h5 class="title">Previous Residence</h5>
+						<p>This information is needed because you have been living in your current residence for less than three months.</p>
+					</div>
+					  <div class="group col-xs-12 col-sm-6">
+						<input name="prev_address" ng-model="resi_info.prev_address" type="text" required><span class="highlight"></span><span class="bar"></span>
+						<label>Address</label>
+						  <span style="color:red" ng-show="userForm.prev_address.$dirty && userForm.prev_address.$invalid">address field is required.</span> 
+					  </div>
+					  <div class="group col-xs-12 col-sm-6">
+						<input name="prev_address2" ng-model="resi_info.prev_address2" type="text" required><span class="highlight"></span><span class="bar"></span>
+						<label>suburb</label>
+					  </div>
+					  <div class="group col-xs-12 col-sm-4">
+						<input ng-pattern="/^[a-zA-Z\s]*$/" name="prev_city" ng-model="resi_info.prev_city" type="text" required><span class="highlight"></span><span class="bar"></span>
+						<label>City</label>
+						<span style="color:red" ng-show="userForm.prev_city.$dirty && userForm.prev_city.$invalid">  allow letters only.</span> 
+					  </div>
+	                  
+						
+						<div class="col-sm-4 col-xs-12 custo-select-bx smal-pad prevsel">
+							<div class="sel prevsel sel--black-panther prevstate">					
+								<select ng-model="resi_info.prev_state "  name="prev_state" id="prev_state" >
+									 <option value="" >Select State</option>
+								 	<option  value="{{state.name}}" ng-repeat="state in state_list" >{{state.name}}</option>
+								</select>
+								<i class="fa fa-caret-down" aria-hidden="true"></i>
+						 	</div>
+						</div>
+						<!--<div class="group col-xs-12 col-sm-4">
+						  <select ng-model="resi_info.prev_state" class="mdl-textfield__input mdl-dropdown_input" name="prev_state" id="prev_state" data-ng-options="state.name as state.name for state in state_list" class="smdl-textfield__input mdl-dropdown_input" >
+						   	  	<option value="" class="mdl-menu__item">Select State</option>
+					      </select>
+						</div>-->
+									  
+					  <div class="group col-xs-12 col-sm-4">
+						<input pattern="[0-9.]+"  maxlength="6" name="prev_postcode" ng-model="resi_info.prev_postcode" type="text" required><span class="highlight"></span><span class="bar"></span>
+						<label ng-if="country=='aus'">Post Code</label>
+						  <label ng-if="country=='us'">Zip Code</label>
+						  <span style="color:red" ng-show="userForm.prev_postcode.$dirty && userForm.prev_postcode.$invalid"> allow only numbers .</span> 
+					  </div>
+					  <div class="group col-xs-12 col-sm-4">
+						 <!-- <div id="prevdobpl">MM/YYYY</div> ng-keyup="add_slash_to_date(resi_info.prev_move_in ,'pmovein' )"-->
+						<input name="prev_move_in" pattern="^(?=.*?[1-9])[0-9()/-]+$"  ng-focus="hide_error('prev_move_in')" ng-blur="validate_prev_move_date(resi_info.prev_move_in)"   id="prev_move_in" ng-model="resi_info.prev_move_in" type="text" required><span class="highlight"></span><span class="bar"></span>
+						<label>Move In date</label>
+						  <span class="spanerror" style="color:red">{{prevmovein_errmsg}}</span>
+						  <span style="color:red" ng-show="userForm.prev_move_in.$dirty && userForm.prev_move_in.$invalid">invalid date.</span> 
+					  </div>
+					 
+					  <div class="group col-xs-12 col-sm-4">
+						<!-- <div id="moveout">MM/YYYY</div> ng-keyup="add_slash_to_date(resi_info.prev_move_out ,'pmoveout' )"-->
+						<input name="prev_move_out"  pattern="^(?=.*?[1-9])[0-9()/-]+$" ng-focus="hide_error('prev_move_out')" ng-blur="validate_prev_move_out_date(resi_info.prev_move_out)"   id="prev_move_out" ng-model="resi_info.prev_move_out" type="text" required><span class="highlight"></span><span class="bar"></span>
+						<label>Move Out date</label>
+						<span class="spanerror" style="color:red">{{prevmoveout_errmsg}}</span>
+						  <span style="color:red" ng-show="userForm.prev_move_out.$dirty && userForm.prev_move_out.$invalid">invalid date.</span> 
+					  </div>
+						
+						<!--<div class="group col-xs-12 col-sm-4 state">
+								<div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label" style="">
+								  <!--<input name="prev_rent_own" ng-model="resi_info.prev_rent_own" readonly class="mdl-textfield__input mdl-dropdown_input" type="text" id="preRent">
+								  <select class="mdl-textfield__input mdl-dropdown_input" ng-change="hide_error('prev_rent_own')" ng-model="resi_info.prev_rent_own"  name="prev_rent_own" id="prev_rent_own">
+										<option value="" class="mdl-menu__item">Rent/Own</option>
+									    <option value="rent" class="mdl-menu__item">RENT</option>
+										<option value="own" class="mdl-menu__item">OWN</option>
+									</select>
+									
+									<!--<label class="mdl-textfield__label" for="preRent"><span>Rent/Own</span></label>
+								    <span style="color:red">{{prevrent_own_errmsg}}</span>
+									<span style="color:red" ng-show="userForm.prev_rent_own.$dirty && userForm.prev_rent_own.$invalid">rent/own field is required.</span>
+								  <!--<ul class="mdl-menu mdl-js-menu mdl-dropdown-menu" for="preRent">
+									<li class="mdl-menu__item">RENT</li>
+									<li class="mdl-menu__item">OWN</li>
+								  </ul>
+								</div>
+						</div>	-->
+						
+						<div class="col-sm-4 col-xs-12 custo-select-bx smal-pad prevsel">
+							<div class="sel  sel--black-panther prevrentown">					
+								<select ng-model="resi_info.prev_rent_own" name="prev_rent_own" id="prev_rent_own" >
+									    <option value="" >Rent/Own</option>
+									    <option value="RENT" >RENT</option>
+										<option value="OWN" >OWN</option>
+								</select>
+								<i class="fa fa-caret-down" aria-hidden="true"></i>
+						 	</div>
+						</div> 
+						<div class="clearfix mg-rnt">						
+						  <div class="group col-xs-12 col-sm-4">
+							   <span ng-show="doller2" class="doller">$</span>
+						
+							<input name="prev_rent_mortgage" ng-model="resi_info.prev_rent_mortgage"  pattern="[0-9.]+" class="dollerinput" ng-keyup="add_doller_sign(resi_info.prev_rent_mortgage,'prev')" type="text" required><span class="highlight"></span><span class="bar"></span>
+							<label>Monthly Rental/ Mortgage</label>
+							<span style="color:red" ng-show="userForm.prev_rent_mortgage.$dirty && userForm.prev_rent_mortgage.$invalid"> allow  only numbers.</span>
+						  </div>
+					  
+						</div>
+						
+						<div class="col-xs-12 text-center m-20">
+							<h6>If you subsequently add a joint applicant to your inquiry, the final decision will be affected by the joint applicant’s creditworthiness.</h6>
+						</div>
+					</div>	
+				
+				
+				     <div class="nxt-div-btn text-center col-md-12" >
+						 <!--  userForm.prev_address.$invalid || userForm.prev_city.$invalid || userForm.prev_state.$invalid || userForm.prev_postcode.$invalid  || userForm.prev_rent_own.$invalid || userForm.prev_rent_mortgage.$invalid -->
+							<button ng-if="edit" class="btn btn-primary nxt noLease" ng-click="edit_residential_info()">submit</button>
+						  
+						  <div ng-if="!edit">
+							<button ng-if="!previous_residence" ng-click="goto_employment_info()" class="btn btn-primary nxt noLease resi-nxt" 
+									ng-disabled="userForm.address.$invalid || userForm.city.$invalid || userForm.state.$invalid || userForm.postcode.$invalid  || userForm.rent_own.$invalid || userForm.rent_mortgage.$invalid"
+									type="button">Next</button>
+						    <button ng-if="previous_residence" ng-click="goto_employment_info()" class="btn btn-primary nxt noLease resi-nxt" 
+									ng-disabled="userForm.address.$invalid || userForm.city.$invalid || userForm.state.$invalid || userForm.postcode.$invalid  || userForm.rent_own.$invalid || userForm.rent_mortgage.$invalid || 
+												 userForm.prev_address.$invalid || userForm.prev_city.$invalid || userForm.prev_state.$invalid || userForm.prev_postcode.$invalid  || userForm.prev_rent_own.$invalid || userForm.prev_rent_mortgage.$invalid "
+									type="button">Next</button>
+						 </div>	 
+					</div>	
+					
+						
+				</div>	
+
+				
+				
+				
+			</div>	
+		</div>
+				
+		</div>
+	 </form>
+  </div>
+
+	
+	
+	
+	
+    <div id="myModal1" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content" role="document">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span></button>
+					Financing Disclosures
+				</div>
+				<div class="u1le6Y2hxjExaMxMdhDl0 modal-body">
+					<div>
+						<div class="text-center">
+							<p>The MSRP and Estimated Monthly Payment are not an advertisement or offer for specific terms of credit. Payment amounts presented are estimates and are for illustrative purposes only. If you used the Calculator, those amounts are reflected in the Estimated Monthly Payment. The Estimated Monthly Payment is based on a 60-month term, a down payment of 9%, Annual Percentage Rate (APR) of 4.5%, a tax rate of 7.0%, and no trade-in. If you change the Down Payment or Term, or if you trade in your current vehicle, the Estimated Monthly Payment will change. The payment amount does not include title, license or registration fees. Actual prices may vary by Dealer. Payment amounts may be different due to various factors such as fees, specials and rebates, term, down payment, APR, trade-in, and tax rate. Actual APR is based on the creditworthiness of the customer. Not all customers will qualify for the lowest rate. You and your selected dealer or 
+								will determine your actual rate. Please contact your selected dealer or lender for program details and actual terms. The MSRP excludes transportation and handling charges, destination charges, taxes, title, registration, preparation and documentary fees, tags, labor and installation charges, insurance, optional equipment or packages and accessories.</p>
+							<p>Additional Disclosures for Lease Transactions:</p>
+							<p>The total due at lease signing is the amount to be paid by the lessee prior to or at signing of the lease or by delivery of the vehicle.  It does not include title, license, and/or registration fees.  It includes the first month’s payment, any acquisition fee, capitalized cost reduction, and any trade-in amount.  A security deposit may be required depending on creditworthiness.</p>
+						</div>
+					</div>
+					<div class="text-center">
+						<button class="btn btn-primary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>	
+
+<input type="hidden" step="5000" min="0" max="500000" value="180000" required="">
+								
+								
+<script>
+	
+$('#state').hide();
+$('#prev_state').hide();
+$('#rent_own').hide();
+$('#prev_rent_own').hide();
+setTimeout(function(){		/* ===== Logic for creating fake Select Boxes ===== */
+var state=$("#rstate").text();
+var rent_own=$("#rrent_own").text();
+	console.log(state,rent_own);
+$('.cursel>div.sel').each(function() {
+	
+  $(this).children('select').css('display', 'none');
+ 
+  var $current = $(this);
+  $(this).find('option').each(function(i) {
+	  
+    if (i == 0) {
+      $current.prepend($('<div>', {
+			class: $current.attr('class').replace(/sel/g, 'sel__box ')
+		  }));
+
+		  var placeholder = $(this).text();
+		  $current.prepend($('<span>', {
+			class: $current.attr('class').replace(/sel/g, 'sel__placeholder'),
+			text: placeholder,
+			'data-placeholder': placeholder
+		  }));
+
+		  return;
+	  }
+    
+	 
+    if($(this).text()==state){
+		var index = $(this).index();
+		$current.children('div').append($('<span>', {
+		  class: $current.attr('class').replace(/sel/g, ' sel__box__options selected'),
+		  text: $(this).text()
+		}));
+		 var $currentSel = $(this).closest('.sel');
+         $currentSel.children('.sel__placeholder').text(state);
+         $currentSel.children('select').prop('selectedIndex', index + 1);
+		
+	}else if($(this).text()==rent_own){
+	    
+		var index = $(this).index();
+		$current.children('div').append($('<span>', {
+		  class: $current.attr('class').replace(/sel/g, ' sel__box__options selected'),
+		  text: $(this).text()
+		}));
+		 var $currentSel = $(this).closest('.sel');
+         $currentSel.children('.sel__placeholder').text(rent_own);
+         $currentSel.children('select').prop('selectedIndex', index + 1);
+	
+	}else{
+	 
+		 $current.children('div').append($('<span>', {
+		  class: $current.attr('class').replace(/sel/g, 'sel__box__options'),
+		  text: $(this).text()
+		}));
+	
+	}
+    
+  });
+});
+
+
+var prev_state=$("#rprev_state").val();
+var prev_rent_own=$("#rprev_rent_own").val();
+
+$('.prevsel >div.sel').each(function() {
+	
+  $(this).children('select').css('display', 'none');
+ 
+  var $current = $(this);
+  $(this).find('option').each(function(i) {
+	  
+    if (i == 0) {
+      $current.prepend($('<div>', {
+			class: $current.attr('class').replace(/sel/g, 'sel__box ')
+		  }));
+
+		  var placeholder = $(this).text();
+		  $current.prepend($('<span>', {
+			class: $current.attr('class').replace(/sel/g, 'sel__placeholder'),
+			text: placeholder,
+			'data-placeholder': placeholder
+		  }));
+
+		  return;
+	  }
+    
+	 
+    if($(this).text()==prev_state){
+		var index = $(this).index();
+		$current.children('div').append($('<span>', {
+		  class: $current.attr('class').replace(/sel/g, ' sel__box__options selected'),
+		  text: $(this).text()
+		}));
+		 var $currentSel = $(this).closest('.prevsel');
+         $currentSel.children('.sel__placeholder').text(prev_state);
+         $currentSel.children('select').prop('selectedIndex', index + 1);
+		
+	}else if($(this).text()==prev_rent_own){
+	    
+		var index = $(this).index();
+		$current.children('div').append($('<span>', {
+		  class: $current.attr('class').replace(/sel/g, ' sel__box__options selected'),
+		  text: $(this).text()
+		}));
+		 var $currentSel = $(this).closest('.prevsel');
+         $currentSel.children('.sel__placeholder').text(prev_rent_own);
+         $currentSel.children('select').prop('selectedIndex', index + 1);
+	
+	}else{
+	 
+		 $current.children('div').append($('<span>', {
+		  class: $current.attr('class').replace(/sel/g, 'sel__box__options'),
+		  text: $(this).text()
+		}));
+	
+	}
+    
+  });
+});
+	
+	// Toggling the `.active` state on the `.sel`.
+$('.sel').click(function() {
+  $(this).toggleClass('active');
+});
+
+// Toggling the `.selected` state on the options.
+$('.sel__box__options').click(function() {
+  var txt = $(this).text();
+  var index = $(this).index();
+  $(this).siblings('.sel__box__options').removeClass('selected');
+  $(this).addClass('selected');
+  
+  var $currentSel = $(this).closest('.sel');
+  $currentSel.children('.sel__placeholder').text(txt);
+  $currentSel.children('select').prop('selectedIndex', index + 1);
+	
+});
+},1500);	
+	
+	
+	var _mdlDrp = null;	$(".mdl-menu__item").on("click", function() {	
+		_mdlDrp = $(this).parents(".mdl-textfield").find("input");	  
+		_mdlDrp.val($(this).text());	 
+		_mdlDrp.parent().addClass("is-dirty");	
+	});
+//alert();
+	
+ $('#step-2').addClass('active-stp');
+	
+$(document).ready(function(){
+  var dob=$('input[name="dob"]'); 
+  var move_in=$('input[name="move_date"]');
+  var prev_move_in=$('input[name="prev_move_in"]');
+  var prev_move_out=$('input[name="prev_move_out"]');
+  var emp_start_date=$('input[name="emp_start_date"]');
+	
+  var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+  var options={
+	format: 'dd/mm/yyyy',
+	container: container,
+	todayHighlight: true,
+	autoclose: true,
+  };
+ // dob.datepicker(options);
+  //move_in.datepicker(options);
+ // prev_move_in.datepicker(options);
+ // prev_move_out.datepicker(options);
+ // emp_start_date.datepicker(options);
+})
+$('#move_date').inputmask("99/9999", {placeholder: 'MM/YYYY' });
+$('#prev_move_in').inputmask("99/9999", {placeholder: 'MM/YYYY' });
+$('#prev_move_out').inputmask("99/9999", {placeholder: 'MM/YYYY' });
+	
+</script>
+

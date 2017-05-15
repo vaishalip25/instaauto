@@ -1,0 +1,363 @@
+<style>
+
+h3 img {
+    max-height: 50px;
+}
+#map { 
+    height:300px;
+    width:100%;
+    margin: 18px 0;
+    border-radius: 5px;
+    border: 1px solid silver;
+}
+
+
+</style>
+
+
+<aside class="right-side">
+	<section class="content-header">
+		<h4>
+		  <ol class="breadcrumb">
+			 <li><a href="#makes"><i class="fa fa-dashboard"></i> Home</a></li>
+			 <li class="active">Leads</li>
+		  </ol>
+		</h4>
+	</section>
+	
+   <section class="content" ng-hide="lead_list">
+	 <div class="row">
+	   <div class="col-md-12" ng-hide="dealer_list" >
+		 <div class="col-md-8 text-left lead">
+			 <div class="box-header">
+				  <h3 class="box-title">Lead Listing</h3>
+			 </div>
+		 </div>
+		<div class="col-md-4 searchbox text-right" >
+              <input type="text" ng-model="lead" ng-change="searchlead(lead)" class="form-control" id="lead" placeholder="search Lead" name="lead">
+		</div>
+	    <div class="col-md-12">
+		<div ng-model="no_found">{{no_found}}</div>	
+		   <div id="grid2" ui-grid="gridOptions"  ui-grid-selection ui-grid-exporter class="grid"></div>
+		</div> 
+       </div>
+    </div>
+  </section>
+	
+
+	<section class="content" ng-show="lead_info">
+			<div class="col-sm-12">
+				<button class="btn btn-primary backbtn" ng-click="show_list()">Back To List</button>
+			</div>
+				<div class="panel-group custom-pa col-md-12">
+					<div class="panel panel-success det-leads">
+						<div class="panel-heading">Lead Details</div>
+						<div class="panel-body info-bd-pan">
+						 
+						<div class="col-md-4">
+						 <div class="personal_info comon-info"> 
+						    <h3 >Personal Information</h3>
+						    
+								<div class="lead-info ">
+								   <div ng-if="data.firstname"  class="form-group">
+										<label for="Lead Name">Lead Name :  </label> {{data.firstname}} {{data.lastname}}
+									   <div class="text">  </div>
+								  </div>
+									
+								   <div ng-if="data.uemail"  class="form-group">
+									<label for="Lead Name">Lead Email :</label> {{data.uemail}}
+								   <div class="text">  </div>
+									   
+								   <div ng-if="data.dob"  class="form-group">
+										<label for="Birthdate">Birthdate :  </label> {{data.dob}} 
+									   <div class="text">  </div>
+								  </div>
+							  </div>
+						   </div>						
+							<div class="lead-info ">
+								   <div ng-if="data.phone_no"  class="form-group">
+										<label for="Lead Name">Lead Phone No:</label>  {{data.phone_no}} 
+									   <div class="text"></div>
+								  </div>
+								  <div ng-if="data.license_number"  class="form-group">
+										<label for="Lead Name">Lead license number:</label> {{data.license_number}}
+									   <div class="text">  </div>
+								   </div>
+								 <div ng-if="data.credit_history"  class="form-group">
+										<label for="credit history">Finance history:</label> {{data.credit_history}}
+									   <div class="text">  </div>
+								   </div>
+							  </div>
+							
+						</div><!-----md-6 close---->  
+						</div> 
+						
+						<div class="col-md-4">
+							<div class="resi_info comon-info"> 
+								<h3 >Residential Information</h3>
+								
+									<div class="lead-info ">
+									   <div ng-if="data.address"  class="form-group">
+											<label for="Lead Name">Address :  </label> {{data.address}} {{data.uaddress2}}
+										   <div class="text">  </div>
+									  </div>
+									   <div ng-if="data.ucity"  class="form-group">
+										<label for="Lead Name">City :</label> {{data.ucity}}
+									   <div class="text">  </div>
+								  </div>
+							   </div>						
+								<div class="lead-info ">
+									   <div ng-if="data.ustate"  class="form-group">
+											<label for="Lead Name">State:</label>  {{data.ustate}} 
+										   <div class="text"></div>
+									  </div>
+									  <div ng-if="data.upostcode"  class="form-group">
+											<label for="Lead Name">Postcode:</label> {{data.upostcode}}
+										   <div class="text">  </div>
+									   </div>
+								  </div>
+							</div><!-----md-6 close----> 
+						
+						</div> 
+						<div class="col-md-4"> 
+							<div class="emp_info comon-info"> 
+								<h3 >Employment Information</h3>
+								
+									<div class="lead-info ">
+									   <div ng-if="data.emp_name" class="form-group">
+											<label for="Lead Name">Name :  </label> {{data.emp_name}}
+										   <div class="text">  </div>
+									  </div>
+									   <div ng-if="data.emp_title" class="form-group">
+										<label for="Lead Name">Title :</label> {{data.emp_title}}
+									   <div class="text">  </div>
+								  </div>
+							   </div>						
+								<div class="lead-info ">
+									   <div ng-if="data.emp_start_date" class="form-group">
+											<label for="Lead Name">Start Date:</label>  {{data.emp_start_date}} 
+										   <div class="text"></div>
+									  </div>
+									  <div ng-if="data.emp_phone" class="form-group">
+											<label for="Lead Name">Phone:</label> {{data.emp_phone}}
+										   <div class="text">  </div>
+									   </div>
+								  </div>						
+								<div class="lead-info ">
+									   <div ng-if="data.emp_monthly_income" class="form-group">
+											<label for="Lead Name">Monthly income:</label>  {{data.emp_monthly_income}} 
+										   <div class="text"></div>
+									  </div>
+									  <div ng-if="data.emp_income_option"  class="form-group">
+											<label for="Lead Name">Monthly Income Option:</label> {{data.emp_income_option}}
+										   <div class="text">  </div>
+									   </div>
+								  </div>
+							</div><!-----md-6 close---->  
+						
+						</div> 
+						  
+						  
+						  
+						  
+					</div><!-----panel close-->
+					</div><!-----panel-success close-->
+
+			  </div>
+		      
+		       <div class="panel-group custom-pa col-md-12 enq-list" style="margin-top:50px">
+				 <div class="panel panel-success">
+					 <div class="panel-heading">Enquiry list</div>
+					    <div class="panel-body info-bd-pan">
+							<div class="col-sm-12">
+							<table class="table table-bordered">
+								<thead>
+								  <tr>
+									<th>make</th>
+									<th>model</th>
+									<th>trim</th>
+									<th>actual price</th>
+									<th>requested amount</th>
+									<th>down payment</th>
+									<th>estimated trade</th>
+									<th>terms</th>
+									<th>enquiry date</th>
+									<th>action</th>
+								  </tr>
+								</thead>
+								<tbody ng-repeat="e in enq_list">
+								  <tr>
+									<td>{{e.make_name}}</td>
+									<td>{{e.model}}</td>
+									<td>{{e.trim}}</td>
+									<td>{{e.msrp_price}}</td>
+									<td>{{e.requested_amount}}</td>
+									<td>{{e.edown_payment}}</td>
+									<td>{{e.estimated_trade}}</td>
+								    <td>{{e.eterms}}</td>
+									<td>{{e.enq_date}}</td>
+									  <th><button class="btn btn-primary" ng-click="show_enquiry_data(e)">view</button></th>
+								  </tr>
+
+								</tbody>
+							  </table>
+							  </div>
+						</div>  
+					</div>
+			  </div>
+	</section>
+	
+</aside>
+
+<div class="modal fade enq-mdl" id="myModal" role="dialog" >
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+				<div class="panel-group custom-panel">
+					<div class="panel panel-success">
+					  <div class="panel-heading">Enquiry Information</div>
+					  <div class="panel-body info-bd-pan">
+						 <div class="delear_info comon-info"> 
+						   <h3 >Dealer Information</h3>
+						   <div class="col-md-6 delr-inf">
+							 <div class="dealer-info">
+								  <div class="form-group" >
+											<label for="Lead Name"> Dealer Name:</label>{{enq.name}} 
+										   <div class="text"> </div>
+								  </div>
+								   <div class="form-group" >
+											<label for="Lead Name"> Dealer Email:</label> {{enq.demail}} 
+										   <div class="text"> </div>
+								  </div>
+								   <div class="form-group"  ng-if="enq.phone">
+											<label for="Lead Name"> Dealer Phone:</label> {{enq.phone}}
+										   <div class="text">  </div>
+								  </div>
+								   <div class="form-group" ng-if="enq.website">
+											<label for="Lead Name"> Dealer Website:</label> {{enq.website}} 
+										   <div class="text"> </div>
+								  </div>
+						  	 </div>
+						</div><!-----md-6 close---->
+						  
+						   <div class="col-md-6">
+							<div class="dealer-info">
+                   			   <div class="form-group">
+										<label for="Lead Name"> Dealer Address:</label>
+										<div class="text"> {{enq.daddress}} </div>
+										<div class="text"> {{enq.daddress2}} </div>
+										<div class="text"> {{enq.dcity}} </div>
+										<div class="text"> {{enq.dpostcode}} </div>
+										<div class="text"> {{enq.dstate}} </div>
+										<div class="text"> {{enq.dcountry}} </div>
+							  </div>
+						   </div>
+						</div><!-----md-6 close---->  
+						</div> 
+						  
+						 <div class="vehicle_info comon-info"> 
+						   <h3 >Vehicle Information</h3>
+						   <div class="col-md-6">
+							   <div ng-if="enq.make_name" class="lead-info ">
+								    <div class="form-group">
+										<label for="Lead Name">Make: </label> {{enq.make_name}}
+									   <div class="text">  </div>
+								  </div>
+								 <div ng-if="enq.model" class="form-group">
+										<label for="Lead Name"> Model:</label> {{enq.model }} 
+									   <div class="text"> </div>
+								  </div>
+							  </div>
+							   <div ng-if="enq.trim" class="lead-info ">
+								    <div class="form-group">
+											<label for="Lead Name">  Trim:</label>  {{enq.trim }} 
+										   <div class="text"></div>
+								  </div>  
+								  <div ng-if="enq.vehicle_type" class="form-group">
+										<label for="Lead Name">  Type:</label> {{enq.vehicle_type }} 
+									   <div class="text"> </div>
+								  </div>
+							  </div>
+							</div>
+							<div class="col-sm-6">
+							    <div class="lead-info ">
+								    <div class="form-group" ng-if="enq.year">
+											<label for="Lead Name"> Year:</label> {{enq.year }}
+										   <div class="text">  </div>
+								  </div>
+								  <div class="form-group" ng-if="enq.msrp_price > 0">
+											<label for="Lead Name"> MSRP Price:</label> {{enq.msrp_price}}
+										   <div class="text">  </div>
+								  </div>
+							  </div>
+							   <div class="lead-info ">
+								   <div class="form-group" ng-if="enq.special_price > 0">
+												<label for="Lead Name"> Special Price:</label> {{enq.special_price}}
+											   <div class="text"> </div>
+									  </div>
+								   <div class="form-group" ng-if="enq.specialrepayment > 0">
+											<label for="Lead Name"> special Repayment:</label> {{enq.specialrepayment}}
+										   <div class="text">  </div>
+								  </div>
+							  </div>  
+							</div>
+								   
+							  </div>
+							
+						</div><!-----md-6 close---->
+						  
+						  <div class="vehicle_info comon-info"> 
+						   <h3 >Requested Data</h3>
+						   <div class="col-md-6">
+							   <div class="lead-info ">
+								    <div ng-if="enq.down_payment" class="form-group" >
+										<label for="Lead Name"> Down Payment:</label> {{enq.edown_payment}}
+								   </div>
+								   <div ng-if="enq.estimated_trade" class="form-group" >
+											<label for="Lead Name"> Estimated Trade :</label> {{enq.estimated_trade}}
+								   </div>
+							  </div>	
+							  </div>
+							  
+							  <div class="col-md-6">
+								 <div class="lead-info ">
+								    <div ng-if="enq.terms"  class="form-group" >
+											<label for="Lead Name"> Terms :</label> {{enq.terms}}
+										   
+								   </div>
+								   <div ng-if="enq.requested_amount" class="form-group" >
+											<label for="Lead Name">Requested amount :</label> {{enq.requested_amount}}
+								   </div>
+							  </div>
+							  </div>
+							
+						</div>
+						  
+						  
+						 
+						</div>   
+						  
+						  
+					</div><!-----panel close-->
+					</div><!-----panel-success close-->
+					<div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div> 
+
+			  </div><!----panel-group close-->
+			  
+		
+		</div>
+    
+        
+      </div>
+
+
+
+
+
